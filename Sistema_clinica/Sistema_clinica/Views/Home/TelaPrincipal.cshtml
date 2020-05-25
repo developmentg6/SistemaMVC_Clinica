@@ -4,9 +4,44 @@
     Layout = "~/Views/Shared/_LayoutLogado.cshtml";
 }
 
-<h2>Tela Principal</h2>
+<div class="text-center">
+    <h2>Bem-vindo(a), "nome do usuário logado"</h2>
 
-<p>Inserir o nome de quem está logado</p>
-<p>Verificar o que precisa inserir no menu</p>
+    <p>Verificar o que precisa inserir no menu</p>
 
-<p>inserir na página atalhos para as funcionalidades</p>
+    <p>inserir na página atalhos para as funcionalidades</p>
+
+    <div class="row">
+        <div class="col-sm-6 col-md-4">
+            <div class="boxMenu text-center">
+                <h3>Clientes</h3>
+                @Html.ActionLink("Cadastrar", "Index", "Home", new { @class = "btn btnMenu" })
+                @Html.ActionLink("Consultar", "TelaPrincipal", "Home", new { @class = "btn btnMenu" })
+                @Html.ActionLink("Editar", "TelaPrincipal", "Home", new { @class = "btn btnMenu" })
+                @Html.ActionLink("Excluir", "TelaPrincipal", "Home", new { @class = "btn btnMenu" })
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4">
+            <div class="boxMenu text-center">
+                <h3>Clientes</h3>
+                @Html.ActionLink("Cadastrar", "TelaPrincipal", "Home", new { @class = "btn btnMenu" })
+                @Html.ActionLink("Consultar", "TelaPrincipal", "Home", new { @class = "btn btnMenu" })
+                @Html.ActionLink("Editar", "TelaPrincipal", "Home", new { @class = "btn btnMenu" })
+                @Html.ActionLink("Excluir", "TelaPrincipal", "Home", new { @class = "btn btnMenu" })
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4">
+            <div class="boxMenu text-center">
+                <h3>Clientes</h3>
+                @Html.ActionLink("Cadastrar", "TelaPrincipal", "Home", new { @class = "btn btnMenu" })
+                @Html.ActionLink("Consultar", "TelaPrincipal", "Home", new { @class = "btn btnMenu" })
+                @Html.ActionLink("Editar", "TelaPrincipal", "Home", new { @class = "btn btnMenu" })
+                @Html.ActionLink("Excluir", "TelaPrincipal", "Home", new { @class = "btn btnMenu" })
+            </div>
+        </div>
+
+    </div>
+
+</div>

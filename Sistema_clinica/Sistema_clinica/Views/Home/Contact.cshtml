@@ -1,9 +1,63 @@
-﻿
+﻿@model Sistema_clinica.Models.Contato
 @{
     ViewBag.Title = "Contact";
 }
 
-<h2>Entre em contato</h2>
 
-<p>Ideia: formulário para entrar em contato com a clínica</p>
-<p>Abaixo do formulário, o endereço, email e telefone (inventados) da clínica e um mapa mostrando a localização</p>
+<div class="container-fluid telaContato">
+    <h2 class="text-center">Entre em contato</h2>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-horizontal text-center boxContato">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <br />
+            <div class="form-group">
+                @Html.LabelFor(model => model.Nome)
+                <br />
+                @Html.EditorFor(model => model.Nome)
+                <div class="col-10">
+                    @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                @Html.LabelFor(model => model.Email)
+                <br />
+                @Html.EditorFor(model => model.Email)
+                <div class="col-10">
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                @Html.LabelFor(model => model.Mensagem)
+                <br />
+                @Html.TextAreaFor(model => model.Mensagem)
+                <div class="col-10">
+                    @Html.ValidationMessageFor(model => model.Mensagem, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Enviar" class="btn btn-default" />
+            </div>
+        </div>
+    }
+    <div class="infosContato">
+        <div>
+            Rua Guaipá, 678<br />
+            Vila Leopoldina<br />
+            São Paulo - SP<br />
+            <br />
+            Telefone: (11) 3834-4111
+        </div>
+        <div>
+            imagem do google maps
+        </div>
+    </div>
+</div>
+
+    @section scripts{
+        @Scripts.Render("~/bundles/jqueryval")
+    }
