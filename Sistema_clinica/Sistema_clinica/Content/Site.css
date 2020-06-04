@@ -81,3 +81,13 @@ textarea {
     margin: 10px 5px;
     border: solid;
 }
+
+.filtro_hide {
+    visibility: hidden;
+    height: 0px;
+}
+
+.filtro_show {
+    visibility: visible;
+    height: auto;
+}

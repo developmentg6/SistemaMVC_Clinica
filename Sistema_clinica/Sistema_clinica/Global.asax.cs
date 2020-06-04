@@ -16,6 +16,10 @@ namespace Sistema_clinica
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            // Extensão Mensagem para ActionResult
+            ClientDataTypeModelValidatorProvider.ResourceClassKey = "Mensagens";
+            DefaultModelBinder.ResourceClassKey = "Mensagens";
         }
     }
 }

@@ -16,7 +16,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Logo da clínica", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Logo da clínica", "TelaPrincipal", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
 
             <div class="navbar-collapse collapse">
@@ -26,8 +26,8 @@
                             Clientes <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Cadastrar</a></li>
-                            <li><a href="#">Consultar</a></li>
+                            <li>@Html.ActionLink("Cadastrar", "Cadastrar", "Cliente")</li>
+                            <li>@Html.ActionLink("Consultar", "Index", "Cliente")</li>
                         </ul>
                     </li>
 
@@ -70,14 +70,13 @@
     </div>
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer id="rodape">
-            <p>Site desenvolvido por G6 System Development (inserir o link do nosso site aqui depois de pronto) - &copy; @DateTime.Now.Year</p>
-        </footer>
+        @RenderPage("~/Views/Shared/_Rodape.cshtml")
+
     </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @{Html.RenderPartial("~/Views/Shared/_Mensagem.cshtml");}
     @RenderSection("scripts", required: false)
 </body>
 </html>

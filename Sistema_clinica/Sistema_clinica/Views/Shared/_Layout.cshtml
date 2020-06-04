@@ -27,19 +27,17 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li>@Html.ActionLink("Login", "Login", "Home")</li>
                 </ul>
-            </div>            
+            </div>
         </div>
     </div>
     <div class="conteudo">
         @RenderBody()
-        <hr />
-        <footer class="container" id="rodape">
-            <p>Site desenvolvido por G6 System Development (inserir o link do nosso site aqui depois de pronto) - &copy; @DateTime.Now.Year</p>
-        </footer>
+        @RenderPage("~/Views/Shared/_Rodape.cshtml")
     </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @{Html.RenderPartial("~/Views/Shared/_Mensagem.cshtml");}
     @RenderSection("scripts", required: false)
 </body>
 </html>

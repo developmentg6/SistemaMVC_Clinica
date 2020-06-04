@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Sistema_clinica.Models.Cliente>
+
+@{
+    ViewBag.Title = "Clientes";
+    Layout = "~/Views/Shared/_LayoutLogado.cshtml";
+}
+
+<h2 class="text-center">Clientes</h2>
+
+
+<a href="~/Cliente/Cadastrar" class="btn btnMenu">Cadastrar</a>
+<div class="btn btnMenu" onclick="exibirFiltro('filtroCliente')">Buscar</div>
+
+<div id="filtroCliente" class="filtro_hide">
+    <div class="form-group">
+        <input type="text" placeholder="Busca por nome">
+        <button type="button" class="btn btn-default">Buscar</button>
+    </div>
+
+    <div class="form-group">
+        <input type="text" placeholder="Busca por cpf">
+        <button type="button" class="btn btn-default">Buscar</button>
+    </div>
+
+    <div class="form-group">
+        <button type="button" class="btn btn-default">Limpar filtros</button>
+    </div>
+</div>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cpf)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataNascimento)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cpf)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataNascimento)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Editar", new { id = item.Id }) |
+                @Html.ActionLink("Detalhes", "Detalhes", new { id = item.Id }) |
+                @Html.ActionLink("Excluir", "Excluir", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+
+@section scripts{
+    @Scripts.Render("~/bundles/filtros")
+} 
