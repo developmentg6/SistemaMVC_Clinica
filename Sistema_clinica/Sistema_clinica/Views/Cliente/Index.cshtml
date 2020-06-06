@@ -12,19 +12,23 @@
 <div class="btn btnMenu" onclick="exibirFiltro('filtroCliente')">Buscar</div>
 
 <div id="filtroCliente" class="filtro_hide">
-    <div class="form-group">
-        <input type="text" placeholder="Busca por nome">
-        <button type="button" class="btn btn-default">Buscar</button>
-    </div>
+    @using (Html.BeginForm("FiltrarNome", "Cliente"))
+    {
+        @Html.Editor("nome", new { htmlAttributes = new { placeholder = "Busca por nome" } })
+        <input type="submit" value="Buscar" class="btn btn-default" />
+    }
 
-    <div class="form-group">
-        <input type="text" placeholder="Busca por cpf">
-        <button type="button" class="btn btn-default">Buscar</button>
-    </div>
+    @using (Html.BeginForm("FiltrarCpf", "Cliente"))
+    {
+        @Html.Editor("cpf", new { htmlAttributes = new { placeholder = "Busca por CPF" } })
+        <input type="submit" value="Buscar" class="btn btn-default" />
+    }
 
-    <div class="form-group">
-        <button type="button" class="btn btn-default">Limpar filtros</button>
-    </div>
+    @using (Html.BeginForm("Index", "Cliente"))
+    {
+        <input type="submit" value="Limpar filtros" class="btn btn-default" />
+    }
+    <br />
 </div>
 
 <table class="table">

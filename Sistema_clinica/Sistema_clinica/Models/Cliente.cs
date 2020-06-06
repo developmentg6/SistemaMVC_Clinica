@@ -41,7 +41,7 @@ namespace Sistema_clinica.Models
         public string erro { get; set; } = "";
 
 
-        public List<Cliente> ListaClientes()
+        public List<Cliente> listaClientes()
         {
             List<Cliente> lista = new List<Cliente>();
             try
@@ -55,7 +55,7 @@ namespace Sistema_clinica.Models
             return lista;
         }
 
-        public void Cadastrar(Cliente cliente)
+        public void cadastrar(Cliente cliente)
         {
             try
             {
@@ -68,7 +68,7 @@ namespace Sistema_clinica.Models
 
         }
 
-        public Cliente Buscar(int id)
+        public Cliente buscar(int id)
         {
             Cliente cliente = new Cliente();
             try
@@ -83,7 +83,7 @@ namespace Sistema_clinica.Models
             return cliente;
         }
 
-        public void Excluir(int id)
+        public void excluir(int id)
         {
             try
             {
@@ -95,7 +95,7 @@ namespace Sistema_clinica.Models
             }
         }
 
-        public void Editar(Cliente cliente)
+        public void editar(Cliente cliente)
         {
             try
             {
@@ -107,5 +107,48 @@ namespace Sistema_clinica.Models
             }
 
         }
+
+        public List<Cliente> filtrarNome(string nome)
+        {
+            List<Cliente> lista = new List<Cliente>();
+            try
+            {
+                lista = clienteBD.FiltrarNome(nome);
+            }
+            catch
+            {
+                erro = clienteBD.mensagem;
+            }
+            return lista;
+        }
+
+        public List<Cliente> filtrarCpf(string cpf)
+        {
+            List<Cliente> lista = new List<Cliente>();
+            try
+            {
+                lista = clienteBD.FiltrarCpf(cpf);
+            }
+            catch
+            {
+                erro = clienteBD.mensagem;
+            }
+            return lista;
+        }
+
+        public bool existeCpf(string cpf)
+        {
+            bool existe = false;
+            try{
+                existe = clienteBD.ExisteCpf(cpf);
+            }
+            catch
+            {
+                erro = clienteBD.mensagem;
+            }
+            return existe;
+
+        }
+
     }
 }

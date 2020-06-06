@@ -15,15 +15,19 @@ namespace Sistema_clinica.Controllers
         public ActionResult Index()
         {
             Cliente cliente = new Cliente();
-
-            return View(cliente.ListaClientes());
+            IEnumerable<Cliente> lista = cliente.listaClientes();
+            if (cliente.erro != "")
+            {
+                return View(lista).Mensagem(cliente.erro);
+            }
+            return View(lista);
         }
 
         public ActionResult detalhes(int id)
         {
             Cliente cliente = new Cliente();
 
-            return View(cliente.Buscar(id));
+            return View(cliente.buscar(id));
         }
 
         public ActionResult Cadastrar()
@@ -35,10 +39,14 @@ namespace Sistema_clinica.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Cadastrar(Cliente clientedigitado)
         {
+            Cliente cliente = new Cliente();
+            if (cliente.existeCpf(clientedigitado.Cpf))
+            {
+                ModelState.AddModelError("Cpf", "Esse cpf já está cadastrado");
+            }
             if (ModelState.IsValid)
             {
-                Cliente cliente = new Cliente();
-                cliente.Cadastrar(clientedigitado);
+                cliente.cadastrar(clientedigitado);
                 if (cliente.erro == "")
                 {
                     return RedirectToAction("Index", "Cliente").Mensagem("Cliente cadastrado com sucesso!", "Cadastro realizado");
@@ -55,7 +63,7 @@ namespace Sistema_clinica.Controllers
         {
             Cliente cliente = new Cliente();
 
-            return View(cliente.Buscar(id));
+            return View(cliente.buscar(id));
         }
 
         [HttpPost]
@@ -63,7 +71,7 @@ namespace Sistema_clinica.Controllers
         public ActionResult Excluir(Cliente cliente)
         {
             Cliente cli = new Cliente();
-            cli.Excluir(cliente.Id);
+            cli.excluir(cliente.Id);
             if (cli.erro == "")
             {
                 return RedirectToAction("Index", "Cliente").Mensagem("Cliente excluído com sucesso!", "Cliente excluído");
@@ -76,7 +84,7 @@ namespace Sistema_clinica.Controllers
         {
             Cliente cliente = new Cliente();
 
-            return View(cliente.Buscar(id));
+            return View(cliente.buscar(id));
         }
 
         [HttpPost]
@@ -86,7 +94,7 @@ namespace Sistema_clinica.Controllers
             if (ModelState.IsValid)
             {
                 Cliente cli = new Cliente();
-                cli.Editar(cliente);
+                cli.editar(cliente);
                 if (cli.erro == "")
                 {
                     return RedirectToAction("Index", "Cliente").Mensagem("Cliente alterado com sucesso!", "Cliente alterado");
@@ -95,6 +103,36 @@ namespace Sistema_clinica.Controllers
             }
             return View(cliente);
 
+        }
+
+        public ActionResult FiltrarNome(string nome)
+        {
+            Cliente cliente = new Cliente();
+            IEnumerable<Cliente> lista = cliente.filtrarNome(nome);
+            if (cliente.erro != "")
+            {
+                return RedirectToAction("Index", "Cliente").Mensagem(cliente.erro);
+            }
+            if (lista.Count() == 0)
+            {
+                return RedirectToAction("Index", "Cliente").Mensagem("Não foi encontrado nenhum cliente com o filtro especificado");
+            }
+            return View("Index", lista);
+        }
+
+        public ActionResult FiltrarCpf(string cpf)
+        {
+            Cliente cliente = new Cliente();
+            IEnumerable<Cliente> lista = cliente.filtrarCpf(cpf);
+            if (cliente.erro != "")
+            {
+                return RedirectToAction("Index", "Cliente").Mensagem(cliente.erro);
+            }
+            if (lista.Count() == 0)
+            {
+                return RedirectToAction("Index", "Cliente").Mensagem("Não foi encontrado nenhum cliente com o filtro especificado");
+            }
+            return View("Index", lista);
         }
     }
 }

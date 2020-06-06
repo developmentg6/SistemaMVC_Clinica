@@ -38,8 +38,7 @@ namespace Sistema_clinica.Models.bd
 
             return Lista;
         }
-
-
+        
         public Cliente AtribuirCliente(Cliente cliente, MySqlDataReader dr)
         {
             cliente.Id = int.Parse(dr["id"].ToString());
@@ -150,6 +149,83 @@ namespace Sistema_clinica.Models.bd
             {
                 this.mensagem = "ERRO COM BANCO DE DADOS!" + ex;
             }
+        }
+
+        public List<Cliente> FiltrarNome(string nome)
+        {
+            string nomeAdaptado = '%' + nome + '%';
+            cmd.CommandText = "select * from cliente where nome like @nome";
+            cmd.Parameters.AddWithValue("@nome", nomeAdaptado);
+
+            try
+            {
+                cmd.Connection = con.Conectar();
+                dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    Cliente cliente = new Cliente();
+                    AtribuirCliente(cliente, dr);
+                    Lista.Add(cliente);
+                }
+                con.Desconectar();
+
+            }
+            catch (MySqlException ex)
+            {
+                this.mensagem = "ERRO COM BANCO DE DADOS!" + ex;
+            }
+            return Lista;
+        }
+        
+        public List<Cliente> FiltrarCpf(string cpf)
+        {
+            string cpfAdaptado = '%' + cpf + '%';
+            cmd.CommandText = "select * from cliente where cpf like @cpf";
+            cmd.Parameters.AddWithValue("@cpf", cpfAdaptado);
+
+            try
+            {
+                cmd.Connection = con.Conectar();
+                dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    Cliente cliente = new Cliente();
+                    AtribuirCliente(cliente, dr);
+                    Lista.Add(cliente);
+                }
+                con.Desconectar();
+
+            }
+            catch (MySqlException ex)
+            {
+                this.mensagem = "ERRO COM BANCO DE DADOS!" + ex;
+            }
+            return Lista;
+        }
+
+        public bool ExisteCpf(string cpf)
+        {
+            Cliente cliente = new Cliente();
+            bool existe = false;
+            cmd.CommandText = "select * from cliente where cpf = @cpf";
+            cmd.Parameters.AddWithValue("@cpf", cpf);
+
+            try
+            {
+                cmd.Connection = con.Conectar();
+                dr = cmd.ExecuteReader();
+                if (dr.HasRows)
+                {
+                    existe = true;
+                }
+                con.Desconectar();
+            }
+            catch (MySqlException ex)
+            {
+                this.mensagem = "ERRO COM BANCO DE DADOS!" + ex;
+            }
+
+            return existe;
         }
 
     }
