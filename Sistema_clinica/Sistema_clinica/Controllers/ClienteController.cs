@@ -135,10 +135,5 @@ namespace Sistema_clinica.Controllers
             return View("Index", lista);
         }
 
-        public ActionResult teste()
-        {
-            
-            return View();
-        }
     }
 }

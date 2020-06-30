@@ -23,3 +23,6 @@ CREATE USER 'niceface'@'localhost' IDENTIFIED WITH mysql_native_password BY '123
 
 -- dar permissão a esse usuário a mexer no banco db_ead
 GRANT ALL PRIVILEGES ON clinica_teste.* TO 'niceface'@'localhost' WITH GRANT OPTION;
+
+
+ALTER TABLE cliente ADD telefone varchar(11)

@@ -166,14 +166,17 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
+    <Compile Include="Controllers\FuncionarioController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\bd\ClienteBD.cs" />
     <Compile Include="Models\bd\Conexao.cs" />
+    <Compile Include="Models\bd\FuncionarioBD.cs" />
     <Compile Include="Models\Cliente.cs" />
     <Compile Include="Models\Contato.cs" />
+    <Compile Include="Models\Funcionario.cs" />
     <Compile Include="Models\MensagemActionResultExtensions.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -226,7 +229,11 @@
     <Content Include="Views\Cliente\Excluir.cshtml" />
     <Content Include="Views\Cliente\Editar.cshtml" />
     <Content Include="Views\Shared\_Rodape.cshtml" />
-    <Content Include="Views\Cliente\teste.cshtml" />
+    <Content Include="Views\Funcionario\Index.cshtml" />
+    <Content Include="Views\Funcionario\Detalhes.cshtml" />
+    <Content Include="Views\Funcionario\Cadastrar.cshtml" />
+    <Content Include="Views\Funcionario\Excluir.cshtml" />
+    <Content Include="Views\Funcionario\Editar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -22,6 +22,14 @@
 
         <div class="col-sm-6 col-md-4">
             <div class="boxMenu text-center">
+                <h3>Funcionários</h3>
+                <a href="~/Funcionario/Cadastrar" class="btn btnMenu">Cadastrar</a>
+                <a href="~/Funcionario/Index" class="btn btnMenu">Consultar</a>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4">
+            <div class="boxMenu text-center">
                 <h3>Clientes</h3>
                 @Html.ActionLink("Exemplo", "Cadastrar", "Cliente", new { @class = "btn btnMenu" })
                 @Html.ActionLink("Exemplo", "Index", "Cliente", new { @class = "btn btnMenu" })
