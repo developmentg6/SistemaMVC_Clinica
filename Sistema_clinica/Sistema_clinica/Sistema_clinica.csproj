@@ -226,6 +226,7 @@
     <Content Include="Views\Cliente\Excluir.cshtml" />
     <Content Include="Views\Cliente\Editar.cshtml" />
     <Content Include="Views\Shared\_Rodape.cshtml" />
+    <Content Include="Views\Cliente\teste.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
