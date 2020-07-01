@@ -18,9 +18,9 @@
         <input type="submit" value="Buscar" class="btn btn-default" />
     }
 
-    @using (Html.BeginForm("FiltrarCpf", "Funcionario"))
+    @using (Html.BeginForm("FiltrarCargo", "Funcionario"))
     {
-        @Html.Editor("cpf", new { htmlAttributes = new { placeholder = "Busca por CPF" } })
+        @Html.Editor("cargo", new { htmlAttributes = new { placeholder = "Busca por cargo" } })
         <input type="submit" value="Buscar" class="btn btn-default" />
     }
 

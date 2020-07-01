@@ -11,7 +11,6 @@
 <div>
     <hr />
     <dl class="dl-horizontal">
-
         <dt>
             @Html.DisplayNameFor(model => model.Nome)
         </dt>
@@ -65,6 +64,8 @@
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
+
+        @Html.HiddenFor(model => model.IdFuncionario)
 
         <div class="form-actions no-color">
             <input type="submit" value="Excluir" class="btn btn-default" /> |

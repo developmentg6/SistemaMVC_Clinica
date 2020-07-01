@@ -37,11 +37,13 @@ namespace Sistema_clinica.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Cadastrar(Funcionario funcdigitado)
         {
-            Funcionario funcionario = new Funcionario();
-            if (funcionario.existeCpf(funcdigitado.Cpf))
+            Funcionario funcCpf = new Funcionario();
+            if (funcCpf.existeCpf(funcdigitado.Cpf))
             {
                 ModelState.AddModelError("Cpf", "Esse cpf já está cadastrado");
             }
+
+            Funcionario funcionario = new Funcionario();
             if (ModelState.IsValid)
             {
                 funcionario.cadastrar(funcdigitado);
@@ -89,6 +91,7 @@ namespace Sistema_clinica.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Editar(Funcionario funcionario)
         {
+
             if (ModelState.IsValid)
             {
                 Funcionario func = new Funcionario();
@@ -113,22 +116,22 @@ namespace Sistema_clinica.Controllers
             }
             if (lista.Count() == 0)
             {
-                return RedirectToAction("Index", "Funcionário").Mensagem("Não foi encontrado nenhum funcionário com o filtro especificado");
+                return RedirectToAction("Index", "Funcionario").Mensagem("Não foi encontrado nenhum funcionário com o filtro especificado");
             }
             return View("Index", lista);
         }
 
-        public ActionResult FiltrarCpf(string cpf)
+        public ActionResult FiltrarCargo(string cargo)
         {
             Funcionario funcionario = new Funcionario();
-            IEnumerable<Funcionario> lista = funcionario.filtrarCpf(cpf);
+            IEnumerable<Funcionario> lista = funcionario.filtrarCargo(cargo);
             if (funcionario.erro != "")
             {
                 return RedirectToAction("Index", "Funcionario").Mensagem(funcionario.erro);
             }
             if (lista.Count() == 0)
             {
-                return RedirectToAction("Index", "Funcionario").Mensagem("Não foi encontrado nenhum funcionário com o filtro especificado");
+                return RedirectToAction("Index", "Funcionario").Mensagem("Não foi encontrado nenhum funcionário com o cargo especificado");
             }
             return View("Index", lista);
         }

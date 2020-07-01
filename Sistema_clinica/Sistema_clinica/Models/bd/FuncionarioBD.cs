@@ -123,7 +123,7 @@ namespace Sistema_clinica.Models.bd
         public void Editar(Funcionario funcionario)
         {
 
-            cmd.CommandText = "update cliente set nome = @nome, cargo = @cargo, cpf = @cpf, endereco = @endereco, telefone = @telefone, email = @email where id = @id";
+            cmd.CommandText = "update funcionario set nome = @nome, cargo = @cargo, cpf = @cpf, endereco = @endereco, telefone = @telefone, email = @email where id = @id";
             cmd.Parameters.AddWithValue("@nome", funcionario.Nome);
             cmd.Parameters.AddWithValue("@cargo", funcionario.Cargo);
             cmd.Parameters.AddWithValue("@cpf", funcionario.Cpf);
@@ -171,11 +171,11 @@ namespace Sistema_clinica.Models.bd
             return Lista;
         }
 
-        public List<Funcionario> FiltrarCpf(string cpf)
+        public List<Funcionario> FiltrarCargo(string cargo)
         {
-            string cpfAdaptado = '%' + cpf + '%';
-            cmd.CommandText = "select * from funcionario where cpf like @cpf";
-            cmd.Parameters.AddWithValue("@cpf", cpfAdaptado);
+            string cargoAdaptado = '%' + cargo + '%';
+            cmd.CommandText = "select * from funcionario where cargo like @cpf";
+            cmd.Parameters.AddWithValue("@cpf", cargoAdaptado);
 
             try
             {

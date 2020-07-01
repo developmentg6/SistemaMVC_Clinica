@@ -39,11 +39,13 @@ namespace Sistema_clinica.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Cadastrar(Cliente clientedigitado)
         {
-            Cliente cliente = new Cliente();
-            if (cliente.existeCpf(clientedigitado.Cpf))
+            Cliente cliCpf = new Cliente();
+            if (cliCpf.existeCpf(clientedigitado.Cpf))
             {
                 ModelState.AddModelError("Cpf", "Esse cpf já está cadastrado");
             }
+
+            Cliente cliente = new Cliente();
             if (ModelState.IsValid)
             {
                 cliente.cadastrar(clientedigitado);

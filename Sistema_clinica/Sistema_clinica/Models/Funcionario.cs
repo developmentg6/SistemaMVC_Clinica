@@ -121,12 +121,12 @@ namespace Sistema_clinica.Models
             return lista;
         }
 
-        public List<Funcionario> filtrarCpf(string cpf)
+        public List<Funcionario> filtrarCargo(string cargo)
         {
             List<Funcionario> lista = new List<Funcionario>();
             try
             {
-                lista = funcionarioBD.FiltrarCpf(cpf);
+                lista = funcionarioBD.FiltrarCargo(cargo);
             }
             catch
             {
