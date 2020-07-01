@@ -5,16 +5,38 @@
 
 
 
-<div class="container">
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+        <!-- Indicators
+    <ol class="carousel-indicators">
+        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+    </ol>
+        -->
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox" data-interval="4000">
+            <div class="item active">
+                <img src="~/Imagens/carousel/img_mulher_relaxada.png" alt="...">
+            </div>
+            <div class="item">
+                <img src="~/Imagens/carousel/img_clinica_recepcao.png" alt="...">
+            </div>
+            <div class="item">
+                <img src="~/Imagens/carousel/img_mulher_medica_procedimento.png" alt="...">
+            </div>
+            <div class="item">
+                <img src="~/Imagens/carousel/img_recepcao_borrado.png" alt="...">
+            </div>
+            <div class="item">
+                <img src="~/Imagens/carousel/img_mulher_procedimento_rosa.png" alt="...">>
+            </div>
+        </div>
 
+        <div id="tituloInicial">
+            <h2>Clinica Estética Nice Face</h2>
 
-    <h2>Clinica Estética Nice Face</h2>
+        </div>
 
-    <p>Ideias: fazer um carrossel de imagens ocupando a tela toda, imagens de clínica e salas de atendimento, com o nome da clínica grande no centro</p>
-
-    <p>Manter esta página sem rodapé</p>
-</div>
-
-@section scripts{
-    @Scripts.Render("~/Scripts/excluirRodape.js")
-} 
+    @section scripts{
+        @Scripts.Render("~/Scripts/excluirRodape.js")
+    }
