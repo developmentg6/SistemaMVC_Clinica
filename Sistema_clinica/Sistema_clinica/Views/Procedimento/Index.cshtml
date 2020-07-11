@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Sistema_clinica.Models.Procedimento>
+
+@{
+    ViewBag.Title = "Procedimentos";
+    Layout = "~/Views/Shared/_LayoutLogado.cshtml";
+}
+
+
+
+<h2 class="text-center">Procedimentos</h2>
+
+
+<a href="~/Procedimento/Cadastrar" class="btn btnMenu">Cadastrar</a>
+<div class="btn btnMenu" onclick="exibirFiltro('filtroProcedimento')">Buscar</div>
+
+<div id="filtroProcedimento" class="filtro_hide">
+    @using (Html.BeginForm("FiltrarNome", "Procedimento"))
+    {
+        @Html.Editor("nome", new { htmlAttributes = new { placeholder = "Busca por nome" } })
+        <input type="submit" value="Buscar" class="btn btn-default" />
+    }
+
+    @using (Html.BeginForm("Index", "Procedimento"))
+    {
+        <input type="submit" value="Limpar filtro" class="btn btn-default" />
+    }
+    <br />
+</div>
+
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tempo_estimado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Valor_proc)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tempo_estimado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Valor_proc)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Editar", new { id = item.Id }) |
+                @Html.ActionLink("Detalhes", "Detalhes", new { id = item.Id }) |
+                @Html.ActionLink("Excluir", "Excluir", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+@section scripts{
+    @Scripts.Render("~/bundles/filtros")
+}

@@ -1,0 +1,51 @@
+﻿@model Sistema_clinica.Models.Procedimento
+
+@{
+    ViewBag.Title = "Detalhes do Procedimento";
+    Layout = "~/Views/Shared/_LayoutLogado.cshtml";
+}
+
+<h2>Detalhes do procedimento</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tempo_estimado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tempo_estimado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Valor_proc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Valor_proc)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Editar", new { id = Model.Id }) |
+    @Html.ActionLink("Excluir", "Excluir", new { id = Model.Id }) |
+    @Html.ActionLink("Voltar", "Index")
+</p>
