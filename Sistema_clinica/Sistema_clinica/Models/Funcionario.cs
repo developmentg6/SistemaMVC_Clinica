@@ -14,27 +14,41 @@ namespace Sistema_clinica.Models
         public int IdFuncionario { get; set; }
 
         [Required(ErrorMessage = "Campo não pode ficar em branco")]
-        [StringLength(50, ErrorMessage = "O Nome não pode ter mais de 50 caracteres")]
+        [StringLength(60, ErrorMessage = "O Nome não pode ter mais de 60 caracteres")]
         public string Nome { get; set; }
 
         [Required(ErrorMessage = "Campo não pode ficar em branco")]
-        [StringLength(50, ErrorMessage = "O Cargo não pode ter mais de 50 caracteres")]
+        [StringLength(30, ErrorMessage = "O Cargo não pode ter mais de 30 caracteres")]
         public string Cargo { get; set; }
 
         [Required(ErrorMessage = "Campo não pode ficar em branco")]
-        [StringLength(11, ErrorMessage = "O Telefone não pode ter mais de 11 dígitos")]
         public string Telefone { get; set; }
 
         [Required(ErrorMessage = "Campo não pode ficar em branco")]
-        [StringLength(11, ErrorMessage = "O CPF não pode ter mais de 11 dígitos")]
         public string Cpf { get; set; }
 
         [RegularExpression(@"^[a-zA-Z]+(([\'\,\.\- ][a-zA-Z ])?[a-zA-Z]*)*\s+<(\w[-._\w]*\w@\w[-._\w]*\w\.\w{2,3})>$|^(\w[-._\w]*\w@\w[-._\w]*\w\.\w{2,3})$", ErrorMessage = "Formato do E-mail Inválido")]
+        [StringLength(60, ErrorMessage = "O Email não pode ter mais de 60 caracteres")]
         public string Email { get; set; }
 
-        [Display(Name = "Endereço")]
         [Required(ErrorMessage = "Campo não pode ficar em branco")]
-        public string Endereco { get; set; }
+        [StringLength(80, ErrorMessage = "A Rua não pode ter mais de 80 caracteres")]
+        public string Rua { get; set; }
+
+        [Display(Name = "Número")]
+        [Required(ErrorMessage = "Campo não pode ficar em branco")]
+        public int Numero { get; set; }
+
+        [Required(ErrorMessage = "Campo não pode ficar em branco")]
+        [StringLength(30, ErrorMessage = "O Bairro não pode ter mais de 30 caracteres")]
+        public string Bairro { get; set; }
+
+        [Required(ErrorMessage = "Campo não pode ficar em branco")]
+        [StringLength(30, ErrorMessage = "A Cidade não pode ter mais de 30 caracteres")]
+        public string Cidade { get; set; }
+
+        [Required(ErrorMessage = "Campo não pode ficar em branco")]
+        public string Cep { get; set; }
 
         FuncionarioBD funcionarioBD = new FuncionarioBD();
         public string erro { get; set; } = "";

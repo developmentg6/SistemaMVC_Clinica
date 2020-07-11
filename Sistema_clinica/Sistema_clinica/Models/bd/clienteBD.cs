@@ -41,12 +41,16 @@ namespace Sistema_clinica.Models.bd
         
         public Cliente AtribuirCliente(Cliente cliente, MySqlDataReader dr)
         {
-            cliente.Id = int.Parse(dr["id"].ToString());
+            cliente.Id = int.Parse(dr["id_cliente"].ToString());
             cliente.Nome = dr["nome"].ToString();
             cliente.Sexo = dr["sexo"].ToString();
             cliente.Cpf = dr["cpf"].ToString();
             cliente.DataNascimento = Convert.ToDateTime(dr["data_nascimento"].ToString());
-            cliente.Endereco = dr["endereco"].ToString();
+            cliente.Rua = dr["rua"].ToString();
+            cliente.Numero = int.Parse(dr["numero"].ToString());
+            cliente.Bairro = dr["bairro"].ToString();
+            cliente.Cidade = dr["cidade"].ToString();
+            cliente.Cep = dr["cep"].ToString();
             cliente.Email = dr["email"].ToString();
             cliente.Telefone = dr["telefone"].ToString();
             cliente.Profissao = dr["profissao"].ToString();
@@ -57,12 +61,16 @@ namespace Sistema_clinica.Models.bd
 
         public void Cadastrar(Cliente cliente)
         {
-            cmd.CommandText = "insert into cliente (nome, sexo, cpf, data_nascimento, endereco, telefone, email, profissao, historico) values(@nome, @sexo, @cpf, @data_nascimento, @endereco, @telefone, @email, @profissao, @historico)";
+            cmd.CommandText = "insert into cliente (nome, sexo, cpf, data_nascimento, rua, numero, bairro, cidade, cep, telefone, email, profissao, historico) values(@nome, @sexo, @cpf, @data_nascimento, @rua, @numero, @bairro, @cidade, @cep, @telefone, @email, @profissao, @historico)";
             cmd.Parameters.AddWithValue("@nome", cliente.Nome);
             cmd.Parameters.AddWithValue("@sexo", cliente.Sexo);
             cmd.Parameters.AddWithValue("@cpf", cliente.Cpf);
             cmd.Parameters.AddWithValue("@data_nascimento", cliente.DataNascimento);
-            cmd.Parameters.AddWithValue("@endereco", cliente.Endereco);
+            cmd.Parameters.AddWithValue("@rua", cliente.Rua);
+            cmd.Parameters.AddWithValue("@numero", cliente.Numero);
+            cmd.Parameters.AddWithValue("@bairro", cliente.Bairro);
+            cmd.Parameters.AddWithValue("@cidade", cliente.Cidade);
+            cmd.Parameters.AddWithValue("@cep", cliente.Cep);
             cmd.Parameters.AddWithValue("@telefone", cliente.Telefone);
             cmd.Parameters.AddWithValue("@email", cliente.Email);
             cmd.Parameters.AddWithValue("@profissao", cliente.Profissao);
@@ -85,7 +93,7 @@ namespace Sistema_clinica.Models.bd
         public Cliente Buscar(int id)
         {
             Cliente cliente = new Cliente();
-            cmd.CommandText = "select * from cliente where ID = @id";
+            cmd.CommandText = "select * from cliente where id_cliente = @id";
             cmd.Parameters.AddWithValue("@id", id);
 
             try
@@ -110,7 +118,7 @@ namespace Sistema_clinica.Models.bd
         public void Excluir(int id)
         {
 
-            cmd.CommandText = "delete from cliente where ID = @id";
+            cmd.CommandText = "delete from cliente where id_cliente = @id";
             cmd.Parameters.AddWithValue("@id", id);
 
             try
@@ -129,12 +137,16 @@ namespace Sistema_clinica.Models.bd
         public void Editar(Cliente cliente)
         {
 
-            cmd.CommandText = "update cliente set nome = @nome, sexo = @sexo, cpf = @cpf, data_nascimento = @data_nascimento, endereco = @endereco, telefone = @telefone, email = @email, profissao = @profissao, historico = @historico where id = @id";
+            cmd.CommandText = "update cliente set nome = @nome, sexo = @sexo, cpf = @cpf, data_nascimento = @data_nascimento, rua = @rua, numero = @numero, bairro = @bairro, cidade = @cidade, cep = @cep, telefone = @telefone, email = @email, profissao = @profissao, historico = @historico where id = @id";
             cmd.Parameters.AddWithValue("@nome", cliente.Nome);
             cmd.Parameters.AddWithValue("@sexo", cliente.Sexo);
             cmd.Parameters.AddWithValue("@cpf", cliente.Cpf);
             cmd.Parameters.AddWithValue("@data_nascimento", cliente.DataNascimento);
-            cmd.Parameters.AddWithValue("@endereco", cliente.Endereco);
+            cmd.Parameters.AddWithValue("@rua", cliente.Rua);
+            cmd.Parameters.AddWithValue("@numero", cliente.Numero);
+            cmd.Parameters.AddWithValue("@bairro", cliente.Bairro);
+            cmd.Parameters.AddWithValue("@cidade", cliente.Cidade);
+            cmd.Parameters.AddWithValue("@cep", cliente.Cep);
             cmd.Parameters.AddWithValue("@telefone", cliente.Telefone);
             cmd.Parameters.AddWithValue("@email", cliente.Email);
             cmd.Parameters.AddWithValue("@profissao", cliente.Profissao);

@@ -41,11 +41,15 @@ namespace Sistema_clinica.Models.bd
 
         public Funcionario AtribuirFuncionario(Funcionario funcionario, MySqlDataReader dr)
         {
-            funcionario.IdFuncionario = int.Parse(dr["id"].ToString());
+            funcionario.IdFuncionario = int.Parse(dr["id_funcionario"].ToString());
             funcionario.Nome = dr["nome"].ToString();
             funcionario.Cargo = dr["cargo"].ToString();
             funcionario.Cpf = dr["cpf"].ToString();
-            funcionario.Endereco = dr["endereco"].ToString();
+            funcionario.Rua = dr["rua"].ToString();
+            funcionario.Numero = int.Parse(dr["numero"].ToString());
+            funcionario.Bairro = dr["bairro"].ToString();
+            funcionario.Cidade = dr["cidade"].ToString();
+            funcionario.Cep = dr["cep"].ToString();
             funcionario.Email = dr["email"].ToString();
             funcionario.Telefone = dr["telefone"].ToString();
 
@@ -54,11 +58,15 @@ namespace Sistema_clinica.Models.bd
 
         public void Cadastrar(Funcionario funcionario)
         {
-            cmd.CommandText = "insert into funcionario (nome, cargo, cpf, endereco, email, telefone) values(@nome, @cargo, @cpf, @endereco, @email, @telefone)";
+            cmd.CommandText = "insert into funcionario (nome, cargo, cpf, rua, numero, bairro, cidade, cep, email, telefone) values(@nome, @cargo, @cpf, @rua, @numero, @bairro, @cidade, @cep, @email, @telefone)";
             cmd.Parameters.AddWithValue("@nome", funcionario.Nome);
             cmd.Parameters.AddWithValue("@cargo", funcionario.Cargo);
             cmd.Parameters.AddWithValue("@cpf", funcionario.Cpf);
-            cmd.Parameters.AddWithValue("@endereco", funcionario.Endereco);
+            cmd.Parameters.AddWithValue("@rua", funcionario.Rua);
+            cmd.Parameters.AddWithValue("@numero", funcionario.Numero);
+            cmd.Parameters.AddWithValue("@bairro", funcionario.Bairro);
+            cmd.Parameters.AddWithValue("@cidade", funcionario.Cidade);
+            cmd.Parameters.AddWithValue("@cep", funcionario.Cep);
             cmd.Parameters.AddWithValue("@email", funcionario.Email);
             cmd.Parameters.AddWithValue("@telefone", funcionario.Telefone);
 
@@ -79,7 +87,7 @@ namespace Sistema_clinica.Models.bd
         public Funcionario Buscar(int id)
         {
             Funcionario func = new Funcionario();
-            cmd.CommandText = "select * from funcionario where id = @id";
+            cmd.CommandText = "select * from funcionario where id_funcionario = @id";
             cmd.Parameters.AddWithValue("@id", id);
 
             try
@@ -104,7 +112,7 @@ namespace Sistema_clinica.Models.bd
         public void Excluir(int id)
         {
 
-            cmd.CommandText = "delete from funcionario where id = @id";
+            cmd.CommandText = "delete from funcionario where id_funcionario = @id";
             cmd.Parameters.AddWithValue("@id", id);
 
             try
@@ -123,11 +131,15 @@ namespace Sistema_clinica.Models.bd
         public void Editar(Funcionario funcionario)
         {
 
-            cmd.CommandText = "update funcionario set nome = @nome, cargo = @cargo, cpf = @cpf, endereco = @endereco, telefone = @telefone, email = @email where id = @id";
+            cmd.CommandText = "update funcionario set nome = @nome, cargo = @cargo, cpf = @cpf, rua = @rua, numero = @numero, bairro = @bairro, cidade = @cidade, cep = @cep, telefone = @telefone, email = @email where id = @id";
             cmd.Parameters.AddWithValue("@nome", funcionario.Nome);
             cmd.Parameters.AddWithValue("@cargo", funcionario.Cargo);
             cmd.Parameters.AddWithValue("@cpf", funcionario.Cpf);
-            cmd.Parameters.AddWithValue("@endereco", funcionario.Endereco);
+            cmd.Parameters.AddWithValue("@rua", funcionario.Rua);
+            cmd.Parameters.AddWithValue("@numero", funcionario.Numero);
+            cmd.Parameters.AddWithValue("@bairro", funcionario.Bairro);
+            cmd.Parameters.AddWithValue("@cidade", funcionario.Cidade);
+            cmd.Parameters.AddWithValue("@cep", funcionario.Cep);
             cmd.Parameters.AddWithValue("@telefone", funcionario.Telefone);
             cmd.Parameters.AddWithValue("@email", funcionario.Email);
             cmd.Parameters.AddWithValue("@id", funcionario.IdFuncionario);

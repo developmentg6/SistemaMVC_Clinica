@@ -12,7 +12,7 @@ namespace Sistema_clinica.Models
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Campo não pode ficar em branco")]
-        [StringLength(50, ErrorMessage = "O Nome não pode ter mais de 50 caracteres")]
+        [StringLength(60, ErrorMessage = "O Nome não pode ter mais de 60 caracteres")]
         public string Nome { get; set; }
 
         public string Sexo { get; set; }
@@ -25,20 +25,38 @@ namespace Sistema_clinica.Models
         [DisplayFormat(DataFormatString ="{0:dd/MM/yyyy}", ApplyFormatInEditMode=true)]
         public DateTime DataNascimento { get; set; }
 
-        [Display(Name = "Endereço")]
         [Required(ErrorMessage = "Campo não pode ficar em branco")]
-        public string Endereco { get; set; }
+        [StringLength(80, ErrorMessage = "A Rua não pode ter mais de 80 caracteres")]
+        public string Rua { get; set; }
+
+        [Display(Name = "Número")]
+        [Required(ErrorMessage = "Campo não pode ficar em branco")]
+        public int Numero { get; set; }
+
+        [Required(ErrorMessage = "Campo não pode ficar em branco")]
+        [StringLength(30, ErrorMessage = "O Bairro não pode ter mais de 30 caracteres")]
+        public string Bairro { get; set; }
+
+        [Required(ErrorMessage = "Campo não pode ficar em branco")]
+        [StringLength(30, ErrorMessage = "A Cidade não pode ter mais de 30 caracteres")]
+        public string Cidade { get; set; }
+
+        [Required(ErrorMessage = "Campo não pode ficar em branco")]
+        public string Cep { get; set; }
 
         [RegularExpression(@"^[a-zA-Z]+(([\'\,\.\- ][a-zA-Z ])?[a-zA-Z]*)*\s+<(\w[-._\w]*\w@\w[-._\w]*\w\.\w{2,3})>$|^(\w[-._\w]*\w@\w[-._\w]*\w\.\w{2,3})$", ErrorMessage = "Formato do E-mail Inválido")]
+        [StringLength(60, ErrorMessage = "O Email não pode ter mais de 60 caracteres")]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Campo não pode ficar em branco")]
         public string Telefone { get; set; }
 
         [Display(Name = "Profissão")]
+        [StringLength(30, ErrorMessage = "A Profissão não pode ter mais de 30 caracteres")]
         public string Profissao { get; set; }
 
         [Display(Name = "Histórico")]
+        [StringLength(500, ErrorMessage = "O Histórico não pode ter mais de 500 caracteres")]
         public string Historico { get; set; }
 
         ClienteBD clienteBD = new ClienteBD();
