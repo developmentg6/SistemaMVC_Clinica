@@ -169,6 +169,7 @@
     <Compile Include="Controllers\FuncionarioController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProcedimentoController.cs" />
+    <Compile Include="Controllers\SessaoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -176,11 +177,13 @@
     <Compile Include="Models\bd\Conexao.cs" />
     <Compile Include="Models\bd\FuncionarioBD.cs" />
     <Compile Include="Models\bd\ProcedimentoBD.cs" />
+    <Compile Include="Models\bd\SessaoBD.cs" />
     <Compile Include="Models\Cliente.cs" />
     <Compile Include="Models\Contato.cs" />
     <Compile Include="Models\Funcionario.cs" />
     <Compile Include="Models\MensagemActionResultExtensions.cs" />
     <Compile Include="Models\Procedimento.cs" />
+    <Compile Include="Models\Sessao.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -247,6 +250,11 @@
     <Content Include="Views\Procedimento\Cadastrar.cshtml" />
     <Content Include="Views\Procedimento\Excluir.cshtml" />
     <Content Include="Views\Procedimento\Editar.cshtml" />
+    <Content Include="Views\Sessao\Index.cshtml" />
+    <Content Include="Views\Sessao\Detalhes.cshtml" />
+    <Content Include="Views\Sessao\Cadastrar.cshtml" />
+    <Content Include="Views\Sessao\Editar.cshtml" />
+    <Content Include="Views\Sessao\Excluir.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
