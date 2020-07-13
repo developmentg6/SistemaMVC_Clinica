@@ -1,0 +1,78 @@
+﻿@model IEnumerable<Sistema_clinica.Models.Avaliacao>
+
+@{
+    ViewBag.Title = "Avaliações";
+    Layout = "~/Views/Shared/_LayoutLogado.cshtml";
+}
+
+<h2 class="text-center">Avaliações</h2>
+
+
+<a href="~/Avaliacao/Cadastrar" class="btn btnFiltro">Nova Avaliação</a>
+<div class="btn btnFiltro" onclick="exibirFiltro('filtroAvaliacao')">Buscar</div>
+
+<div id="filtroAvaliacao" class="filtro_hide">
+    @using (Html.BeginForm("FiltrarNomeCliente", "Avaliacao"))
+    {
+        @Html.Editor("nome", new { htmlAttributes = new { placeholder = "Busca por nome de cliente" } })
+        <input type="submit" value="Buscar" class="btn btn-default" />
+    }
+
+    @using (Html.BeginForm("FiltrarCpfCliente", "Avaliacao"))
+    {
+        @Html.Editor("cpf", new { htmlAttributes = new { placeholder = "Busca por cpf de cliente" } })
+        <input type="submit" value="Buscar" class="btn btn-default" />
+    }
+
+    @using (Html.BeginForm("FiltrarProcedimento", "Avaliacao"))
+    {
+        @Html.Editor("nomeProcedimento", new { htmlAttributes = new { placeholder = "Busca por procedimento" } })
+        <input type="submit" value="Buscar" class="btn btn-default" />
+    }
+
+    @using (Html.BeginForm("Index", "Avaliacao"))
+    {
+        <input type="submit" value="Limpar filtros" class="btn btn-default" />
+    }
+    <br />
+</div>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DataHora_avaliacao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome_cliente)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome_procedimento)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataHora_avaliacao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome_cliente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome_procedimento)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Editar", new { id = item.Id }) |
+                @Html.ActionLink("Detalhes", "Detalhes", new { id = item.Id }) |
+                @Html.ActionLink("Excluir", "Excluir", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+
+@section scripts{
+    @Scripts.Render("~/bundles/filtros")
+}

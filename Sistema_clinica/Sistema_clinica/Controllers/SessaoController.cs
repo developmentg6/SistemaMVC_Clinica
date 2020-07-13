@@ -250,7 +250,7 @@ namespace Sistema_clinica.Controllers
             }
             if (lista.Count() == 0)
             {
-                return RedirectToAction("Index", "Sessao").Mensagem("Não foi encontrado nenhum cliente com o nome informado");
+                return RedirectToAction("Index", "Sessao").Mensagem("Não foi encontrado nenhum procedimento com o nome informado");
             }
             return View("Index", lista);
         }
@@ -265,7 +265,7 @@ namespace Sistema_clinica.Controllers
             }
             if (lista.Count() == 0)
             {
-                return RedirectToAction("Index", "Sessao").Mensagem("Não foi encontrado nenhum cliente com o nome informado");
+                return RedirectToAction("Index", "Sessao").Mensagem("Não foi encontrado nenhum funcionário com o nome informado");
             }
             return View("Index", lista);
         }

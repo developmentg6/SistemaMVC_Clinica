@@ -165,6 +165,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AvaliacaoController.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\FuncionarioController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -173,6 +174,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Avaliacao.cs" />
+    <Compile Include="Models\bd\AvaliacaoBD.cs" />
     <Compile Include="Models\bd\ClienteBD.cs" />
     <Compile Include="Models\bd\Conexao.cs" />
     <Compile Include="Models\bd\FuncionarioBD.cs" />
@@ -257,6 +260,11 @@
     <Content Include="Views\Sessao\Cadastrar.cshtml" />
     <Content Include="Views\Sessao\Editar.cshtml" />
     <Content Include="Views\Sessao\Excluir.cshtml" />
+    <Content Include="Views\Avaliacao\Index.cshtml" />
+    <Content Include="Views\Avaliacao\Detalhes.cshtml" />
+    <Content Include="Views\Avaliacao\Cadastrar.cshtml" />
+    <Content Include="Views\Avaliacao\Editar.cshtml" />
+    <Content Include="Views\Avaliacao\Excluir.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
