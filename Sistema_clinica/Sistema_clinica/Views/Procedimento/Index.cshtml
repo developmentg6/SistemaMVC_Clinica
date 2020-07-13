@@ -10,8 +10,8 @@
 <h2 class="text-center">Procedimentos</h2>
 
 
-<a href="~/Procedimento/Cadastrar" class="btn btnMenu">Cadastrar</a>
-<div class="btn btnMenu" onclick="exibirFiltro('filtroProcedimento')">Buscar</div>
+<a href="~/Procedimento/Cadastrar" class="btn btnFiltro">Cadastrar</a>
+<div class="btn btnFiltro" onclick="exibirFiltro('filtroProcedimento')">Buscar</div>
 
 <div id="filtroProcedimento" class="filtro_hide">
     @using (Html.BeginForm("FiltrarNome", "Procedimento"))

@@ -118,5 +118,25 @@ namespace Sistema_clinica.Models
                 erro = sessaoBD.mensagem;
             }
         }
+
+        public IEnumerable<Sessao> filtrarNomeCliente(string nome)
+        {
+            return listaSessao().Where(x => x.Nome_cliente.Contains(nome));
+        }
+
+        public IEnumerable<Sessao> filtrarCpfCliente(string cpf)
+        {
+            return listaSessao().Where(x => x.Cpf_cliente.Contains(cpf));
+        }
+
+        public IEnumerable<Sessao> filtrarProcedimento(string procedimento)
+        {
+            return listaSessao().Where(x => x.Nome_procedimento.Contains(procedimento));
+        }
+
+        public IEnumerable<Sessao> filtrarFuncionario(string funcionario)
+        {
+            return listaSessao().Where(x => x.Nome_funcionario.Contains(funcionario));
+        }
     }
 }

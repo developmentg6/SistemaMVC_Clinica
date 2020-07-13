@@ -23,6 +23,13 @@ textarea {
     max-width: 280px;
 }
 
+
+/*CONFIGURAÇÕES CUSTOMIZADAS*/
+@font-face {
+    font-family: "Embassy BT";
+    src: url('~/fonts/Embassy BT.ttf');
+}
+
 /* Centered text */
 #tituloInicial {
     position: absolute;
@@ -33,7 +40,14 @@ textarea {
     background-color: rgb(255, 255, 255, 0.6);
     padding: 5px 25px 15px 25px;
     border-radius:20px;
+    width: 40%;
 }
+
+    #tituloInicial h2 {
+        font-family: "Embassy BT";
+        font-size: 5vw;
+        color: rgb(224, 6, 32)
+    }
 
 
 .boxLogin {
@@ -80,17 +94,41 @@ textarea {
     background-color: rgb(150,150,150);
 }
 
-.boxMenu {
-    width: 300px;
-    border: solid;
-    margin-bottom: 20px;
-    margin-top: 10px;
+
+
+/*TELA INICIAL DO SISTEMA*/
+.txtBemVindo{
+    margin: 40px;
 }
 
-.btnMenu{
-    width: 120px;
+.boxMenu {
+    width: 280px;
+    border: solid;
+    margin:auto;
+    margin-bottom: 40px;
+    margin-top: 10px;
+    border-radius: 25px;
+    padding: 20px;
+}
+
+.btnMenu {
+    width: 140px;
     margin: 10px 5px;
     border: solid;
+    border-radius: 25px;
+    height: 70px;
+    padding: 15px;
+    font-size: 150%;
+}
+
+
+
+/*FILTROS DE BUSCA DAS CONSULTAS*/
+.btnFiltro {
+    width: 130px;
+    margin: 10px 5px;
+    border: solid;
+    height: 40px;
 }
 
 .filtro_hide {
@@ -101,4 +139,13 @@ textarea {
 .filtro_show {
     visibility: visible;
     height: auto;
+}
+
+
+
+
+.logo{
+    width: 30px;
+    margin-top:10px;
+    margin-left:5px;
 }

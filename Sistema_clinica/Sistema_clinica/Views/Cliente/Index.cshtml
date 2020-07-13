@@ -8,8 +8,8 @@
 <h2 class="text-center">Clientes</h2>
 
 
-<a href="~/Cliente/Cadastrar" class="btn btnMenu">Cadastrar</a>
-<div class="btn btnMenu" onclick="exibirFiltro('filtroCliente')">Buscar</div>
+<a href="~/Cliente/Cadastrar" class="btn btnFiltro">Cadastrar</a>
+<div class="btn btnFiltro" onclick="exibirFiltro('filtroCliente')">Buscar</div>
 
 <div id="filtroCliente" class="filtro_hide">
     @using (Html.BeginForm("FiltrarNome", "Cliente"))

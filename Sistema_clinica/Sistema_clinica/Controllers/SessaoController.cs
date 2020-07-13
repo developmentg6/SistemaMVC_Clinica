@@ -209,5 +209,66 @@ namespace Sistema_clinica.Controllers
             return View(sessao).Mensagem("Erro ao excluir!" + ses.erro, "Erro");
         }
 
+
+        public ActionResult FiltrarNomeCliente(string nome)
+        {
+            Sessao sessao = new Sessao();
+            IEnumerable<Sessao> lista = sessao.filtrarNomeCliente(nome);
+            if (sessao.erro != "")
+            {
+                return RedirectToAction("Index", "Sessao").Mensagem(sessao.erro);
+            }
+            if (lista.Count() == 0)
+            {
+                return RedirectToAction("Index", "Sessao").Mensagem("Não foi encontrado nenhum cliente com o nome informado");
+            }
+            return View("Index", lista);
+        }
+
+        public ActionResult FiltrarCpfCliente(string cpf)
+        {
+            Sessao sessao = new Sessao();
+            IEnumerable<Sessao> lista = sessao.filtrarCpfCliente(cpf);
+            if (sessao.erro != "")
+            {
+                return RedirectToAction("Index", "Sessao").Mensagem(sessao.erro);
+            }
+            if (lista.Count() == 0)
+            {
+                return RedirectToAction("Index", "Sessao").Mensagem("Não foi encontrado nenhum cliente com o cpf informado");
+            }
+            return View("Index", lista);
+        }
+
+        public ActionResult FiltrarProcedimento(string nomeProcedimento)
+        {
+            Sessao sessao = new Sessao();
+            IEnumerable<Sessao> lista = sessao.filtrarProcedimento(nomeProcedimento);
+            if (sessao.erro != "")
+            {
+                return RedirectToAction("Index", "Sessao").Mensagem(sessao.erro);
+            }
+            if (lista.Count() == 0)
+            {
+                return RedirectToAction("Index", "Sessao").Mensagem("Não foi encontrado nenhum cliente com o nome informado");
+            }
+            return View("Index", lista);
+        }
+
+        public ActionResult FiltrarFuncionario(string nomeFuncionario)
+        {
+            Sessao sessao = new Sessao();
+            IEnumerable<Sessao> lista = sessao.filtrarFuncionario(nomeFuncionario);
+            if (sessao.erro != "")
+            {
+                return RedirectToAction("Index", "Sessao").Mensagem(sessao.erro);
+            }
+            if (lista.Count() == 0)
+            {
+                return RedirectToAction("Index", "Sessao").Mensagem("Não foi encontrado nenhum cliente com o nome informado");
+            }
+            return View("Index", lista);
+        }
+
     }
 }
