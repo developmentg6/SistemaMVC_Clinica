@@ -98,11 +98,17 @@ FOREIGN KEY (id_procedimento) REFERENCES procedimento(id_procedimento),
 FOREIGN KEY (id_funcionario) REFERENCES funcionario(id_funcionario)
 )
 
-select * from sessao
+select * from sessao_completa
 
 insert into sessao (id_cliente, id_procedimento, id_funcionario, descricao, quantidade)
 	values (1, 1, 1, null, 4)
     
+create view sessao_completa as
+select sessao.id_sessao, cliente.id_cliente, cliente.nome cliente, cliente.cpf, procedimento.id_procedimento, procedimento.nome procedimento, funcionario.id_funcionario, funcionario.nome esteticista, sessao.descricao, sessao.quantidade
+	from sessao
+    inner join cliente on sessao.id_cliente = cliente.id_cliente
+    inner join procedimento on sessao.id_procedimento = procedimento.id_procedimento
+    inner join funcionario on sessao.id_funcionario = funcionario.id_funcionario
     
 
 CREATE TABLE agenda(
@@ -132,7 +138,14 @@ FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente)
 
 select * from avaliacao_diagnostica
 
+create view avaliacao_completa as
+select av.id_avaliacao, av.data_hora, av.obs_cliente, av.id_procedimento, pr.nome procedimento, av.id_cliente, cl.nome cliente, cl.cpf
+	from avaliacao_diagnostica av
+    inner join procedimento pr on av.id_procedimento = pr.id_procedimento
+    inner join cliente cl on av.id_cliente = cl.id_cliente
+    order by data_hora
 
+select * from avaliacao_completa
 
 CREATE TABLE pagamento(
 id_pagamento int NOT NULL AUTO_INCREMENT,
