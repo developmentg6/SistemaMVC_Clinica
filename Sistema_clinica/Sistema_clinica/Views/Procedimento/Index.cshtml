@@ -17,7 +17,7 @@
     @using (Html.BeginForm("FiltrarNome", "Procedimento"))
     {
         @Html.Editor("nome", new { htmlAttributes = new { placeholder = "Busca por nome" } })
-        <input type="submit" value="Buscar" class="btn btn-default" />
+        <input type="submit" value="Buscar" class="btn btn-default btn-busca" />
     }
 
     @using (Html.BeginForm("Index", "Procedimento"))

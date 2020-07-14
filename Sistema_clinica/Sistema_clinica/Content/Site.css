@@ -43,7 +43,7 @@ textarea {
     width: 40%;
 }
 
-    #tituloInicial h2 {
+    #tituloInicial h2, .titulo-sobre {
         font-family: "Embassy BT";
         font-size: 5vw;
         color: rgb(224, 6, 32)
@@ -51,53 +51,83 @@ textarea {
 
 
 .boxLogin {
-    border: solid;
+    border: solid 1px dashed;
+    border-radius:10px;
     padding: 20px;
     width: 300px;
     margin: auto;
     margin-top: 100px;
     margin-bottom: 100px;
-    background-color: rgb(255, 255, 255);
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
 .telaLogin {
     padding-top: 20px;
     padding-bottom: 20px;
-    background-color: rgb(200,255,255);
+    background-image: url("../Imagens/Logo_transparente.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size:contain;
+    position: relative;
 }
 
-.boxContato{
-    border: solid;
+
+/*TELA DE CONTATO*/
+.boxContato {
+    border: solid 1px dashed;
+    border-radius: 10px;
     padding: 20px;
     width: 350px;
     margin: auto;
     margin-top: 50px;
     margin-bottom: 50px;
-    background-color: rgb(255, 255, 255);
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
 .telaContato {
     padding-top: 20px;
     padding-bottom: 20px;
-    background-color: rgb(200,255,255);
+    background-image: url("../Imagens/carousel/img_clinica_recepcao.png");
+    background-size: cover;
+}
+
+.telaContato iframe{
+    width: 60%;
+    margin-top:20px;
+    margin-bottom:20px;
 }
 
 .infosContato {
     width: 50%;
     margin: auto;
-    display: flex;
-    justify-content: space-between;
 }
 
-.imagemTopo{
-    height:20%;
-    background-color: rgb(150,150,150);
+.titulo-contato {
+    font-family: "Embassy BT";
+    font-size: 300%;
+    color: rgb(224, 6, 32)
 }
 
 
+
+/*TELA SOBRE*/
+.img-sobre {
+    width: 100%;
+}
+
+.img-sobre-detalhe{
+    width:25%;
+    margin: 20px;
+}
+
+.texto-sobre{
+    padding-left:100px;
+    padding-right:100px;
+    text-align: justify;
+}
 
 /*TELA INICIAL DO SISTEMA*/
-.txtBemVindo{
+.txtBemVindo {
     margin: 40px;
 }
 
@@ -141,11 +171,18 @@ textarea {
     height: auto;
 }
 
+.btn-busca{
+    height:26px;
+    margin-bottom:5px;
+    font-size: 12px;
+    padding-top:2px;
+    padding-bottom:2px;
+}
 
 
 
-.logo{
+.logo {
     width: 30px;
-    margin-top:10px;
-    margin-left:5px;
+    margin-top: 10px;
+    margin-left: 5px;
 }

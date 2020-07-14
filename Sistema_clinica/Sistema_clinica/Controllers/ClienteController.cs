@@ -32,13 +32,17 @@ namespace Sistema_clinica.Controllers
 
         public ActionResult Cadastrar()
         {
+            Cliente cliente = new Cliente();
+            ViewBag.listaSexo = cliente.listaSexo;
+
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Cadastrar(Cliente clientedigitado)
+        public ActionResult Cadastrar(Cliente clientedigitado, string listaSexo)
         {
+            clientedigitado.Sexo = listaSexo;
             Cliente cliCpf = new Cliente();
             if (cliCpf.existeCpf(clientedigitado.Cpf))
             {
@@ -46,6 +50,7 @@ namespace Sistema_clinica.Controllers
             }
 
             Cliente cliente = new Cliente();
+            ViewBag.listaSexo = cliente.listaSexo;
             if (ModelState.IsValid)
             {
                 cliente.cadastrar(clientedigitado);
@@ -85,14 +90,27 @@ namespace Sistema_clinica.Controllers
         public ActionResult Editar(int id)
         {
             Cliente cliente = new Cliente();
+            cliente = cliente.buscar(id);
 
-            return View(cliente.buscar(id));
+            ViewBag.listaSexo = new SelectList(
+                cliente.listaSexo,
+                "Value",
+                "Text",
+                cliente.Sexo
+                );
+
+            return View(cliente);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Editar(Cliente cliente)
+        public ActionResult Editar(Cliente cliente, string listaSexo)
         {
+            cliente.Sexo = listaSexo;
+
+            Cliente cliSexo = new Cliente();
+            ViewBag.listaSexo = cliSexo.listaSexo;
+
             if (ModelState.IsValid)
             {
                 Cliente cli = new Cliente();

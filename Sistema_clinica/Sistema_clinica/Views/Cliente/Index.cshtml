@@ -15,13 +15,13 @@
     @using (Html.BeginForm("FiltrarNome", "Cliente"))
     {
         @Html.Editor("nome", new { htmlAttributes = new { placeholder = "Busca por nome" } })
-        <input type="submit" value="Buscar" class="btn btn-default" />
+        <input type="submit" value="Buscar" class="btn btn-default btn-busca" />
     }
 
     @using (Html.BeginForm("FiltrarCpf", "Cliente"))
     {
         @Html.Editor("cpf", new { htmlAttributes = new { placeholder = "Busca por CPF" } })
-        <input type="submit" value="Buscar" class="btn btn-default" />
+        <input type="submit" value="Buscar" class="btn btn-default btn-busca" />
     }
 
     @using (Html.BeginForm("Index", "Cliente"))

@@ -15,25 +15,25 @@
     @using (Html.BeginForm("FiltrarNomeCliente", "Sessao"))
     {
         @Html.Editor("nome", new { htmlAttributes = new { placeholder = "Busca por nome de cliente" } })
-        <input type="submit" value="Buscar" class="btn btn-default" />
+        <input type="submit" value="Buscar" class="btn btn-default btn-busca" />
     }
 
     @using (Html.BeginForm("FiltrarCpfCliente", "Sessao"))
     {
         @Html.Editor("cpf", new { htmlAttributes = new { placeholder = "Busca por cpf de cliente" } })
-        <input type="submit" value="Buscar" class="btn btn-default" />
+        <input type="submit" value="Buscar" class="btn btn-default btn-busca" />
     }
 
     @using (Html.BeginForm("FiltrarProcedimento", "Sessao"))
     {
         @Html.Editor("nomeProcedimento", new { htmlAttributes = new { placeholder = "Busca por procedimento" } })
-        <input type="submit" value="Buscar" class="btn btn-default" />
+        <input type="submit" value="Buscar" class="btn btn-default btn-busca" />
     }
 
     @using (Html.BeginForm("FiltrarFuncionario", "Sessao"))
     {
         @Html.Editor("nomeFuncionario", new { htmlAttributes = new { placeholder = "Busca por funcionário" } })
-        <input type="submit" value="Buscar" class="btn btn-default" />
+        <input type="submit" value="Buscar" class="btn btn-default btn-busca" />
     }
 
     @using (Html.BeginForm("Index", "Sessao"))
@@ -57,30 +57,36 @@
         <th>
             @Html.DisplayNameFor(model => model.Quantidade)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sessoes_agendadas)
+        </th>
         <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nome_cliente)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nome_procedimento)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nome_funcionario)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Quantidade)
-            </td>
-            <td>
-                @Html.ActionLink("Editar", "Editar", new { id = item.Id }) |
-                @Html.ActionLink("Detalhes", "Detalhes", new { id = item.Id }) |
-                @Html.ActionLink("Excluir", "Excluir", new { id = item.Id })
-            </td>
-        </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome_cliente)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome_procedimento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome_funcionario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Quantidade)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sessoes_agendadas)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Editar", new { id = item.Id }) |
+            @Html.ActionLink("Detalhes", "Detalhes", new { id = item.Id }) |
+            @Html.ActionLink("Excluir", "Excluir", new { id = item.Id })
+        </td>
+    </tr>
     }
 
 </table>

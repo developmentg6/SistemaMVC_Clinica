@@ -120,7 +120,7 @@ namespace Sistema_clinica.Models
 
         public IEnumerable<Avaliacao> filtrarNomeCliente(string nome)
         {
-            return listaAvaliacao().Where(x => x.Nome_cliente.Contains(nome));
+            return listaAvaliacao().Where(x => x.Nome_cliente.ToLower().Contains(nome.ToLower()));
         }
 
         public IEnumerable<Avaliacao> filtrarCpfCliente(string cpf)
@@ -130,7 +130,7 @@ namespace Sistema_clinica.Models
 
         public IEnumerable<Avaliacao> filtrarProcedimento(string procedimento)
         {
-            return listaAvaliacao().Where(x => x.Nome_procedimento.Contains(procedimento));
+            return listaAvaliacao().Where(x => x.Nome_procedimento.ToLower().Contains(procedimento.ToLower()));
         }
 
     }

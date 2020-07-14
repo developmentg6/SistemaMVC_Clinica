@@ -9,6 +9,8 @@
     {
         @Html.AntiForgeryToken()
         <div class="form-horizontal text-center boxLogin">
+            <h2 class="titulo-contato">Área restrita</h2>
+
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <br />
             <div class="form-group">

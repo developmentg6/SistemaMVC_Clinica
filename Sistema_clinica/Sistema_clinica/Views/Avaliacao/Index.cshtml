@@ -15,19 +15,19 @@
     @using (Html.BeginForm("FiltrarNomeCliente", "Avaliacao"))
     {
         @Html.Editor("nome", new { htmlAttributes = new { placeholder = "Busca por nome de cliente" } })
-        <input type="submit" value="Buscar" class="btn btn-default" />
+        <input type="submit" value="Buscar" class="btn btn-default btn-busca" />
     }
 
     @using (Html.BeginForm("FiltrarCpfCliente", "Avaliacao"))
     {
         @Html.Editor("cpf", new { htmlAttributes = new { placeholder = "Busca por cpf de cliente" } })
-        <input type="submit" value="Buscar" class="btn btn-default" />
+        <input type="submit" value="Buscar" class="btn btn-default btn-busca" />
     }
 
     @using (Html.BeginForm("FiltrarProcedimento", "Avaliacao"))
     {
         @Html.Editor("nomeProcedimento", new { htmlAttributes = new { placeholder = "Busca por procedimento" } })
-        <input type="submit" value="Buscar" class="btn btn-default" />
+        <input type="submit" value="Buscar" class="btn btn-default btn-busca" />
     }
 
     @using (Html.BeginForm("Index", "Avaliacao"))

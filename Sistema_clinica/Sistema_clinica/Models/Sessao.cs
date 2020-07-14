@@ -33,9 +33,12 @@ namespace Sistema_clinica.Models
         [StringLength(100, ErrorMessage = "A Descrição não pode ter mais de 100 caracteres")]
         public string Descricao { get; set; }
 
+        [Display(Name = "Total de sessões")]
         [Required(ErrorMessage = "Campo não pode ficar em branco")]
         public int Quantidade { get; set; }
 
+        [Display(Name = "Sessões já agendadas")]
+        public int Sessoes_agendadas { get; set; }
 
         public string erro { get; set; } = "";
         SessaoBD sessaoBD = new SessaoBD();
@@ -121,7 +124,7 @@ namespace Sistema_clinica.Models
 
         public IEnumerable<Sessao> filtrarNomeCliente(string nome)
         {
-            return listaSessao().Where(x => x.Nome_cliente.Contains(nome));
+            return listaSessao().Where(x => x.Nome_cliente.ToLower().Contains(nome.ToLower()));
         }
 
         public IEnumerable<Sessao> filtrarCpfCliente(string cpf)
@@ -131,12 +134,12 @@ namespace Sistema_clinica.Models
 
         public IEnumerable<Sessao> filtrarProcedimento(string procedimento)
         {
-            return listaSessao().Where(x => x.Nome_procedimento.Contains(procedimento));
+            return listaSessao().Where(x => x.Nome_procedimento.ToLower().Contains(procedimento.ToLower()));
         }
 
         public IEnumerable<Sessao> filtrarFuncionario(string funcionario)
         {
-            return listaSessao().Where(x => x.Nome_funcionario.Contains(funcionario));
+            return listaSessao().Where(x => x.Nome_funcionario.ToLower().Contains(funcionario.ToLower()));
         }
     }
 }

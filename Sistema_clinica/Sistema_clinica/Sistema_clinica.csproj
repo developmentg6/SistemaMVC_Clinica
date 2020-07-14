@@ -204,7 +204,11 @@
     <Content Include="Imagens\carousel\img_mulher_procedimento_rosa.png" />
     <Content Include="Imagens\carousel\img_mulher_relaxada.png" />
     <Content Include="Imagens\carousel\img_recepcao_borrado.png" />
+    <Content Include="Imagens\homem_procedimento.png" />
     <Content Include="Imagens\Logo_niceface.png" />
+    <Content Include="Imagens\Logo_transparente.png" />
+    <Content Include="Imagens\mulher_medica.png" />
+    <Content Include="Imagens\mulher_procedimento.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\Embassy BT.ttf" />

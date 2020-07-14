@@ -52,6 +52,8 @@ namespace Sistema_clinica.Models.bd
             sessao.Descricao = dr["descricao"].ToString();
             sessao.Quantidade = int.Parse(dr["quantidade"].ToString());
 
+            sessao.Sessoes_agendadas = int.Parse(dr["agendadas"].ToString());
+
             return sessao;
         }
 

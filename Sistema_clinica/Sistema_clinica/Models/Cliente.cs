@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Sistema_clinica.Models
 {
@@ -20,9 +21,9 @@ namespace Sistema_clinica.Models
         [Required(ErrorMessage = "Campo não pode ficar em branco")]
         public string Cpf { get; set; }
 
-        [Display(Name ="Data de Nascimento")]
+        [Display(Name = "Data de Nascimento")]
         [Required(ErrorMessage = "Campo não pode ficar em branco")]
-        [DisplayFormat(DataFormatString ="{0:dd/MM/yyyy}", ApplyFormatInEditMode=true)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DataNascimento { get; set; }
 
         [Required(ErrorMessage = "Campo não pode ficar em branco")]
@@ -61,6 +62,12 @@ namespace Sistema_clinica.Models
 
         ClienteBD clienteBD = new ClienteBD();
         public string erro { get; set; } = "";
+
+        public List<SelectListItem> listaSexo = new List<SelectListItem>() {
+            new SelectListItem { Text = "Feminino", Value = "Feminino" },
+            new SelectListItem { Text = "Masculino", Value = "Masculino" },
+            new SelectListItem { Text = "Outros", Value = "Outros" }
+        };
 
 
         public List<Cliente> listaClientes()
