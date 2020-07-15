@@ -100,15 +100,21 @@ FOREIGN KEY (id_funcionario) REFERENCES funcionario(id_funcionario)
 
 select * from sessao_completa
 
+SELECT count(id_sessao) FROM agenda WHERE id_sessao = 1
+
 insert into sessao (id_cliente, id_procedimento, id_funcionario, descricao, quantidade)
 	values (1, 1, 1, null, 4)
     
+drop view sessao_completa;
+
 create view sessao_completa as
-select sessao.id_sessao, cliente.id_cliente, cliente.nome cliente, cliente.cpf, procedimento.id_procedimento, procedimento.nome procedimento, funcionario.id_funcionario, funcionario.nome esteticista, sessao.descricao, sessao.quantidade
+select sessao.id_sessao, cliente.id_cliente, cliente.nome cliente, cliente.cpf, procedimento.id_procedimento, procedimento.nome procedimento, funcionario.id_funcionario, funcionario.nome esteticista, sessao.descricao, sessao.quantidade, count(agenda.id_sessao) agendadas
 	from sessao
     inner join cliente on sessao.id_cliente = cliente.id_cliente
     inner join procedimento on sessao.id_procedimento = procedimento.id_procedimento
     inner join funcionario on sessao.id_funcionario = funcionario.id_funcionario
+    left join agenda on sessao.id_sessao = agenda.id_sessao
+    group by sessao.id_sessao
     
 
 CREATE TABLE agenda(
@@ -123,7 +129,16 @@ FOREIGN KEY (id_sessao) REFERENCES sessao(id_sessao)
 
 select * from agenda
 
+create view agenda_completa as
+select agenda.id_agenda, agenda.data_hora, agenda.estado, agenda.agend_pago, agenda.id_sessao, cliente.id_cliente, cliente.nome cliente, cliente.cpf, procedimento.id_procedimento, procedimento.nome procedimento, funcionario.id_funcionario, funcionario.nome esteticista
+	from agenda
+    inner join sessao on agenda.id_sessao = sessao.id_sessao
+    inner join cliente on sessao.id_cliente = cliente.id_cliente
+    inner join procedimento on sessao.id_procedimento = procedimento.id_procedimento
+    inner join funcionario on sessao.id_funcionario = funcionario.id_funcionario
+    order by agenda.data_hora
 
+select * from agenda_completa
 
 CREATE TABLE avaliacao_diagnostica(
 id_avaliacao int NOT NULL AUTO_INCREMENT,
@@ -146,6 +161,7 @@ select av.id_avaliacao, av.data_hora, av.obs_cliente, av.id_procedimento, pr.nom
     order by data_hora
 
 select * from avaliacao_completa
+
 
 CREATE TABLE pagamento(
 id_pagamento int NOT NULL AUTO_INCREMENT,
