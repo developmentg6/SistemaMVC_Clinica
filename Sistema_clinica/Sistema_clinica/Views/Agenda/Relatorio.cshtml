@@ -1,0 +1,72 @@
+﻿@model IEnumerable<Sistema_clinica.Models.Agenda>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Relatorio</title>
+</head>
+<body>
+    <h1>Relatorio de Agenda</h1>
+    <br />
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Data_Hora)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Estado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pago)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome_cliente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cpf_cliente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome_procedimento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome_funcionario)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Data_Hora)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Estado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pago)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome_cliente)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cpf_cliente)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome_procedimento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome_funcionario)
+                </td>
+            </tr>
+        }
+
+    </table>
+
+</body>
+</html>

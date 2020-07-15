@@ -53,21 +53,13 @@
 
                     <li role="presentation" class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                            Sessões <span class="caret"></span>
+                            Agenda e Sessões <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("Cadastrar", "Cadastrar", "Sessao")</li>
-                            <li>@Html.ActionLink("Consultar", "Index", "Sessao")</li>
-                        </ul>
-                    </li>
-
-                    <li role="presentation" class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                            Agenda <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Cadastrar</a></li>
-                            <li><a href="#">Consultar</a></li>
+                            <li>@Html.ActionLink("Cadastrar Sessão", "Cadastrar", "Sessao")</li>
+                            <li>@Html.ActionLink("Consultar Sessão", "Index", "Sessao")</li>
+                            <li>@Html.ActionLink("Consultar agenda", "Index", "Agenda")</li>
+                            <li>@Html.ActionLink("Relatório de agenda", "Relatorio", "Agenda")</li>
                         </ul>
                     </li>
 

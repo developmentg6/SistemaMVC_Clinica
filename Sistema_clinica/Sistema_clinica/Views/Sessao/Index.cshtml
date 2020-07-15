@@ -84,7 +84,7 @@
         <td>
             @Html.ActionLink("Editar", "Editar", new { id = item.Id }) |
             @Html.ActionLink("Detalhes", "Detalhes", new { id = item.Id }) |
-            @Html.ActionLink("Excluir", "Excluir", new { id = item.Id })
+            @Html.ActionLink("Agendar", "../Agenda/Cadastrar", new { id_sessao = item.Id })
         </td>
     </tr>
     }

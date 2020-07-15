@@ -1,0 +1,103 @@
+﻿@model IEnumerable<Sistema_clinica.Models.Agenda>
+
+@{
+    ViewBag.Title = "Agenda";
+    Layout = "~/Views/Shared/_LayoutLogado.cshtml";
+}
+
+<h2 class="text-center">Agenda</h2>
+
+
+<a href="~/Sessao/Index" class="btn btnFiltro">Agendar sessão</a>
+<div class="btn btnFiltro" onclick="exibirFiltro('filtroAgenda')">Buscar</div>
+<a href="~/Agenda/Relatorio" class="btn btnFiltro">Exibir relatório</a>
+
+<div id="filtroAgenda" class="filtro_hide">
+    @using (Html.BeginForm("FiltrarNomeCliente", "Agenda"))
+    {
+        @Html.Editor("nome", new { htmlAttributes = new { placeholder = "Busca por nome de cliente" } })
+        <input type="submit" value="Buscar" class="btn btn-default btn-busca" />
+    }
+
+    @using (Html.BeginForm("FiltrarCpfCliente", "Agenda"))
+    {
+        @Html.Editor("cpf", new { htmlAttributes = new { placeholder = "Busca por cpf de cliente" } })
+        <input type="submit" value="Buscar" class="btn btn-default btn-busca" />
+    }
+
+    @using (Html.BeginForm("FiltrarProcedimento", "Agenda"))
+    {
+        @Html.Editor("nomeProcedimento", new { htmlAttributes = new { placeholder = "Busca por procedimento" } })
+        <input type="submit" value="Buscar" class="btn btn-default btn-busca" />
+    }
+
+    @using (Html.BeginForm("FiltrarFuncionario", "Agenda"))
+    {
+        @Html.Editor("nomeFuncionario", new { htmlAttributes = new { placeholder = "Busca por funcionário" } })
+        <input type="submit" value="Buscar" class="btn btn-default btn-busca" />
+    }
+
+    @using (Html.BeginForm("FiltrarEstado", "Agenda"))
+    {
+        @Html.Editor("estado", new { htmlAttributes = new { placeholder = "Busca por estado" } })
+        <input type="submit" value="Buscar" class="btn btn-default btn-busca" />
+    }
+
+    @using (Html.BeginForm("Index", "Agenda"))
+    {
+        <input type="submit" value="Limpar filtros" class="btn btn-default" />
+    }
+    <br />
+</div>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Data_Hora)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome_cliente)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome_procedimento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome_funcionario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pago)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Data_Hora)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome_cliente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome_procedimento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome_funcionario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pago)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Editar", new { id = item.Id }) |
+                @Html.ActionLink("Detalhes", "Detalhes", new { id = item.Id }) |
+                @Html.ActionLink("Excluir", "Excluir", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+
+@section scripts{
+    @Scripts.Render("~/bundles/filtros")
+}
