@@ -4,8 +4,8 @@
     Layout = "~/Views/Shared/_LayoutLogado.cshtml";
 }
 
-<div class="text-center">
-    <h2 class="txtBemVindo">Bem-vindo(a), "nome do usuário logado"</h2>
+<div class="text-center telaSistema">
+    <h2 class="txtBemVindo boxMenu boxBemVindo">Bem-vindo(a), "nome do usuário logado"</h2>
 
     <div class="row">
         <div class="col-sm-6 col-md-4">
@@ -45,6 +45,14 @@
                 <h3>Sessões</h3>
                 <a href="~/Sessao/Cadastrar" class="btn btnMenu">Cadastrar</a>
                 <a href="~/Sessao/Index" class="btn btnMenu">Consultar</a>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4">
+            <div class="boxMenu text-center">
+                <h3>Agenda</h3>
+                <a href="~/Agenda/Index" class="btn btnMenu">Consultar</a>
+                <a href="~/Agenda/Relatorio" class="btn btnMenu">Relatório</a>
             </div>
         </div>
 

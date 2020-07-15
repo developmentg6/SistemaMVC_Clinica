@@ -10,7 +10,7 @@
 
 <a href="~/Sessao/Index" class="btn btnFiltro">Agendar sessão</a>
 <div class="btn btnFiltro" onclick="exibirFiltro('filtroAgenda')">Buscar</div>
-<a href="~/Agenda/Relatorio" class="btn btnFiltro">Exibir relatório</a>
+<a href="~/Agenda/Relatorio" class="btn btnFiltro">Gerar relatório</a>
 
 <div id="filtroAgenda" class="filtro_hide">
     @using (Html.BeginForm("FiltrarNomeCliente", "Agenda"))
@@ -49,7 +49,7 @@
     }
     <br />
 </div>
-
+<br />
 <table class="table">
     <tr>
         <th>

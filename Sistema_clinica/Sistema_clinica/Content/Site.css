@@ -61,7 +61,7 @@ textarea {
     background-color: rgba(255, 255, 255, 0.8);
 }
 
-.telaLogin {
+.telaLogin, .telaSistema {
     padding-top: 20px;
     padding-bottom: 20px;
     background-image: url("../Imagens/Logo_transparente.png");
@@ -133,32 +133,55 @@ textarea {
 
 .boxMenu {
     width: 280px;
-    border: solid;
-    margin:auto;
+    border-radius: 10px;
+    margin: auto;
     margin-bottom: 40px;
     margin-top: 10px;
     border-radius: 25px;
     padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: rgb(255, 54, 134) 5px 5px 25px;
+}
+
+.boxBemVindo{
+    width:auto;
 }
 
 .btnMenu {
     width: 140px;
     margin: 10px 5px;
-    border: solid;
+    border: groove 3px rgb(255, 54, 134);
     border-radius: 25px;
     height: 70px;
     padding: 15px;
     font-size: 150%;
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+    transition-duration: 0.4s;
+    color: black;
 }
 
+.btnMenu:hover {
+    background-color: rgb(255, 134, 182);
+    color: white;
+}
+
+.btnMenu:active {
+    box-shadow: 0 5px 5px #666 ;
+    transform: translateY(4px);
+}
 
 
 /*FILTROS DE BUSCA DAS CONSULTAS*/
 .btnFiltro {
     width: 130px;
     margin: 10px 5px;
-    border: solid;
+    border: groove 3px rgb(255, 54, 134);
+    border-radius: 15px;
     height: 40px;
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+    color: black;
 }
 
 .filtro_hide {
