@@ -5,54 +5,54 @@
 }
 
 <div class="text-center telaSistema">
-    <h2 class="txtBemVindo boxMenu boxBemVindo">Bem-vindo(a), "nome do usuário logado"</h2>
+    <h2 class="txtBemVindo boxMenu boxBemVindo">Bem-vindo(a), @ViewBag.usuario!</h2>
 
     <div class="row">
         <div class="col-sm-6 col-md-4">
             <div class="boxMenu text-center">
                 <h3>Clientes</h3>
-                <a href="~/Cliente/Cadastrar" class="btn btnMenu">Cadastrar</a>
-                <a href="~/Cliente/Index" class="btn btnMenu">Consultar</a>
+                @Html.ActionLink("Cadastrar", "Cadastrar", "Cliente", null, new { @class = "btn btnMenu" })
+                @Html.ActionLink("Consultar", "Index", "Cliente", null, new { @class = "btn btnMenu" })
             </div>
         </div>
 
         <div class="col-sm-6 col-md-4">
             <div class="boxMenu text-center">
                 <h3>Funcionários</h3>
-                <a href="~/Funcionario/Cadastrar" class="btn btnMenu">Cadastrar</a>
-                <a href="~/Funcionario/Index" class="btn btnMenu">Consultar</a>
+                @Html.ActionLink("Cadastrar", "Cadastrar", "Funcionario", null, new { @class = "btn btnMenu" })
+                @Html.ActionLink("Consultar", "Index", "Funcionario", null, new { @class = "btn btnMenu" })
             </div>
         </div>
 
         <div class="col-sm-6 col-md-4">
             <div class="boxMenu text-center">
                 <h3>Procedimentos</h3>
-                <a href="~/Procedimento/Cadastrar" class="btn btnMenu">Cadastrar</a>
-                <a href="~/Procedimento/Index" class="btn btnMenu">Consultar</a>
+                @Html.ActionLink("Cadastrar", "Cadastrar", "Procedimento", null, new { @class = "btn btnMenu" })
+                @Html.ActionLink("Consultar", "Index", "Procedimento", null, new { @class = "btn btnMenu" })
             </div>
         </div>
 
         <div class="col-sm-6 col-md-4">
             <div class="boxMenu text-center">
                 <h3>Avaliação</h3>
-                <a href="~/Avaliacao/Cadastrar" class="btn btnMenu">Cadastrar</a>
-                <a href="~/Avaliacao/Index" class="btn btnMenu">Consultar</a>
+                @Html.ActionLink("Cadastrar", "Cadastrar", "Avaliacao", null, new { @class = "btn btnMenu" })
+                @Html.ActionLink("Consultar", "Index", "Avaliacao", null, new { @class = "btn btnMenu" })
             </div>
         </div>
 
         <div class="col-sm-6 col-md-4">
             <div class="boxMenu text-center">
                 <h3>Sessões</h3>
-                <a href="~/Sessao/Cadastrar" class="btn btnMenu">Cadastrar</a>
-                <a href="~/Sessao/Index" class="btn btnMenu">Consultar</a>
+                @Html.ActionLink("Cadastrar", "Cadastrar", "Sessao", null, new { @class = "btn btnMenu" })
+                @Html.ActionLink("Consultar", "Index", "Sessao", null, new { @class = "btn btnMenu" })
             </div>
         </div>
 
         <div class="col-sm-6 col-md-4">
             <div class="boxMenu text-center">
                 <h3>Agenda</h3>
-                <a href="~/Agenda/Index" class="btn btnMenu">Consultar</a>
-                <a href="~/Agenda/Relatorio" class="btn btnMenu">Relatório</a>
+                @Html.ActionLink("Consultar", "Index", "Agenda", null, new { @class = "btn btnMenu" })
+                @Html.ActionLink("Relatório", "Relatorio", "Agenda", null, new { @class = "btn btnMenu" })
             </div>
         </div>
 

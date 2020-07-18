@@ -184,6 +184,7 @@
     <Compile Include="Models\bd\FuncionarioBD.cs" />
     <Compile Include="Models\bd\ProcedimentoBD.cs" />
     <Compile Include="Models\bd\SessaoBD.cs" />
+    <Compile Include="Models\bd\UsuarioBD.cs" />
     <Compile Include="Models\Cliente.cs" />
     <Compile Include="Models\Contato.cs" />
     <Compile Include="Models\Funcionario.cs" />
