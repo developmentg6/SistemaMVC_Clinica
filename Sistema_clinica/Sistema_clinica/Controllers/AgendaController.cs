@@ -12,6 +12,11 @@ namespace Sistema_clinica.Controllers
         // GET: Agenda
         public ActionResult Index()
         {
+            if (Session["usuario"] == null || Session["usuario"].ToString() == "")
+            {
+                return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+
             Agenda agenda = new Agenda();
             IEnumerable<Agenda> lista = agenda.listaAgenda();
             if (agenda.erro != "")
@@ -23,6 +28,11 @@ namespace Sistema_clinica.Controllers
 
         public ActionResult Detalhes(int id)
         {
+            if (Session["usuario"] == null || Session["usuario"].ToString() == "")
+            {
+                return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+
             Agenda agenda = new Agenda();
 
             return View(agenda.buscar(id));
@@ -30,6 +40,11 @@ namespace Sistema_clinica.Controllers
 
         public ActionResult Cadastrar(int id_sessao)
         {
+            if (Session["usuario"] == null || Session["usuario"].ToString() == "")
+            {
+                return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+
             Agenda agenda = new Agenda();
             agenda.preencherAgendaComSessao(id_sessao);
             ViewBag.listaEstado = agenda.listaEstado;
@@ -64,6 +79,11 @@ namespace Sistema_clinica.Controllers
 
         public ActionResult Editar(int id)
         {
+            if (Session["usuario"] == null || Session["usuario"].ToString() == "")
+            {
+                return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+
             Agenda agenda = new Agenda();
             agenda = agenda.buscar(id);
 
@@ -121,6 +141,11 @@ namespace Sistema_clinica.Controllers
 
         public ActionResult Excluir(int id)
         {
+            if (Session["usuario"] == null || Session["usuario"].ToString() == "")
+            {
+                return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+
             Agenda agenda = new Agenda();
 
             return View(agenda.buscar(id));
@@ -142,6 +167,11 @@ namespace Sistema_clinica.Controllers
 
         public ActionResult FiltrarNomeCliente(string nome)
         {
+            if (Session["usuario"] == null || Session["usuario"].ToString() == "")
+            {
+                return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+
             Agenda agenda = new Agenda();
             IEnumerable<Agenda> lista = agenda.filtrarNomeCliente(nome);
             if (agenda.erro != "")
@@ -157,6 +187,11 @@ namespace Sistema_clinica.Controllers
 
         public ActionResult FiltrarCpfCliente(string cpf)
         {
+            if (Session["usuario"] == null || Session["usuario"].ToString() == "")
+            {
+                return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+
             Agenda agenda = new Agenda();
             IEnumerable<Agenda> lista = agenda.filtrarCpfCliente(cpf);
             if (agenda.erro != "")
@@ -172,6 +207,11 @@ namespace Sistema_clinica.Controllers
 
         public ActionResult FiltrarProcedimento(string nomeProcedimento)
         {
+            if (Session["usuario"] == null || Session["usuario"].ToString() == "")
+            {
+                return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+
             Agenda agenda = new Agenda();
             IEnumerable<Agenda> lista = agenda.filtrarProcedimento(nomeProcedimento);
             if (agenda.erro != "")
@@ -187,6 +227,11 @@ namespace Sistema_clinica.Controllers
 
         public ActionResult FiltrarFuncionario(string nomeFuncionario)
         {
+            if (Session["usuario"] == null || Session["usuario"].ToString() == "")
+            {
+                return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+
             Agenda agenda = new Agenda();
             IEnumerable<Agenda> lista = agenda.filtrarFuncionario(nomeFuncionario);
             if (agenda.erro != "")
@@ -202,6 +247,11 @@ namespace Sistema_clinica.Controllers
 
         public ActionResult FiltrarEstado(string estado)
         {
+            if (Session["usuario"] == null || Session["usuario"].ToString() == "")
+            {
+                return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+
             Agenda agenda = new Agenda();
             IEnumerable<Agenda> lista = agenda.filtrarEstado(estado);
             if (agenda.erro != "")
@@ -217,6 +267,11 @@ namespace Sistema_clinica.Controllers
 
         public ActionResult Relatorio()
         {
+            if (Session["usuario"] == null || Session["usuario"].ToString() == "")
+            {
+                return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+
             Agenda agenda = new Agenda();
             IEnumerable<Agenda> lista = agenda.listaAgenda();
             if (agenda.erro != "")

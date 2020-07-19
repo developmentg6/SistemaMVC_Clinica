@@ -12,6 +12,11 @@ namespace Sistema_clinica.Controllers
         // GET: Procedimento
         public ActionResult Index()
         {
+            if (Session["usuario"] == null || Session["usuario"].ToString() == "")
+            {
+                return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+
             Procedimento procedimento = new Procedimento();
             IEnumerable<Procedimento> lista = procedimento.listaProcedimentos();
             if (procedimento.erro != "")
@@ -23,6 +28,11 @@ namespace Sistema_clinica.Controllers
 
         public ActionResult Detalhes(int id)
         {
+            if (Session["usuario"] == null || Session["usuario"].ToString() == "")
+            {
+                return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+
             Procedimento procedimento = new Procedimento();
 
             return View(procedimento.buscar(id));
@@ -30,6 +40,11 @@ namespace Sistema_clinica.Controllers
 
         public ActionResult Cadastrar()
         {
+            if (Session["usuario"] == null || Session["usuario"].ToString() == "")
+            {
+                return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+
             return View();
         }
 
@@ -61,6 +76,11 @@ namespace Sistema_clinica.Controllers
 
         public ActionResult Excluir(int id)
         {
+            if (Session["usuario"] == null || Session["usuario"].ToString() == "")
+            {
+                return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+
             Procedimento procedimento = new Procedimento();
 
             return View(procedimento.buscar(id));
@@ -82,6 +102,11 @@ namespace Sistema_clinica.Controllers
 
         public ActionResult Editar(int id)
         {
+            if (Session["usuario"] == null || Session["usuario"].ToString() == "")
+            {
+                return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+
             Procedimento procedimento = new Procedimento();
 
             return View(procedimento.buscar(id));
@@ -108,6 +133,11 @@ namespace Sistema_clinica.Controllers
 
         public ActionResult FiltrarNome(string nome)
         {
+            if (Session["usuario"] == null || Session["usuario"].ToString() == "")
+            {
+                return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+
             Procedimento procedimento = new Procedimento();
             IEnumerable<Procedimento> lista = procedimento.filtrarNome(nome);
             if (procedimento.erro != "")

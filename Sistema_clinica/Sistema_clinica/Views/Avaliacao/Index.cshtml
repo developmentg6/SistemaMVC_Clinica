@@ -20,7 +20,7 @@
 
     @using (Html.BeginForm("FiltrarCpfCliente", "Avaliacao"))
     {
-        @Html.Editor("cpf", new { htmlAttributes = new { placeholder = "Busca por cpf de cliente" } })
+        @Html.Editor("cpf", new { htmlAttributes = new { placeholder = "Busca por cpf de cliente", @class = "cpf_numeros" } })
         <input type="submit" value="Buscar" class="btn btn-default btn-busca" />
     }
 

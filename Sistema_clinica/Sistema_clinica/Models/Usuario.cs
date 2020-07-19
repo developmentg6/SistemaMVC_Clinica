@@ -16,9 +16,7 @@ namespace Sistema_clinica.Models
         public string Senha { get; set; }
 
         public string erro { get; set; } = "";
-
-        public static string usuarioLogado { get; set; } = "";
-
+        
         UsuarioBD usuarioBD = new UsuarioBD();
 
         public bool verificarLogin()
@@ -27,10 +25,6 @@ namespace Sistema_clinica.Models
             try
             {
                 usuarioValido = usuarioBD.verificarLogin(this.Login, this.Senha);
-                if (usuarioValido)
-                {
-                    usuarioLogado = this.Login;
-                }
             }
             catch
             {

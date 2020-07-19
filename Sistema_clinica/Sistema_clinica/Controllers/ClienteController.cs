@@ -14,6 +14,11 @@ namespace Sistema_clinica.Controllers
         // GET: Cliente
         public ActionResult Index()
         {
+            if (Session["usuario"] == null || Session["usuario"].ToString() == "")
+            {
+                return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+
             Cliente cliente = new Cliente();
             IEnumerable<Cliente> lista = cliente.listaClientes();
             if (cliente.erro != "")
@@ -25,6 +30,11 @@ namespace Sistema_clinica.Controllers
 
         public ActionResult detalhes(int id)
         {
+            if (Session["usuario"] == null || Session["usuario"].ToString() == "")
+            {
+                return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+
             Cliente cliente = new Cliente();
 
             return View(cliente.buscar(id));
@@ -32,6 +42,11 @@ namespace Sistema_clinica.Controllers
 
         public ActionResult Cadastrar()
         {
+            if (Session["usuario"] == null || Session["usuario"].ToString() == "")
+            {
+                return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+
             Cliente cliente = new Cliente();
             ViewBag.listaSexo = cliente.listaSexo;
 
@@ -68,6 +83,11 @@ namespace Sistema_clinica.Controllers
 
         public ActionResult Excluir(int id)
         {
+            if (Session["usuario"] == null || Session["usuario"].ToString() == "")
+            {
+                return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+
             Cliente cliente = new Cliente();
 
             return View(cliente.buscar(id));
@@ -89,6 +109,11 @@ namespace Sistema_clinica.Controllers
 
         public ActionResult Editar(int id)
         {
+            if (Session["usuario"] == null || Session["usuario"].ToString() == "")
+            {
+                return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+
             Cliente cliente = new Cliente();
             cliente = cliente.buscar(id);
 
@@ -127,6 +152,11 @@ namespace Sistema_clinica.Controllers
 
         public ActionResult FiltrarNome(string nome)
         {
+            if (Session["usuario"] == null || Session["usuario"].ToString() == "")
+            {
+                return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+
             Cliente cliente = new Cliente();
             IEnumerable<Cliente> lista = cliente.filtrarNome(nome);
             if (cliente.erro != "")
@@ -142,6 +172,11 @@ namespace Sistema_clinica.Controllers
 
         public ActionResult FiltrarCpf(string cpf)
         {
+            if (Session["usuario"] == null || Session["usuario"].ToString() == "")
+            {
+                return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+
             Cliente cliente = new Cliente();
             IEnumerable<Cliente> lista = cliente.filtrarCpf(cpf);
             if (cliente.erro != "")

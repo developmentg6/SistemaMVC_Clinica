@@ -22,12 +22,12 @@ namespace Sistema_clinica.Models
 
         [Display(Name = "Tempo estimado de cada sessão")]
         [Required(ErrorMessage = "Campo não pode ficar em branco")]
-        [StringLength(5, ErrorMessage = "O Tempo Estimado deve estar no formato hh:mm")]
+        [StringLength(5, MinimumLength = 5, ErrorMessage = "O Tempo Estimado deve estar no formato hh:mm")]
         public string Tempo_estimado { get; set; }
 
         [Display(Name = "Valor de cada sessão")]
         [Required(ErrorMessage = "Campo não pode ficar em branco")]
-        [DisplayFormat(DataFormatString ="R${0:N}")]
+        [DisplayFormat(DataFormatString ="R${0:N}", ApplyFormatInEditMode = true)]
         public float Valor_proc { get; set; }
 
         ProcedimentoBD procedimentoBD = new ProcedimentoBD();

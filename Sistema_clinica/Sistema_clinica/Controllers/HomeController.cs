@@ -36,6 +36,7 @@ namespace Sistema_clinica.Controllers
                 bool usuarioValido = usuario.verificarLogin();
                 if (usuarioValido)
                 {
+                    Session.Add("usuario", usuario.Login);
                     return RedirectToAction("TelaPrincipal", "Home");
                 }
                 else if(usuario.erro != ""){
@@ -51,13 +52,16 @@ namespace Sistema_clinica.Controllers
 
         public ActionResult Deslogar()
         {
-            Usuario.usuarioLogado = "";
+            Session.Clear();
             return RedirectToAction("Login").Mensagem("Usuário deslogado com sucesso!", "Sessão encerrada");
         }
 
         public ActionResult TelaPrincipal()
         {
-            ViewBag.usuario = Usuario.usuarioLogado;
+            if (Session["usuario"] == null || Session["usuario"].ToString() == "")
+            {
+                return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
             return View();
         }
     }

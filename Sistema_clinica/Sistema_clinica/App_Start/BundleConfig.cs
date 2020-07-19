@@ -19,6 +19,12 @@ namespace Sistema_clinica
             bundles.Add(new ScriptBundle("~/bundles/filtros").Include(
                         "~/Scripts/filtros.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/jquerymask").Include(
+            "~/Scripts/jquery.mask.min.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/mascaras").Include(
+            "~/Scripts/mascaras.js"));
+
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at https://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(

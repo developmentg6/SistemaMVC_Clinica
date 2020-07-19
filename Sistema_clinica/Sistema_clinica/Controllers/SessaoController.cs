@@ -13,6 +13,11 @@ namespace Sistema_clinica.Controllers
         // GET: Sessao
         public ActionResult Index()
         {
+            if (Session["usuario"] == null || Session["usuario"].ToString() == "")
+            {
+                return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+
             Sessao sessao = new Sessao();
             IEnumerable<Sessao> lista = sessao.listaSessao();
             if (sessao.erro != "")
@@ -24,6 +29,11 @@ namespace Sistema_clinica.Controllers
 
         public ActionResult Detalhes(int id)
         {
+            if (Session["usuario"] == null || Session["usuario"].ToString() == "")
+            {
+                return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+
             Sessao sessao = new Sessao();
 
             return View(sessao.buscar(id));
@@ -31,6 +41,11 @@ namespace Sistema_clinica.Controllers
 
         public ActionResult Cadastrar()
         {
+            if (Session["usuario"] == null || Session["usuario"].ToString() == "")
+            {
+                return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+
             Procedimento procedimento = new Procedimento();
             ViewBag.procedimentoLista = new SelectList(
                 procedimento.listaProcedimentos(),
@@ -106,6 +121,11 @@ namespace Sistema_clinica.Controllers
 
         public ActionResult Editar(int id)
         {
+            if (Session["usuario"] == null || Session["usuario"].ToString() == "")
+            {
+                return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+
             Sessao sessao = new Sessao();
             sessao = sessao.buscar(id);
 
@@ -190,6 +210,11 @@ namespace Sistema_clinica.Controllers
 
         public ActionResult Excluir(int id)
         {
+            if (Session["usuario"] == null || Session["usuario"].ToString() == "")
+            {
+                return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+
             Sessao sessao = new Sessao();
 
             return View(sessao.buscar(id));
@@ -212,6 +237,11 @@ namespace Sistema_clinica.Controllers
 
         public ActionResult FiltrarNomeCliente(string nome)
         {
+            if (Session["usuario"] == null || Session["usuario"].ToString() == "")
+            {
+                return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+
             Sessao sessao = new Sessao();
             IEnumerable<Sessao> lista = sessao.filtrarNomeCliente(nome);
             if (sessao.erro != "")
@@ -227,6 +257,11 @@ namespace Sistema_clinica.Controllers
 
         public ActionResult FiltrarCpfCliente(string cpf)
         {
+            if (Session["usuario"] == null || Session["usuario"].ToString() == "")
+            {
+                return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+
             Sessao sessao = new Sessao();
             IEnumerable<Sessao> lista = sessao.filtrarCpfCliente(cpf);
             if (sessao.erro != "")
@@ -242,6 +277,11 @@ namespace Sistema_clinica.Controllers
 
         public ActionResult FiltrarProcedimento(string nomeProcedimento)
         {
+            if (Session["usuario"] == null || Session["usuario"].ToString() == "")
+            {
+                return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+
             Sessao sessao = new Sessao();
             IEnumerable<Sessao> lista = sessao.filtrarProcedimento(nomeProcedimento);
             if (sessao.erro != "")
@@ -257,6 +297,11 @@ namespace Sistema_clinica.Controllers
 
         public ActionResult FiltrarFuncionario(string nomeFuncionario)
         {
+            if (Session["usuario"] == null || Session["usuario"].ToString() == "")
+            {
+                return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+
             Sessao sessao = new Sessao();
             IEnumerable<Sessao> lista = sessao.filtrarFuncionario(nomeFuncionario);
             if (sessao.erro != "")

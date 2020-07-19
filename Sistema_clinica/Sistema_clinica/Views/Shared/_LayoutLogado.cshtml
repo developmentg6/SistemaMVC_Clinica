@@ -6,6 +6,7 @@
     <title>@ViewBag.Title - Clínica Nice Face</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -78,6 +79,8 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jquerymask")
+    @Scripts.Render("~/bundles/mascaras")
     @{Html.RenderPartial("~/Views/Shared/_Mensagem.cshtml");}
     @RenderSection("scripts", required: false)
 </body>

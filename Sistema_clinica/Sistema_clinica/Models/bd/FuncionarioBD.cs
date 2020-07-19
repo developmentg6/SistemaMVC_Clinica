@@ -131,10 +131,9 @@ namespace Sistema_clinica.Models.bd
         public void Editar(Funcionario funcionario)
         {
 
-            cmd.CommandText = "update funcionario set nome = @nome, cargo = @cargo, cpf = @cpf, rua = @rua, numero = @numero, bairro = @bairro, cidade = @cidade, cep = @cep, telefone = @telefone, email = @email where id_funcionario = @id";
+            cmd.CommandText = "update funcionario set nome = @nome, cargo = @cargo, rua = @rua, numero = @numero, bairro = @bairro, cidade = @cidade, cep = @cep, telefone = @telefone, email = @email where id_funcionario = @id";
             cmd.Parameters.AddWithValue("@nome", funcionario.Nome);
             cmd.Parameters.AddWithValue("@cargo", funcionario.Cargo);
-            cmd.Parameters.AddWithValue("@cpf", funcionario.Cpf);
             cmd.Parameters.AddWithValue("@rua", funcionario.Rua);
             cmd.Parameters.AddWithValue("@numero", funcionario.Numero);
             cmd.Parameters.AddWithValue("@bairro", funcionario.Bairro);

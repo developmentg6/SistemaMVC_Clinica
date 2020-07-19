@@ -13,6 +13,7 @@ namespace Sistema_clinica.Models
 
         [Required(ErrorMessage = "Campo não pode ficar em branco")]
         [Display(Name = "Data/Hora da avaliação")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy HH:mm}", ApplyFormatInEditMode = true)]
         public DateTime DataHora_avaliacao { get; set; }
 
         public int Id_procedimento { get; set; }
@@ -26,6 +27,7 @@ namespace Sistema_clinica.Models
         public string Nome_cliente { get; set; }
 
         [Display(Name = "Cpf do cliente")]
+        [StringLength(14, MinimumLength = 14, ErrorMessage = "Preencha corretamente o CPF")]
         public string Cpf_cliente { get; set; }
 
         [Display(Name = "Observações do cliente")]
@@ -70,6 +72,8 @@ namespace Sistema_clinica.Models
 
         public void buscarIdClientePeloCpf()
         {
+            this.Cpf_cliente = this.Cpf_cliente.Remove(11, 1).Remove(7, 1).Remove(3, 1);
+
             try
             {
                 this.Id_cliente = avaliacaoBD.BuscarClientePeloCpf(this.Cpf_cliente);

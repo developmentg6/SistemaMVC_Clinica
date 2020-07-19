@@ -12,6 +12,11 @@ namespace Sistema_clinica.Controllers
         // GET: Avaliacao
         public ActionResult Index()
         {
+            if (Session["usuario"] == null || Session["usuario"].ToString() == "")
+            {
+                return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+
             Avaliacao avaliacao = new Avaliacao();
             IEnumerable<Avaliacao> lista = avaliacao.listaAvaliacao();
             if (avaliacao.erro != "")
@@ -23,6 +28,11 @@ namespace Sistema_clinica.Controllers
 
         public ActionResult Detalhes(int id)
         {
+            if (Session["usuario"] == null || Session["usuario"].ToString() == "")
+            {
+                return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+
             Avaliacao avaliacao = new Avaliacao();
 
             return View(avaliacao.buscar(id));
@@ -30,6 +40,11 @@ namespace Sistema_clinica.Controllers
 
         public ActionResult Cadastrar()
         {
+            if (Session["usuario"] == null || Session["usuario"].ToString() == "")
+            {
+                return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+
             Procedimento procedimento = new Procedimento();
             ViewBag.procedimentoLista = new SelectList(
                 procedimento.listaProcedimentos(),
@@ -82,6 +97,11 @@ namespace Sistema_clinica.Controllers
 
         public ActionResult Editar(int id)
         {
+            if (Session["usuario"] == null || Session["usuario"].ToString() == "")
+            {
+                return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+
             Avaliacao avaliacao = new Avaliacao();
             avaliacao = avaliacao.buscar(id);
 
@@ -141,6 +161,11 @@ namespace Sistema_clinica.Controllers
 
         public ActionResult Excluir(int id)
         {
+            if (Session["usuario"] == null || Session["usuario"].ToString() == "")
+            {
+                return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+
             Avaliacao avaliacao = new Avaliacao();
 
             return View(avaliacao.buscar(id));
@@ -163,6 +188,11 @@ namespace Sistema_clinica.Controllers
 
         public ActionResult FiltrarNomeCliente(string nome)
         {
+            if (Session["usuario"] == null || Session["usuario"].ToString() == "")
+            {
+                return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+
             Avaliacao avaliacao = new Avaliacao();
             IEnumerable<Avaliacao> lista = avaliacao.filtrarNomeCliente(nome);
             if (avaliacao.erro != "")
@@ -178,6 +208,11 @@ namespace Sistema_clinica.Controllers
 
         public ActionResult FiltrarCpfCliente(string cpf)
         {
+            if (Session["usuario"] == null || Session["usuario"].ToString() == "")
+            {
+                return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+
             Avaliacao avaliacao = new Avaliacao();
             IEnumerable<Avaliacao> lista = avaliacao.filtrarCpfCliente(cpf);
             if (avaliacao.erro != "")
@@ -193,6 +228,11 @@ namespace Sistema_clinica.Controllers
 
         public ActionResult FiltrarProcedimento(string nomeProcedimento)
         {
+            if (Session["usuario"] == null || Session["usuario"].ToString() == "")
+            {
+                return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+
             Avaliacao avaliacao = new Avaliacao();
             IEnumerable<Avaliacao> lista = avaliacao.filtrarProcedimento(nomeProcedimento);
             if (avaliacao.erro != "")

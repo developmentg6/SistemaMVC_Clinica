@@ -75,6 +75,7 @@ namespace Sistema_clinica.Models
 
         public void buscarIdClientePeloCpf()
         {
+            this.Cpf_cliente = this.Cpf_cliente.Remove(11, 1).Remove(7, 1).Remove(3, 1);
             try
             {
                 this.Id_cliente = sessaoBD.BuscarClientePeloCpf(this.Cpf_cliente);

@@ -19,6 +19,8 @@ namespace Sistema_clinica.Models
         public string Sexo { get; set; }
 
         [Required(ErrorMessage = "Campo não pode ficar em branco")]
+        [StringLength(15, MinimumLength = 14, ErrorMessage = "Preencha corretamente o CPF")]
+        [DisplayFormat(DataFormatString = "{0:###.###.###-##}")]
         public string Cpf { get; set; }
 
         [Display(Name = "Data de Nascimento")]
@@ -86,6 +88,8 @@ namespace Sistema_clinica.Models
 
         public void cadastrar(Cliente cliente)
         {
+            cliente.Cpf = cliente.Cpf.Remove(11, 1).Remove(7, 1).Remove(3, 1);
+            cliente.Telefone = cliente.Telefone.Remove(9, 1).Remove(3, 1).Remove(0, 1);
             try
             {
                 clienteBD.Cadastrar(cliente);
@@ -126,6 +130,8 @@ namespace Sistema_clinica.Models
 
         public void editar(Cliente cliente)
         {
+            cliente.Cpf = cliente.Cpf.Remove(11, 1).Remove(7, 1).Remove(3, 1);
+            cliente.Telefone = cliente.Telefone.Remove(9, 1).Remove(3, 1).Remove(0, 1);
             try
             {
                 clienteBD.Editar(cliente);
@@ -167,9 +173,15 @@ namespace Sistema_clinica.Models
 
         public bool existeCpf(string cpf)
         {
+            if (cpf == null || cpf.Length != 14)
+            {
+                return false;
+            }
+            string cpfEditado = cpf.Remove(11, 1).Remove(7, 1).Remove(3, 1);
+
             bool existe = false;
             try{
-                existe = clienteBD.ExisteCpf(cpf);
+                existe = clienteBD.ExisteCpf(cpfEditado);
             }
             catch
             {

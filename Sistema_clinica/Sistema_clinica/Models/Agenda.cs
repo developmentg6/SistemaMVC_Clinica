@@ -14,7 +14,8 @@ namespace Sistema_clinica.Models
 
         [Display(Name = "Data/Hora")]
         [Required(ErrorMessage = "Campo não pode ficar em branco")]
-        public DateTime Data_Hora { get; set; }
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy HH:mm}", ApplyFormatInEditMode = true)]
+        public DateTime? Data_Hora { get; set; }
 
         public string Estado { get; set; }
 

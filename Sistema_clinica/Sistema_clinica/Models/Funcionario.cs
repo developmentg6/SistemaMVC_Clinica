@@ -25,6 +25,7 @@ namespace Sistema_clinica.Models
         public string Telefone { get; set; }
 
         [Required(ErrorMessage = "Campo não pode ficar em branco")]
+        [StringLength(15, MinimumLength = 14, ErrorMessage = "Preencha corretamente o CPF")]
         public string Cpf { get; set; }
 
         [RegularExpression(@"^[a-zA-Z]+(([\'\,\.\- ][a-zA-Z ])?[a-zA-Z]*)*\s+<(\w[-._\w]*\w@\w[-._\w]*\w\.\w{2,3})>$|^(\w[-._\w]*\w@\w[-._\w]*\w\.\w{2,3})$", ErrorMessage = "Formato do E-mail Inválido")]
@@ -48,6 +49,7 @@ namespace Sistema_clinica.Models
         public string Cidade { get; set; }
 
         [Required(ErrorMessage = "Campo não pode ficar em branco")]
+        [StringLength(9, MinimumLength = 9, ErrorMessage = "O Cep não está completo")]
         public string Cep { get; set; }
 
         FuncionarioBD funcionarioBD = new FuncionarioBD();
@@ -70,6 +72,8 @@ namespace Sistema_clinica.Models
 
         public void cadastrar(Funcionario funcionario)
         {
+            funcionario.Cpf = funcionario.Cpf.Remove(11, 1).Remove(7, 1).Remove(3, 1);
+            funcionario.Telefone = funcionario.Telefone.Remove(9, 1).Remove(3, 1).Remove(0, 1);
             try
             {
                 funcionarioBD.Cadastrar(funcionario);
@@ -110,6 +114,8 @@ namespace Sistema_clinica.Models
 
         public void editar(Funcionario funcionario)
         {
+            funcionario.Cpf = funcionario.Cpf.Remove(11, 1).Remove(7, 1).Remove(3, 1);
+            funcionario.Telefone = funcionario.Telefone.Remove(9, 1).Remove(3, 1).Remove(0, 1);
             try
             {
                 funcionarioBD.Editar(funcionario);
@@ -151,10 +157,15 @@ namespace Sistema_clinica.Models
 
         public bool existeCpf(string cpf)
         {
+            if (cpf == null || cpf.Length != 14){
+                return false;
+            }
+            string cpfEditado = cpf.Remove(11, 1).Remove(7, 1).Remove(3, 1);
+
             bool existe = false;
             try
             {
-                existe = funcionarioBD.ExisteCpf(cpf);
+                existe = funcionarioBD.ExisteCpf(cpfEditado);
             }
             catch
             {

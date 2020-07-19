@@ -12,6 +12,11 @@ namespace Sistema_clinica.Controllers
         // GET: Funcionario
         public ActionResult Index()
         {
+            if (Session["usuario"] == null || Session["usuario"].ToString() == "")
+            {
+                return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+
             Funcionario funcionario = new Funcionario();
             IEnumerable<Funcionario> lista = funcionario.listaFuncionarios();
             if (funcionario.erro != "")
@@ -23,6 +28,11 @@ namespace Sistema_clinica.Controllers
 
         public ActionResult Detalhes(int id)
         {
+            if (Session["usuario"] == null || Session["usuario"].ToString() == "")
+            {
+                return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+
             Funcionario funcionario = new Funcionario();
 
             return View(funcionario.buscar(id));
@@ -30,6 +40,11 @@ namespace Sistema_clinica.Controllers
 
         public ActionResult Cadastrar()
         {
+            if (Session["usuario"] == null || Session["usuario"].ToString() == "")
+            {
+                return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+
             return View();
         }
 
@@ -61,6 +76,11 @@ namespace Sistema_clinica.Controllers
 
         public ActionResult Excluir(int id)
         {
+            if (Session["usuario"] == null || Session["usuario"].ToString() == "")
+            {
+                return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+
             Funcionario funcionario = new Funcionario();
 
             return View(funcionario.buscar(id));
@@ -82,6 +102,11 @@ namespace Sistema_clinica.Controllers
 
         public ActionResult Editar(int id)
         {
+            if (Session["usuario"] == null || Session["usuario"].ToString() == "")
+            {
+                return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+
             Funcionario funcionario = new Funcionario();
 
             return View(funcionario.buscar(id));
@@ -108,6 +133,11 @@ namespace Sistema_clinica.Controllers
 
         public ActionResult FiltrarNome(string nome)
         {
+            if (Session["usuario"] == null || Session["usuario"].ToString() == "")
+            {
+                return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+
             Funcionario funcionario = new Funcionario();
             IEnumerable<Funcionario> lista = funcionario.filtrarNome(nome);
             if (funcionario.erro != "")
@@ -123,6 +153,11 @@ namespace Sistema_clinica.Controllers
 
         public ActionResult FiltrarCargo(string cargo)
         {
+            if (Session["usuario"] == null || Session["usuario"].ToString() == "")
+            {
+                return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+
             Funcionario funcionario = new Funcionario();
             IEnumerable<Funcionario> lista = funcionario.filtrarCargo(cargo);
             if (funcionario.erro != "")
