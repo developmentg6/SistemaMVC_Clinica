@@ -42,6 +42,7 @@ FOREIGN KEY (id_funcionario) REFERENCES funcionario(id_funcionario)
 select * from login
 
 insert into login (id_funcionario, usuario, senha) values (1, 'gerente', '1234567')
+insert into login (id_funcionario, usuario, senha) values (4, 'luisa', '1234567')
 
 
 CREATE TABLE cliente(
@@ -68,6 +69,15 @@ insert into cliente (nome, sexo, cpf, data_nascimento, rua, numero, bairro, cida
 	values ('Joaquina Souza', 'feminino', '12312312312', '1980-10-23', 'Rua da Cidade', 100, 'Jardim das Laranjeiras', 'São Paulo-SP', '04594-969', 'joaquina@gmail.com', '11958374757', null, null)
 
 
+DELIMITER $$
+create procedure busca_cliente(
+in id_cli int)
+begin
+	select * from cliente where id_cliente = id_cli;
+end$$
+DELIMITER ;
+
+call busca_cliente(1)
 
 CREATE TABLE procedimento(
 id_procedimento int NOT NULL AUTO_INCREMENT,
@@ -104,8 +114,6 @@ SELECT count(id_sessao) FROM agenda WHERE id_sessao = 1
 
 insert into sessao (id_cliente, id_procedimento, id_funcionario, descricao, quantidade)
 	values (1, 1, 1, null, 4)
-    
-drop view sessao_completa;
 
 create view sessao_completa as
 select sessao.id_sessao, cliente.id_cliente, cliente.nome cliente, cliente.cpf, procedimento.id_procedimento, procedimento.nome procedimento, funcionario.id_funcionario, funcionario.nome esteticista, sessao.descricao, sessao.quantidade, count(agenda.id_sessao) agendadas
