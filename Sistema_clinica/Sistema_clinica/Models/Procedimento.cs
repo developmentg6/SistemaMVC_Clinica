@@ -28,6 +28,7 @@ namespace Sistema_clinica.Models
         [Display(Name = "Valor de cada sessão")]
         [Required(ErrorMessage = "Campo não pode ficar em branco")]
         [DisplayFormat(DataFormatString ="R${0:N}", ApplyFormatInEditMode = true)]
+        [NumeroBrasil(ErrorMessage = "Valor inválido", PontoMilharPermitido = true, DecimalRequerido = true)]
         public float Valor_proc { get; set; }
 
         ProcedimentoBD procedimentoBD = new ProcedimentoBD();

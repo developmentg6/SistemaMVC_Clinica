@@ -17,6 +17,9 @@ namespace Sistema_clinica
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
+            HtmlHelper.ClientValidationEnabled = true;
+            HtmlHelper.UnobtrusiveJavaScriptEnabled = true;
+
             // Extensão Mensagem para ActionResult
             ClientDataTypeModelValidatorProvider.ResourceClassKey = "Mensagens";
             DefaultModelBinder.ResourceClassKey = "Mensagens";

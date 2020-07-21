@@ -26,6 +26,7 @@ namespace Sistema_clinica.Models
         [Display(Name = "Data de Nascimento")]
         [Required(ErrorMessage = "Campo não pode ficar em branco")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [DataBrasil(ErrorMessage ="Data inválida", DataRequerida =true)]
         public DateTime DataNascimento { get; set; }
 
         [Required(ErrorMessage = "Campo não pode ficar em branco")]
@@ -45,6 +46,7 @@ namespace Sistema_clinica.Models
         public string Cidade { get; set; }
 
         [Required(ErrorMessage = "Campo não pode ficar em branco")]
+        [StringLength(9, MinimumLength = 9, ErrorMessage = "Preencha corretamente o cep")]
         public string Cep { get; set; }
 
         [RegularExpression(@"^[a-zA-Z]+(([\'\,\.\- ][a-zA-Z ])?[a-zA-Z]*)*\s+<(\w[-._\w]*\w@\w[-._\w]*\w\.\w{2,3})>$|^(\w[-._\w]*\w@\w[-._\w]*\w\.\w{2,3})$", ErrorMessage = "Formato do E-mail Inválido")]

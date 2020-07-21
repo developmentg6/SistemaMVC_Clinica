@@ -14,7 +14,8 @@ namespace Sistema_clinica
                         "~/Scripts/jquery-{version}.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                        "~/Scripts/jquery.validate*"));
+                        "~/Scripts/jquery.validate*",
+                        "~/Scripts/CustomValidacoes.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/filtros").Include(
                         "~/Scripts/filtros.js"));

@@ -57,10 +57,12 @@
                             Agenda e Sessões <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Cadastrar Avaliação", "Cadastrar", "Avaliacao")</li>
+                            <li>@Html.ActionLink("Consultar Avaliação", "Index", "Avaliacao")</li>
                             <li>@Html.ActionLink("Cadastrar Sessão", "Cadastrar", "Sessao")</li>
                             <li>@Html.ActionLink("Consultar Sessão", "Index", "Sessao")</li>
-                            <li>@Html.ActionLink("Consultar agenda", "Index", "Agenda")</li>
-                            <li>@Html.ActionLink("Gerar Relatório", "Relatorio", "Agenda")</li>
+                            <li>@Html.ActionLink("Consultar Agenda", "Index", "Agenda")</li>
+                            <li>@Html.ActionLink("Gerar Relatório de Agenda", "Relatorio", "Agenda")</li>
                         </ul>
                     </li>
 
