@@ -45,11 +45,6 @@ namespace Sistema_clinica.Models.bd
             funcionario.Nome = dr["nome"].ToString();
             funcionario.Cargo = dr["cargo"].ToString();
             funcionario.Cpf = dr["cpf"].ToString();
-            funcionario.Rua = dr["rua"].ToString();
-            funcionario.Numero = int.Parse(dr["numero"].ToString());
-            funcionario.Bairro = dr["bairro"].ToString();
-            funcionario.Cidade = dr["cidade"].ToString();
-            funcionario.Cep = dr["cep"].ToString();
             funcionario.Email = dr["email"].ToString();
             funcionario.Telefone = dr["telefone"].ToString();
 
@@ -58,17 +53,15 @@ namespace Sistema_clinica.Models.bd
 
         public void Cadastrar(Funcionario funcionario)
         {
-            cmd.CommandText = "insert into funcionario (nome, cargo, cpf, rua, numero, bairro, cidade, cep, email, telefone) values(@nome, @cargo, @cpf, @rua, @numero, @bairro, @cidade, @cep, @email, @telefone)";
+            cmd.CommandText = "cad_funcionario(@nome, @cargo, @telefone, @cpf, @email, @usuario, @senha, @nivel)";
             cmd.Parameters.AddWithValue("@nome", funcionario.Nome);
             cmd.Parameters.AddWithValue("@cargo", funcionario.Cargo);
-            cmd.Parameters.AddWithValue("@cpf", funcionario.Cpf);
-            cmd.Parameters.AddWithValue("@rua", funcionario.Rua);
-            cmd.Parameters.AddWithValue("@numero", funcionario.Numero);
-            cmd.Parameters.AddWithValue("@bairro", funcionario.Bairro);
-            cmd.Parameters.AddWithValue("@cidade", funcionario.Cidade);
-            cmd.Parameters.AddWithValue("@cep", funcionario.Cep);
-            cmd.Parameters.AddWithValue("@email", funcionario.Email);
             cmd.Parameters.AddWithValue("@telefone", funcionario.Telefone);
+            cmd.Parameters.AddWithValue("@cpf", funcionario.Cpf);
+            cmd.Parameters.AddWithValue("@email", funcionario.Email);
+            cmd.Parameters.AddWithValue("@usuario", funcionario.Usuario);
+            cmd.Parameters.AddWithValue("@senha", funcionario.Senha);
+            cmd.Parameters.AddWithValue("@nivel", funcionario.Nivel);
 
             try
             {
@@ -112,7 +105,7 @@ namespace Sistema_clinica.Models.bd
         public void Excluir(int id)
         {
 
-            cmd.CommandText = "delete from funcionario where id_funcionario = @id";
+            cmd.CommandText = "call excluir_funcionario(@id)";
             cmd.Parameters.AddWithValue("@id", id);
 
             try
@@ -131,17 +124,12 @@ namespace Sistema_clinica.Models.bd
         public void Editar(Funcionario funcionario)
         {
 
-            cmd.CommandText = "update funcionario set nome = @nome, cargo = @cargo, rua = @rua, numero = @numero, bairro = @bairro, cidade = @cidade, cep = @cep, telefone = @telefone, email = @email where id_funcionario = @id";
+            cmd.CommandText = "call atualizar_funcionario(@id, @nome, @cargo, @telefone, @email)";
+            cmd.Parameters.AddWithValue("@id", funcionario.IdFuncionario);
             cmd.Parameters.AddWithValue("@nome", funcionario.Nome);
             cmd.Parameters.AddWithValue("@cargo", funcionario.Cargo);
-            cmd.Parameters.AddWithValue("@rua", funcionario.Rua);
-            cmd.Parameters.AddWithValue("@numero", funcionario.Numero);
-            cmd.Parameters.AddWithValue("@bairro", funcionario.Bairro);
-            cmd.Parameters.AddWithValue("@cidade", funcionario.Cidade);
-            cmd.Parameters.AddWithValue("@cep", funcionario.Cep);
             cmd.Parameters.AddWithValue("@telefone", funcionario.Telefone);
             cmd.Parameters.AddWithValue("@email", funcionario.Email);
-            cmd.Parameters.AddWithValue("@id", funcionario.IdFuncionario);
 
             try
             {
@@ -210,10 +198,33 @@ namespace Sistema_clinica.Models.bd
 
         public bool ExisteCpf(string cpf)
         {
-            Funcionario func = new Funcionario();
             bool existe = false;
-            cmd.CommandText = "select * from funcionario where cpf = @cpf";
+            cmd.CommandText = "call buscar_cpf_funcionario(@cpf)";
             cmd.Parameters.AddWithValue("@cpf", cpf);
+
+            try
+            {
+                cmd.Connection = con.Conectar();
+                dr = cmd.ExecuteReader();
+                if (dr.HasRows)
+                {
+                    existe = true;
+                }
+                con.Desconectar();
+            }
+            catch (MySqlException ex)
+            {
+                this.mensagem = "ERRO COM BANCO DE DADOS!" + ex;
+            }
+
+            return existe;
+        }
+
+        public bool ExisteUsuario(string usuario)
+        {
+            bool existe = false;
+            cmd.CommandText = "call buscar_usuario(@usuario)";
+            cmd.Parameters.AddWithValue("@usuario", usuario);
 
             try
             {

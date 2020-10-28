@@ -30,12 +30,19 @@ namespace Sistema_clinica.Models
         public DateTime DataNascimento { get; set; }
 
         [Required(ErrorMessage = "Campo não pode ficar em branco")]
+        [StringLength(9, MinimumLength = 9, ErrorMessage = "Preencha corretamente o cep")]
+        public string Cep { get; set; }
+
+        [Required(ErrorMessage = "Campo não pode ficar em branco")]
         [StringLength(80, ErrorMessage = "A Rua não pode ter mais de 80 caracteres")]
         public string Rua { get; set; }
 
         [Display(Name = "Número")]
         [Required(ErrorMessage = "Campo não pode ficar em branco")]
         public int Numero { get; set; }
+
+        [StringLength(50, ErrorMessage = "O Complemento não pode ter mais de 50 caracteres")]
+        public string Complemento { get; set; }
 
         [Required(ErrorMessage = "Campo não pode ficar em branco")]
         [StringLength(30, ErrorMessage = "O Bairro não pode ter mais de 30 caracteres")]
@@ -46,8 +53,8 @@ namespace Sistema_clinica.Models
         public string Cidade { get; set; }
 
         [Required(ErrorMessage = "Campo não pode ficar em branco")]
-        [StringLength(9, MinimumLength = 9, ErrorMessage = "Preencha corretamente o cep")]
-        public string Cep { get; set; }
+        [StringLength(20, ErrorMessage = "O Estado não pode ter mais de 20 caracteres")]
+        public string Estado { get; set; }
 
         [RegularExpression(@"^[a-zA-Z]+(([\'\,\.\- ][a-zA-Z ])?[a-zA-Z]*)*\s+<(\w[-._\w]*\w@\w[-._\w]*\w\.\w{2,3})>$|^(\w[-._\w]*\w@\w[-._\w]*\w\.\w{2,3})$", ErrorMessage = "Formato do E-mail Inválido")]
         [StringLength(60, ErrorMessage = "O Email não pode ter mais de 60 caracteres")]
@@ -63,6 +70,15 @@ namespace Sistema_clinica.Models
         [Display(Name = "Histórico")]
         [StringLength(500, ErrorMessage = "O Histórico não pode ter mais de 500 caracteres")]
         public string Historico { get; set; }
+
+        [Display(Name = "Nome de Usuário")]
+        [StringLength(30, ErrorMessage = "O nome de usuário não pode ter mais de 30 caracteres")]
+        public string Usuario { get; set; }
+
+        [Display(Name = "Senha")]
+        [StringLength(30, ErrorMessage = "A senha não pode ter mais de 30 caracteres")]
+        public string Senha { get; set; }
+
 
         ClienteBD clienteBD = new ClienteBD();
         public string erro { get; set; } = "";

@@ -45,17 +45,28 @@ namespace Sistema_clinica.Controllers
                 return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
             }
 
+            Funcionario funcionario = new Funcionario();
+            ViewBag.listaNivel = funcionario.listaNivel;
+
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Cadastrar(Funcionario funcdigitado)
+        public ActionResult Cadastrar(Funcionario funcdigitado, string listaNivel)
         {
+            funcdigitado.Nivel = listaNivel;
+            ViewBag.listaNivel = funcdigitado.listaNivel;
+
             Funcionario funcCpf = new Funcionario();
             if (funcCpf.existeCpf(funcdigitado.Cpf))
             {
                 ModelState.AddModelError("Cpf", "Esse cpf já está cadastrado");
+            }
+
+            if (funcCpf.existeUsuario(funcdigitado.Usuario))
+            {
+                ModelState.AddModelError("Usuario", "Esse usuario já está em uso. Favor escolher outro.");
             }
 
             Funcionario funcionario = new Funcionario();
