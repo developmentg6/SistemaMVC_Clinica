@@ -13,6 +13,10 @@
 
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <br />
+            @Html.LabelFor(model => model.Tipo)
+            @Html.DropDownList("tipoLogin")
+            <br /><br /><br />
+
             <div class="form-group">
                 @Html.LabelFor(model => model.Login)
                 @Html.EditorFor(model => model.Login)

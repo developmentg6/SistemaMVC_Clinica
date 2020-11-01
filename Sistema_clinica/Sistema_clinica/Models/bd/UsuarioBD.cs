@@ -14,19 +14,22 @@ namespace Sistema_clinica.Models.bd
         MySqlDataReader dr;
         bool loginValido = false;
 
-        public bool verificarLogin(String usuario, String senha)
+        public bool verificarLogin(Usuario usuario)
         {
-            cmd.CommandText = "select * from login where usuario = @usuario and senha = @senha";
-            cmd.Parameters.AddWithValue("@usuario", usuario);
-            cmd.Parameters.AddWithValue("@senha", senha);
+            cmd.CommandText = "call buscar_usuario_senha(@usuario, @senha, @tipo)";
+            cmd.Parameters.AddWithValue("@usuario", usuario.Login);
+            cmd.Parameters.AddWithValue("@senha", usuario.Senha);
+            cmd.Parameters.AddWithValue("@tipo", usuario.Tipo);
 
             try
             {
                 cmd.Connection = con.Conectar();
                 dr = cmd.ExecuteReader();
-                if (dr.HasRows) //se tiver alguma linha, ou seja, se tiver encontrado uma combinação (tem no banco)
+                while (dr.Read()) 
                 {
                     loginValido = true;
+                    usuario.Nivel = int.Parse(dr["nivel_acesso"].ToString());
+                    usuario.Id = int.Parse(dr[1].ToString());
                 }
                 con.Desconectar();
 

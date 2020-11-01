@@ -32,41 +32,50 @@
                         </ul>
                     </li>
 
-                    <li role="presentation" class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                            Funcionários <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("Cadastrar", "Cadastrar", "Funcionario")</li>
-                            <li>@Html.ActionLink("Consultar", "Index", "Funcionario")</li>
-                        </ul>
-                    </li>
+                    @if (Session["nivel"].ToString() != "3")
+                    {
+                        <li role="presentation" class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                Funcionários <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                @if (Session["nivel"].ToString() == "1")
+                                {
+                                    <li>@Html.ActionLink("Cadastrar", "Cadastrar", "Funcionario")</li>
+                                }
+                                <li>@Html.ActionLink("Consultar", "Index", "Funcionario")</li>
+                            </ul>
+                        </li>
+                    }
 
-                    <li role="presentation" class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                            Procedimentos <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("Cadastrar", "Cadastrar", "Procedimento")</li>
-                            <li>@Html.ActionLink("Consultar", "Index", "Procedimento")</li>
-                        </ul>
-                    </li>
+                        <li role="presentation" class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                Procedimentos <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                @if (Session["nivel"].ToString() != "3")
+                                {
+                                    <li>@Html.ActionLink("Cadastrar", "Cadastrar", "Procedimento")</li>
+                                }
+                                    <li>@Html.ActionLink("Consultar", "Index", "Procedimento")</li>
+                                </ul>
+                        </li>
 
-                    <li role="presentation" class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                            Agenda e Sessões <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("Cadastrar Avaliação", "Cadastrar", "Avaliacao")</li>
-                            <li>@Html.ActionLink("Consultar Avaliação", "Index", "Avaliacao")</li>
-                            <li>@Html.ActionLink("Cadastrar Sessão", "Cadastrar", "Sessao")</li>
-                            <li>@Html.ActionLink("Consultar Sessão", "Index", "Sessao")</li>
-                            <li>@Html.ActionLink("Consultar Agenda", "Index", "Agenda")</li>
-                            <li>@Html.ActionLink("Gerar Relatório de Agenda", "Relatorio", "Agenda")</li>
-                        </ul>
-                    </li>
+                        <li role="presentation" class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                Agenda e Sessões <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Cadastrar Avaliação", "Cadastrar", "Avaliacao")</li>
+                                <li>@Html.ActionLink("Consultar Avaliação", "Index", "Avaliacao")</li>
+                                <li>@Html.ActionLink("Cadastrar Sessão", "Cadastrar", "Sessao")</li>
+                                <li>@Html.ActionLink("Consultar Sessão", "Index", "Sessao")</li>
+                                <li>@Html.ActionLink("Consultar Agenda", "Index", "Agenda")</li>
+                                <li>@Html.ActionLink("Gerar Relatório de Agenda", "Relatorio", "Agenda")</li>
+                            </ul>
+                        </li>
 
-                </ul>
+                    </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li>@Html.ActionLink("Sair", "Deslogar", "Home")</li>
                 </ul>

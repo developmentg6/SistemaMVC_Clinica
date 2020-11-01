@@ -285,6 +285,7 @@
     <Content Include="Views\Agenda\Editar.cshtml" />
     <Content Include="Views\Agenda\Excluir.cshtml" />
     <Content Include="Views\Agenda\Relatorio.cshtml" />
+    <Content Include="Views\Home\TelaCliente.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

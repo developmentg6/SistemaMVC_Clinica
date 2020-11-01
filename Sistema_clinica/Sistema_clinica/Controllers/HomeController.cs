@@ -26,18 +26,32 @@ namespace Sistema_clinica.Controllers
 
         public ActionResult Login()
         {
+            ViewBag.tipoLogin = new Usuario().tipoLogin;
             return View();
         }
 
         [HttpPost]
         public ActionResult Login(Usuario usuario)
         {
+            usuario.Tipo = Request["tipoLogin"];
+            ViewBag.tipoLogin = new Usuario().tipoLogin;
+
             if (ModelState.IsValid) {
                 bool usuarioValido = usuario.verificarLogin();
                 if (usuarioValido)
                 {
                     Session.Add("usuario", usuario.Login);
-                    return RedirectToAction("TelaPrincipal", "Home");
+                    Session.Add("nivel", usuario.Nivel);
+                    Session.Add("id", usuario.Id);
+
+                    if (Session["nivel"].ToString() == "3")
+                    {
+                        return RedirectToAction("TelaCliente", "Home");
+                    }
+                    else
+                    {
+                        return RedirectToAction("TelaPrincipal", "Home");
+                    }
                 }
                 else if(usuario.erro != ""){
                     return View(usuario).Mensagem("Erro com banco de dados! " + usuario.erro);
@@ -59,6 +73,15 @@ namespace Sistema_clinica.Controllers
         public ActionResult TelaPrincipal()
         {
             if (Session["usuario"] == null || Session["usuario"].ToString() == "")
+            {
+                return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+            return View();
+        }
+
+        public ActionResult TelaCliente()
+        {
+            if (Session["usuario"] == null || Session["usuario"].ToString() == "" || Session["nivel"].ToString() != "3")
             {
                 return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
             }

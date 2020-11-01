@@ -53,7 +53,7 @@ namespace Sistema_clinica.Models.bd
 
         public void Cadastrar(Funcionario funcionario)
         {
-            cmd.CommandText = "cad_funcionario(@nome, @cargo, @telefone, @cpf, @email, @usuario, @senha, @nivel)";
+            cmd.CommandText = "call cad_funcionario(@nome, @cargo, @telefone, @cpf, @email, @usuario, @senha, @nivel)";
             cmd.Parameters.AddWithValue("@nome", funcionario.Nome);
             cmd.Parameters.AddWithValue("@cargo", funcionario.Cargo);
             cmd.Parameters.AddWithValue("@telefone", funcionario.Telefone);

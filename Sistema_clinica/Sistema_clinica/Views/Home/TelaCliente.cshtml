@@ -4,15 +4,9 @@
     Layout = "~/Views/Shared/_LayoutLogado.cshtml";
 }
 
+<h1>Tela Inicial do cliente, em reformulação!</h1>
 <div class="text-center telaSistema">
-    @if (Session["nivel"].ToString() == "1")
-    {
-        <h2 class="txtBemVindo boxMenu boxBemVindo">Bem-vindo(a), ADMINISTRADOR!</h2>
-    }
-    else
-    {
-        <h2 class="txtBemVindo boxMenu boxBemVindo">Bem-vindo(a), @Session["usuario"].ToString()</h2>
-    }
+    <h2 class="txtBemVindo boxMenu boxBemVindo">Bem-vindo(a), @Session["usuario"].ToString()</h2>
 
     <div class="row">
         <div class="col-sm-6 col-md-4">
@@ -23,21 +17,9 @@
             </div>
         </div>
 
-        @if (Session["nivel"].ToString() == "1")
-        {
-            <div class="col-sm-6 col-md-4">
-                <div class="boxMenu text-center">
-                    <h3>Funcionários</h3>
-                    @Html.ActionLink("Cadastrar", "Cadastrar", "Funcionario", null, new { @class = "btn btnMenu" })
-                    @Html.ActionLink("Consultar", "Index", "Funcionario", null, new { @class = "btn btnMenu" })
-                </div>
-            </div>
-        }
-
         <div class="col-sm-6 col-md-4">
             <div class="boxMenu text-center">
                 <h3>Procedimentos</h3>
-                @Html.ActionLink("Cadastrar", "Cadastrar", "Procedimento", null, new { @class = "btn btnMenu" })
                 @Html.ActionLink("Consultar", "Index", "Procedimento", null, new { @class = "btn btnMenu" })
             </div>
         </div>
