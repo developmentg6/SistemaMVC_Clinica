@@ -267,7 +267,7 @@ namespace Sistema_clinica.Controllers
 
         public ActionResult Relatorio()
         {
-            if (Session["usuario"] == null || Session["usuario"].ToString() == "")
+            if (Session["usuario"] == null || Session["usuario"].ToString() == "" || Session["nivel"].ToString() == "3")
             {
                 return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
             }

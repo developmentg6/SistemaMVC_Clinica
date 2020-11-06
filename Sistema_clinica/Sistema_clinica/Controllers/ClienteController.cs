@@ -190,5 +190,25 @@ namespace Sistema_clinica.Controllers
             return View("Index", lista);
         }
 
+        public ActionResult Relatorio()
+        {
+            if (Session["usuario"] == null || Session["usuario"].ToString() == "" || Session["nivel"].ToString() == "3")
+            {
+                return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+
+            Cliente cliente = new Cliente();
+            IEnumerable<Cliente> lista = cliente.listaClientes();
+            if (cliente.erro != "")
+            {
+                return View("Tela Principal", "Home").Mensagem(cliente.erro);
+            }
+            var excel = lista.ToList();
+
+            Response.AddHeader("content-disposition", "attachment; filename=relClientes.xls");
+            Response.ContentType = "application/vnd.ms-excel";
+            return View(excel);
+        }
+
     }
 }
