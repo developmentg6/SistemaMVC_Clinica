@@ -210,5 +210,21 @@ namespace Sistema_clinica.Controllers
             return View(excel);
         }
 
+        public ActionResult Dados()
+        {
+            if (Session["usuario"] == null || Session["usuario"].ToString() == "" || Session["nivel"].ToString() != "3")
+            {
+                return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+            //RETORNA OS DADOS PESSOAIS DO CLIENTE COM A OPÇÃO DE ALTERAR OU EXCLUIR CONTA (APAGAR LOGIN E SENHA)
+            //Cliente cliente = new Cliente();
+            //IEnumerable<Cliente> lista = cliente.listaClientes();
+            //if (cliente.erro != "")
+            //{
+            //    return View(lista).Mensagem(cliente.erro);
+            //}
+            return View();
+        }
+        
     }
 }

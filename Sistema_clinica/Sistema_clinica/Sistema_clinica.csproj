@@ -219,6 +219,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\Embassy BT.ttf" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\cep.js" />
     <Content Include="Scripts\CustomValidacoes.js" />
     <Content Include="Scripts\excluirRodape.js" />
     <Content Include="Scripts\filtros.js" />
@@ -287,6 +288,7 @@
     <Content Include="Views\Agenda\Relatorio.cshtml" />
     <Content Include="Views\Home\TelaCliente.cshtml" />
     <Content Include="Views\Cliente\Relatorio.cshtml" />
+    <Content Include="Views\Home\AlterarSenha.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

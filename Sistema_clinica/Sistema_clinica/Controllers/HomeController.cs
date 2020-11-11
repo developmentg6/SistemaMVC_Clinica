@@ -87,5 +87,46 @@ namespace Sistema_clinica.Controllers
             }
             return View();
         }
+
+        public ActionResult AlterarSenha()
+        {
+            if (Session["usuario"] == null || Session["usuario"].ToString() == "")
+            {
+                return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+
+            var usuario = new Usuario();
+            usuario.Id = int.Parse(Session["id"].ToString());
+
+            return View(usuario);
+        }
+
+        [HttpPost]
+        public ActionResult AlterarSenha(Usuario usuario)
+        {
+            if (usuario.NovaSenha != usuario.ConfirmaSenha)
+            {
+                ModelState.AddModelError("ConfirmaSenha", "A confirmação está diferente da nova senha");
+            }
+
+            usuario.Tipo = Session["nivel"].ToString() == "3" ? "cliente" : "funcionario";
+            bool usuarioValido = usuario.verificarLogin();
+            if (!usuarioValido)
+            {
+                ModelState.AddModelError("Senha", "Usuário e/ou senha incorretos!");
+            }
+
+            if (ModelState.IsValid)
+            {
+                usuario.atualizarSenha();
+
+                var nivel = Session["nivel"].ToString() == "3" ? "TelaCliente" : "TelaPrincipal";
+                return View(nivel).Mensagem("Senha alterada com sucesso!");
+            }
+            else
+            {
+                return View(usuario);
+            }
+        }
     }
 }

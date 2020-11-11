@@ -42,5 +42,24 @@ namespace Sistema_clinica.Models.bd
             return loginValido; //retorna o bool dizendo se pode entrar (True) ou não (False)
         }
 
+        public void AlterarSenha(Usuario usuario)
+        {
+            cmd.CommandText = "call buscar_usuario_senha(@usuario, @senhaAntiga, @senhaNova)";
+            cmd.Parameters.AddWithValue("@usuario", usuario.Login);
+            cmd.Parameters.AddWithValue("@senhaAntiga", usuario.Senha);
+            cmd.Parameters.AddWithValue("@senhaNova", usuario.NovaSenha);
+
+            try
+            {
+                cmd.Connection = con.Conectar();
+                cmd.ExecuteNonQuery();                
+                con.Desconectar();
+            }
+            catch (MySqlException)
+            {
+                this.mensagem = "ERRO COM BANCO DE DADOS!";
+            }
+        }
+
     }
 }

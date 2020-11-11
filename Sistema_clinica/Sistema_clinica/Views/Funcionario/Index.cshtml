@@ -7,8 +7,11 @@
 
 <h2 class="text-center">Funcionários</h2>
 
+@if (Session["nivel"].ToString() == "1")
+{
+    <a href="~/Funcionario/Cadastrar" class="btn btnFiltro">Cadastrar</a>
+}
 
-<a href="~/Funcionario/Cadastrar" class="btn btnFiltro">Cadastrar</a>
 <div class="btn btnFiltro" onclick="exibirFiltro('filtroCliente')">Buscar</div>
 
 <div id="filtroCliente" class="filtro_hide">
@@ -31,6 +34,7 @@
     <br />
 </div>
 <br />
+
 <table class="table">
     <tr>
         <th>
@@ -40,9 +44,19 @@
             @Html.DisplayNameFor(model => model.Cargo)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Cpf)
+            @if (Session["nivel"].ToString() == "1")
+            {
+                @Html.DisplayNameFor(model => model.Cpf)
+            }
+            else
+            {
+                @Html.DisplayNameFor(model => model.Email)
+            }
         </th>
-        <th></th>
+        @if (Session["nivel"].ToString() == "1")
+        {
+            <th></th>
+        }
     </tr>
 
     @foreach (var item in Model)
@@ -55,16 +69,27 @@
                 @Html.DisplayFor(modelItem => item.Cargo)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Cpf)
+                @if (Session["nivel"].ToString() == "1")
+                {
+                    @Html.DisplayFor(modelItem => item.Cpf)
+                }
+                else
+                {
+                    @Html.DisplayFor(modelItem => item.Email)
+                }
             </td>
-            <td>
-                @Html.ActionLink("Editar", "Editar", new { id = item.IdFuncionario }) |
-                @Html.ActionLink("Detalhes", "Detalhes", new { id = item.IdFuncionario }) |
-                @Html.ActionLink("Excluir", "Excluir", new { id = item.IdFuncionario })
-            </td>
+            @if (Session["nivel"].ToString() == "1")
+            {
+                <td>
+                    @Html.ActionLink("Editar", "Editar", new { id = item.IdFuncionario })
+                    <span>|</span>
+                    @Html.ActionLink("Detalhes", "Detalhes", new { id = item.IdFuncionario })
+                    <span>|</span>
+                    @Html.ActionLink("Excluir", "Excluir", new { id = item.IdFuncionario })
+                </td>
+            }
         </tr>
     }
-
 </table>
 
 @section scripts{

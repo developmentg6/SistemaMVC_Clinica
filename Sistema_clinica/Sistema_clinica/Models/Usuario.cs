@@ -16,12 +16,16 @@ namespace Sistema_clinica.Models
         [Required(ErrorMessage = "Campo não pode ficar em branco")]
         public string Senha { get; set; }
 
+        public string ConfirmaSenha { get; set; }
+
         [Display(Name = "Você é:")]
         public string Tipo { get; set; }
 
         public int Nivel { get; set; }
 
         public int Id { get; set; }
+
+        public string NovaSenha { get; set; }
 
         public string erro { get; set; } = "";
 
@@ -44,6 +48,18 @@ namespace Sistema_clinica.Models
                 erro = usuarioBD.mensagem;
             }
             return usuarioValido;
+        }
+
+        public void atualizarSenha()
+        {
+            try
+            {
+                usuarioBD.AlterarSenha(this);
+            }
+            catch
+            {
+                erro = usuarioBD.mensagem;
+            }
         }
     }
 }
