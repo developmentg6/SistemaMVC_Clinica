@@ -38,7 +38,10 @@
         <th>
             @Html.DisplayNameFor(model => model.Valor_proc)
         </th>
-        <th></th>
+        @if (Session["nivel"].ToString() != "3")
+        {
+            <th></th>
+        }
     </tr>
 
     @foreach (var item in Model)
@@ -53,11 +56,14 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Valor_proc)
             </td>
+            @if (Session["nivel"].ToString() != "3")
+            {
             <td>
                 @Html.ActionLink("Editar", "Editar", new { id = item.Id }) |
                 @Html.ActionLink("Detalhes", "Detalhes", new { id = item.Id }) |
                 @Html.ActionLink("Excluir", "Excluir", new { id = item.Id })
             </td>
+            }
         </tr>
     }
 

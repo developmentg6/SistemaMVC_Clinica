@@ -104,6 +104,11 @@ namespace Sistema_clinica.Controllers
         [HttpPost]
         public ActionResult AlterarSenha(Usuario usuario)
         {
+            if (usuario.Login != Session["usuario"].ToString())
+            {
+                ModelState.AddModelError("Login", "Digite o usuário correto");
+            }
+
             if (usuario.NovaSenha != usuario.ConfirmaSenha)
             {
                 ModelState.AddModelError("ConfirmaSenha", "A confirmação está diferente da nova senha");
@@ -118,7 +123,8 @@ namespace Sistema_clinica.Controllers
 
             if (ModelState.IsValid)
             {
-                usuario.atualizarSenha();
+                var usu = new Usuario();
+                usu.atualizarSenha(usuario);
 
                 var nivel = Session["nivel"].ToString() == "3" ? "TelaCliente" : "TelaPrincipal";
                 return View(nivel).Mensagem("Senha alterada com sucesso!");

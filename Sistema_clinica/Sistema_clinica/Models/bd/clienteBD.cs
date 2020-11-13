@@ -142,7 +142,6 @@ namespace Sistema_clinica.Models.bd
 
         public void Editar(Cliente cliente)
         {
-
             cmd.CommandText = "call atualizar_cliente (@id, @nome, @sexo, @data_nascimento, @email, @telefone, @profissao, @historico, @rua, @numero, @complemento, @bairro, @cidade, @estado, @cep)";
             cmd.Parameters.AddWithValue("@id", cliente.Id);
             cmd.Parameters.AddWithValue("@nome", cliente.Nome);

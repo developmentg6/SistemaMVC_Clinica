@@ -12,8 +12,8 @@
         <div class="col-sm-6 col-md-4">
             <div class="boxMenu text-center">
                 <h3>Clientes</h3>
-                @Html.ActionLink("Cadastrar", "Cadastrar", "Cliente", null, new { @class = "btn btnMenu" })
-                @Html.ActionLink("Consultar", "Index", "Cliente", null, new { @class = "btn btnMenu" })
+                @Html.ActionLink("Meus Dados", "Detalhes", "Cliente", new { id = int.Parse(Session["id"].ToString()) }, new { @class = "btn btnMenu" })
+                @Html.ActionLink("Alterar Senha", "AlterarSenha", "Home", null, new { @class = "btn btnMenu" })
             </div>
         </div>
 

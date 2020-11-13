@@ -50,11 +50,11 @@ namespace Sistema_clinica.Models
             return usuarioValido;
         }
 
-        public void atualizarSenha()
+        public void atualizarSenha(Usuario usuario)
         {
             try
             {
-                usuarioBD.AlterarSenha(this);
+                usuarioBD.AlterarSenha(usuario);
             }
             catch
             {

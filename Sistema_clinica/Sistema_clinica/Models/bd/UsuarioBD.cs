@@ -44,7 +44,7 @@ namespace Sistema_clinica.Models.bd
 
         public void AlterarSenha(Usuario usuario)
         {
-            cmd.CommandText = "call buscar_usuario_senha(@usuario, @senhaAntiga, @senhaNova)";
+            cmd.CommandText = "call atualizar_senha(@usuario, @senhaAntiga, @senhaNova)";
             cmd.Parameters.AddWithValue("@usuario", usuario.Login);
             cmd.Parameters.AddWithValue("@senhaAntiga", usuario.Senha);
             cmd.Parameters.AddWithValue("@senhaNova", usuario.NovaSenha);

@@ -17,7 +17,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="~/Home/TelaPrincipal"><img src="~/Imagens/Logo_niceface.png" class="logo" /></a>
+                @if (Session["nivel"].ToString() != "3")
+                {
+                    <a href="~/Home/TelaPrincipal"><img src="~/Imagens/Logo_niceface.png" class="logo" /></a>
+                }
+                else
+                {
+                    <a href="~/Home/TelaCliente"><img src="~/Imagens/Logo_niceface.png" class="logo" /></a>
+                }
             </div>
 
             <div class="navbar-collapse collapse">
@@ -61,7 +68,9 @@
                                 Minha Conta <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li>@Html.ActionLink("Meus Dados", "Dados", "Cliente")</li>
+                                <li>
+                                    @Html.ActionLink("Meus Dados", "Detalhes", "Cliente", new { id = int.Parse(Session["id"].ToString()) }, null)
+                                </li>
                                 <li>@Html.ActionLink("Alterar Senha", "AlterarSenha", "Home")</li>
                             </ul>
                         </li>

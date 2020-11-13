@@ -145,9 +145,16 @@
     </div>
 }
 
-<div>
-    @Html.ActionLink("Voltar", "Index")
-</div>
+    <div>
+        @if (@Session["nivel"].ToString() == "3")
+        {
+            @Html.ActionLink("Voltar", "TelaCliente", "Home")
+        }
+        else
+        {
+            @Html.ActionLink("Voltar", "Index")
+        }
+    </div>
 
 @section scripts{
     @Scripts.Render("~/bundles/jqueryval"),

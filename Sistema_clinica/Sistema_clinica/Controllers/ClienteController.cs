@@ -34,6 +34,9 @@ namespace Sistema_clinica.Controllers
             {
                 return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
             }
+            if (Session["nivel"].ToString() == "3" && id != int.Parse(Session["id"].ToString())){
+                return RedirectToAction("TelaCliente", "Home");
+            }
 
             Cliente cliente = new Cliente();
 
@@ -112,6 +115,10 @@ namespace Sistema_clinica.Controllers
             if (Session["usuario"] == null || Session["usuario"].ToString() == "")
             {
                 return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+            if (Session["nivel"].ToString() == "3" && id != int.Parse(Session["id"].ToString()))
+            {
+                return RedirectToAction("TelaCliente", "Home");
             }
 
             Cliente cliente = new Cliente();
