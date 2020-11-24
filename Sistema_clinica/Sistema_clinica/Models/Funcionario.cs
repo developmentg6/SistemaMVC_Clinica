@@ -166,22 +166,7 @@ namespace Sistema_clinica.Models
                 erro = funcionarioBD.mensagem;
             }
             return existe;
-
         }
 
-        public bool existeUsuario(string usuario)
-        {
-            bool existe = false;
-            try
-            {
-                existe = funcionarioBD.ExisteUsuario(usuario);
-            }
-            catch
-            {
-                erro = funcionarioBD.mensagem;
-            }
-            return existe;
-
-        }
     }
 }

@@ -33,6 +33,11 @@ namespace Sistema_clinica.Controllers
                 return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
             }
 
+            if (Session["nivel"].ToString() == "3")
+            {
+                return RedirectToAction("TelaCliente", "Home");
+            }
+
             Procedimento procedimento = new Procedimento();
 
             return View(procedimento.buscar(id));
@@ -43,6 +48,11 @@ namespace Sistema_clinica.Controllers
             if (Session["usuario"] == null || Session["usuario"].ToString() == "")
             {
                 return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+
+            if (Session["nivel"].ToString() == "3")
+            {
+                return RedirectToAction("TelaCliente", "Home");
             }
 
             return View();
@@ -81,6 +91,11 @@ namespace Sistema_clinica.Controllers
                 return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
             }
 
+            if (Session["nivel"].ToString() == "3")
+            {
+                return RedirectToAction("TelaCliente", "Home");
+            }
+
             Procedimento procedimento = new Procedimento();
 
             return View(procedimento.buscar(id));
@@ -105,6 +120,11 @@ namespace Sistema_clinica.Controllers
             if (Session["usuario"] == null || Session["usuario"].ToString() == "")
             {
                 return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+
+            if (Session["nivel"].ToString() == "3")
+            {
+                return RedirectToAction("TelaCliente", "Home");
             }
 
             Procedimento procedimento = new Procedimento();

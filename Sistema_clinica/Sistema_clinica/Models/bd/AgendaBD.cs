@@ -14,9 +14,17 @@ namespace Sistema_clinica.Models.bd
         MySqlDataReader dr; //DataReader, para ler e salvar info do banco
         List<Agenda> Lista = new List<Agenda>();
 
-        public List<Agenda> ListaAgenda()
+        public List<Agenda> ListaAgenda(int id = 0, string sta = null)
         {
-            cmd.CommandText = "SELECT * FROM agenda_completa";
+            if (id == 0)
+            {
+                cmd.CommandText = "SELECT * FROM agenda_completa";
+            }
+            else if (sta != null){
+                cmd.CommandText = "SELECT * FROM agenda_completa WHERE id_cliente = @id AND estado = @status";
+                cmd.Parameters.AddWithValue("@id", id);
+                cmd.Parameters.AddWithValue("@status", sta);
+            }
 
             try
             {
@@ -199,12 +207,23 @@ namespace Sistema_clinica.Models.bd
             return Lista;
         }
 
-        public List<Agenda> FiltrarProcedimento(string procedimento)
+        public List<Agenda> FiltrarProcedimento(string procedimento, int id = 0, string sta = null)
         {
             string procAdaptado = '%' + procedimento + '%';
-            cmd.CommandText = "select * from agenda_completa where procedimento like @proc";
-            cmd.Parameters.AddWithValue("@proc", procAdaptado);
 
+            if (id == 0)
+            {
+                cmd.CommandText = "select * from agenda_completa where procedimento like @proc";
+                cmd.Parameters.AddWithValue("@proc", procAdaptado);
+            }
+            else if (sta == "realizado")
+            {
+                cmd.CommandText = "SELECT * FROM agenda_completa WHERE procedimento like @proc AND id_cliente = @id AND estado = @status";
+                cmd.Parameters.AddWithValue("@proc", procAdaptado);
+                cmd.Parameters.AddWithValue("@id", id);
+                cmd.Parameters.AddWithValue("@status", sta);
+            }
+            
             try
             {
                 cmd.Connection = con.Conectar();

@@ -14,10 +14,18 @@ namespace Sistema_clinica.Models.bd
         MySqlDataReader dr; //DataReader, para ler e salvar info do banco
         List<Sessao> Lista = new List<Sessao>();
 
-        public List<Sessao> ListaSessao()
+        public List<Sessao> ListaSessao(int id = 0)
         {
-            cmd.CommandText = "SELECT * FROM sessao_completa";
-
+            if (id != 0)
+            {
+                cmd.CommandText = "SELECT * FROM sessao_completa WHERE id_cliente = @id AND (agendadas < quantidade)";
+                cmd.Parameters.AddWithValue("@id", id);
+            }
+            else
+            {
+                cmd.CommandText = "SELECT * FROM sessao_completa";
+            }
+            
             try
             {
                 cmd.Connection = con.Conectar();

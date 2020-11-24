@@ -57,13 +57,13 @@ namespace Sistema_clinica.Models
             new SelectListItem { Text = "Sim", Value = "S" }
         };
 
-        public List<Agenda> listaAgenda()
+        public List<Agenda> listaAgenda(int id = 0, string sta = null)
         {
             List<Agenda> lista = new List<Agenda>();
 
             try
             {
-                lista = agendaBD.ListaAgenda();
+                lista = agendaBD.ListaAgenda(id, sta);
             }
             catch
             {
@@ -168,12 +168,12 @@ namespace Sistema_clinica.Models
             return lista;
         }
 
-        public IEnumerable<Agenda> filtrarProcedimento(string procedimento)
+        public IEnumerable<Agenda> filtrarProcedimento(string procedimento, int id = 0, string sta = null)
         {
             List<Agenda> lista = new List<Agenda>();
             try
             {
-                lista = agendaBD.FiltrarProcedimento(procedimento);
+                lista = agendaBD.FiltrarProcedimento(procedimento, id, sta);
             }
             catch
             {

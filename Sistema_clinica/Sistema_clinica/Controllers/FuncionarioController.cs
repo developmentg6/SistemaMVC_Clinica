@@ -68,7 +68,8 @@ namespace Sistema_clinica.Controllers
                 ModelState.AddModelError("Cpf", "Esse cpf já está cadastrado");
             }
 
-            if (funcCpf.existeUsuario(funcdigitado.Usuario))
+            Usuario usu = new Usuario();
+            if (usu.existeUsuario(funcdigitado.Usuario))
             {
                 ModelState.AddModelError("Usuario", "Esse usuario já está em uso. Favor escolher outro.");
             }

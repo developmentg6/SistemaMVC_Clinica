@@ -7,7 +7,8 @@
 
 <h2 class="text-center">Avaliações</h2>
 
-
+@if (Session["nivel"].ToString() != "3")
+{
 <a href="~/Avaliacao/Cadastrar" class="btn btnFiltro">Nova Avaliação</a>
 <div class="btn btnFiltro" onclick="exibirFiltro('filtroAvaliacao')">Buscar</div>
 
@@ -36,6 +37,8 @@
     }
     <br />
 </div>
+}
+
 <br />
 <table class="table">
     <tr>
@@ -48,7 +51,10 @@
         <th>
             @Html.DisplayNameFor(model => model.Nome_procedimento)
         </th>
-        <th></th>
+        @if (Session["nivel"].ToString() != "3")
+        {
+            <th></th>
+        }
     </tr>
 
     @foreach (var item in Model)
@@ -63,11 +69,15 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Nome_procedimento)
             </td>
-            <td>
-                @Html.ActionLink("Editar", "Editar", new { id = item.Id }) |
-                @Html.ActionLink("Detalhes", "Detalhes", new { id = item.Id }) |
-                @Html.ActionLink("Excluir", "Excluir", new { id = item.Id })
-            </td>
+            @if (Session["nivel"].ToString() != "3")
+            {
+                <td>
+                    @Html.ActionLink("Editar", "Editar", new { id = item.Id }) |
+                    @Html.ActionLink("Detalhes", "Detalhes", new { id = item.Id }) |
+                    @Html.ActionLink("Excluir", "Excluir", new { id = item.Id })
+                </td>
+            }
+
         </tr>
     }
 

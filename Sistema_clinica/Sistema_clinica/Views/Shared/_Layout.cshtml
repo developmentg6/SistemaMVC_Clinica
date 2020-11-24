@@ -30,13 +30,15 @@
             </div>
         </div>
     </div>
-    <div class="conteudo">
+    <div class="conteudo" style="width:100%">
         @RenderBody()
         @RenderPage("~/Views/Shared/_Rodape.cshtml")
     </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jquerymask")
+    @Scripts.Render("~/bundles/mascaras")
     @{Html.RenderPartial("~/Views/Shared/_Mensagem.cshtml");}
     @RenderSection("scripts", required: false)
 </body>

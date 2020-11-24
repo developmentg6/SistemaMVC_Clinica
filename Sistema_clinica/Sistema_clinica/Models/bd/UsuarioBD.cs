@@ -61,5 +61,47 @@ namespace Sistema_clinica.Models.bd
             }
         }
 
+        public bool ExisteUsuario(string usuario)
+        {
+            bool existe = false;
+            cmd.CommandText = "call buscar_usuario(@usuario)";
+            cmd.Parameters.AddWithValue("@usuario", usuario);
+
+            try
+            {
+                cmd.Connection = con.Conectar();
+                dr = cmd.ExecuteReader();
+                if (dr.HasRows)
+                {
+                    existe = true;
+                }
+                con.Desconectar();
+            }
+            catch (MySqlException ex)
+            {
+                this.mensagem = "ERRO COM BANCO DE DADOS!" + ex;
+            }
+
+            return existe;
+        }
+
+        public void CadastrarLogin(ConfirmaCliente cliente)
+        {
+            cmd.CommandText = "call cad_usuario_cliente(@id, @usuario, @senha)";
+            cmd.Parameters.AddWithValue("@id", cliente.Id);
+            cmd.Parameters.AddWithValue("@usuario", cliente.Usuario);
+            cmd.Parameters.AddWithValue("@senha", cliente.Senha);
+
+            try
+            {
+                cmd.Connection = con.Conectar();
+                cmd.ExecuteNonQuery();
+                con.Desconectar();
+            }
+            catch (MySqlException ex)
+            {
+                this.mensagem = "ERRO COM BANCO DE DADOS!" + ex;
+            }
+        }
     }
 }

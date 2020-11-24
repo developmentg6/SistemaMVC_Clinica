@@ -186,6 +186,7 @@
     <Compile Include="Models\bd\SessaoBD.cs" />
     <Compile Include="Models\bd\UsuarioBD.cs" />
     <Compile Include="Models\Cliente.cs" />
+    <Compile Include="Models\ConfirmaCliente.cs" />
     <Compile Include="Models\Contato.cs" />
     <Compile Include="Models\Funcionario.cs" />
     <Compile Include="Models\MensagemActionResultExtensions.cs" />
@@ -289,6 +290,10 @@
     <Content Include="Views\Home\TelaCliente.cshtml" />
     <Content Include="Views\Cliente\Relatorio.cshtml" />
     <Content Include="Views\Home\AlterarSenha.cshtml" />
+    <Content Include="Views\Agenda\Realizados.cshtml" />
+    <Content Include="Views\Cliente\NovoCadastro.cshtml" />
+    <Content Include="Views\Cliente\CadastroCliente.cshtml" />
+    <Content Include="Views\Agenda\AgendasCliente.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

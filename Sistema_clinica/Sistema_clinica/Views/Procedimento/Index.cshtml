@@ -9,8 +9,11 @@
 
 <h2 class="text-center">Procedimentos</h2>
 
-
+@if (Session["nivel"].ToString() != "3")
+{
 <a href="~/Procedimento/Cadastrar" class="btn btnFiltro">Cadastrar</a>
+}
+
 <div class="btn btnFiltro" onclick="exibirFiltro('filtroProcedimento')">Buscar</div>
 
 <div id="filtroProcedimento" class="filtro_hide">

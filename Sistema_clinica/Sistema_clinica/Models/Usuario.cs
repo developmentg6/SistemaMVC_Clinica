@@ -61,5 +61,32 @@ namespace Sistema_clinica.Models
                 erro = usuarioBD.mensagem;
             }
         }
+
+        public bool existeUsuario(string usuario)
+        {
+            bool existe = false;
+            try
+            {
+                existe = usuarioBD.ExisteUsuario(usuario);
+            }
+            catch
+            {
+                erro = usuarioBD.mensagem;
+            }
+            return existe;
+        }
+
+        public void CadastrarLogin(ConfirmaCliente cliente)
+        {
+            try
+            {
+                usuarioBD.CadastrarLogin(cliente);
+            }
+            catch
+            {
+                erro = usuarioBD.mensagem;
+            }
+        }
+
     }
 }

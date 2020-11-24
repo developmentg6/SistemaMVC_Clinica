@@ -113,8 +113,8 @@
                                 Minhas Sessões <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li>@Html.ActionLink("Consultar Avaliações", "Index", "Avaliacao")</li>
-                                <li>@Html.ActionLink("Sessões Realizadas", "Index", "Agenda")</li>
+                                <li>@Html.ActionLink("Consultar Avaliações", "Index", "Avaliacao", new { id = int.Parse(Session["id"].ToString()) }, null)</li>
+                                <li>@Html.ActionLink("Sessões Realizadas", "Realizados", "Agenda")</li>
                                 <li>@Html.ActionLink("Sessões Disponíveis", "Index", "Sessao")</li>
                             </ul>
                         </li>
@@ -124,8 +124,8 @@
                                 Agenda <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li>@Html.ActionLink("Agendar", "Index", "Agenda")</li>
-                                <li>@Html.ActionLink("Ver agendamentos", "Index", "Agenda")</li>
+                                <li>@Html.ActionLink("Agendar", "AgendarCliente", "Agenda")</li>
+                                <li>@Html.ActionLink("Ver agendamentos", "AgendasCliente", "Agenda")</li>
                             </ul>
                         </li>
                     }

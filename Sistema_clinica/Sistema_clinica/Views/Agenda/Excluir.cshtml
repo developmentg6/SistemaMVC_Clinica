@@ -77,7 +77,15 @@
 
         <div class="form-actions no-color">
             <input type="submit" value="Excluir" class="btn btn-default" /> |
-            @Html.ActionLink("Voltar", "Index")
+
+        @if (Session["nivel"].ToString() == "3")
+            {
+                    @Html.ActionLink("Cancelar", "AgendasCliente")
+            }
+            else
+            {
+                    @Html.ActionLink("Voltar", "Index")
+            }
         </div>
     }
 </div>

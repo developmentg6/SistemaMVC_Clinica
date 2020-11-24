@@ -79,6 +79,9 @@ namespace Sistema_clinica.Models
         [StringLength(30, ErrorMessage = "A senha não pode ter mais de 30 caracteres")]
         public string Senha { get; set; }
 
+        [Display(Name = "Confirme a senha")]
+        [StringLength(30, ErrorMessage = "A senha não pode ter mais de 30 caracteres")]
+        public string ConfirmaSenha { get; set; } = null;
 
         ClienteBD clienteBD = new ClienteBD();
         public string erro { get; set; } = "";
@@ -206,8 +209,24 @@ namespace Sistema_clinica.Models
                 erro = clienteBD.mensagem;
             }
             return existe;
-
         }
 
+        public bool ExisteCpfDataTel(ConfirmaCliente cliente)
+        {
+            bool existe = false;
+            cliente.Cpf = cliente.Cpf.Remove(11, 1).Remove(7, 1).Remove(3, 1);
+            cliente.Telefone = cliente.Telefone.Remove(9, 1).Remove(3, 1).Remove(0, 1);
+
+            try
+            {
+                existe = clienteBD.ExisteCpfDataTel(cliente);
+            }
+            catch
+            {
+                erro = clienteBD.mensagem;
+            }
+            return existe;
+        }
+        
     }
 }

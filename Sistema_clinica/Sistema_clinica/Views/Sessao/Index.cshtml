@@ -7,8 +7,9 @@
 
 <h2 class="text-center">Sessões</h2>
 
-
-<a href="~/Sessao/Cadastrar" class="btn btnFiltro">Nova Sessão</a>
+@if (Session["nivel"].ToString() != "3")
+{
+    <a href="~/Sessao/Cadastrar" class="btn btnFiltro">Nova Sessão</a>
 <div class="btn btnFiltro" onclick="exibirFiltro('filtroSessao')">Buscar</div>
 
 <div id="filtroSessao" class="filtro_hide">
@@ -42,6 +43,7 @@
     }
     <br />
 </div>
+}
 <br />
 <table class="table">
     <tr>
@@ -65,28 +67,33 @@
 
     @foreach (var item in Model)
     {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nome_cliente)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nome_procedimento)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nome_funcionario)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Quantidade)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Sessoes_agendadas)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Editar", new { id = item.Id }) |
-            @Html.ActionLink("Detalhes", "Detalhes", new { id = item.Id }) |
-            @Html.ActionLink("Agendar", "../Agenda/Cadastrar", new { id_sessao = item.Id })
-        </td>
-    </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome_cliente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome_procedimento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome_funcionario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantidade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sessoes_agendadas)
+            </td>
+            <td>
+                @if (Session["nivel"].ToString() != "3")
+                {
+                    @Html.ActionLink("Editar", "Editar", new { id = item.Id })
+                    
+                    @Html.ActionLink("Detalhes", "Detalhes", new { id = item.Id }) 
+                }
+                
+                @Html.ActionLink("Agendar", "../Agenda/Cadastrar", new { id_sessao = item.Id })
+            </td>
+        </tr>
     }
 
 </table>

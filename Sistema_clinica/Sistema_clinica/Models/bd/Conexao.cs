@@ -13,7 +13,7 @@ namespace Sistema_clinica.Models.bd
         public Conexao()
         {
             //inserir a string de conexão
-            con.ConnectionString = @"connectionstring";
+            con.ConnectionString = @"ConnectionStringAqui";
         }
 
         public MySqlConnection Conectar()

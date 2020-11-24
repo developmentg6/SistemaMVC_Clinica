@@ -219,29 +219,6 @@ namespace Sistema_clinica.Models.bd
 
             return existe;
         }
-
-        public bool ExisteUsuario(string usuario)
-        {
-            bool existe = false;
-            cmd.CommandText = "call buscar_usuario(@usuario)";
-            cmd.Parameters.AddWithValue("@usuario", usuario);
-
-            try
-            {
-                cmd.Connection = con.Conectar();
-                dr = cmd.ExecuteReader();
-                if (dr.HasRows)
-                {
-                    existe = true;
-                }
-                con.Desconectar();
-            }
-            catch (MySqlException ex)
-            {
-                this.mensagem = "ERRO COM BANCO DE DADOS!" + ex;
-            }
-
-            return existe;
-        }
+                
     }
 }
