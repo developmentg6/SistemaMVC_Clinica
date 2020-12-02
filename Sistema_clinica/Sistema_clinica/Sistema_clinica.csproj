@@ -202,10 +202,25 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\slider-wheel.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Imagens\assets\depilacao.png" />
+    <Content Include="Imagens\assets\dial-disk-md.png" />
+    <Content Include="Imagens\assets\dial-disk-sm.png" />
+    <Content Include="Imagens\assets\drenagem.png" />
+    <Content Include="Imagens\assets\fundo-depilacao.jpg" />
+    <Content Include="Imagens\assets\fundo-drenagem.jpg" />
+    <Content Include="Imagens\assets\fundo-gordura.jpg" />
+    <Content Include="Imagens\assets\fundo-limpeza.jpg" />
+    <Content Include="Imagens\assets\fundo-peeling.jpg" />
+    <Content Include="Imagens\assets\gordura.png" />
+    <Content Include="Imagens\assets\limpeza.png" />
+    <Content Include="Imagens\assets\peeling.png" />
+    <Content Include="Imagens\assets\t-down.png" />
+    <Content Include="Imagens\assets\t-right.png" />
     <Content Include="Imagens\carousel\img_clinica_recepcao.png" />
     <Content Include="Imagens\carousel\img_mulher_medica_procedimento.png" />
     <Content Include="Imagens\carousel\img_mulher_procedimento_rosa.png" />
@@ -220,6 +235,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\Embassy BT.ttf" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\bootstrap2.js" />
     <Content Include="Scripts\cep.js" />
     <Content Include="Scripts\CustomValidacoes.js" />
     <Content Include="Scripts\excluirRodape.js" />
@@ -237,6 +253,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\mascaras.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\slider-wheel.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -294,6 +311,7 @@
     <Content Include="Views\Cliente\NovoCadastro.cshtml" />
     <Content Include="Views\Cliente\CadastroCliente.cshtml" />
     <Content Include="Views\Agenda\AgendasCliente.cshtml" />
+    <Content Include="Views\Home\Servicos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

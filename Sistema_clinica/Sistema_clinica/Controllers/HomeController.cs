@@ -24,6 +24,11 @@ namespace Sistema_clinica.Controllers
             return View();
         }
 
+        public ActionResult Servicos()
+        {
+            return View();
+        }
+
         public ActionResult Login()
         {
             ViewBag.tipoLogin = new Usuario().tipoLogin;

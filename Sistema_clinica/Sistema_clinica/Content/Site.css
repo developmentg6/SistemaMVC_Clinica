@@ -235,13 +235,13 @@ textarea {
     background-color: #ed7fa3 !important;
 }
 
-.navbar a{
-    color: white !important;
-}
+    .navbar a {
+        color: white !important;
+    }
 
-.navbar a:active{
-    background-color: #fad9dc !important;
-}
+        .navbar a:active {
+            background-color: #fad9dc !important;
+        }
 
 .dropdown-toggle {
     background-color: #ed7fa3 !important;
