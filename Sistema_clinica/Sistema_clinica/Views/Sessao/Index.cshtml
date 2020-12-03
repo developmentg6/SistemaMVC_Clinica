@@ -47,9 +47,13 @@
 <br />
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Nome_cliente)
-        </th>
+        
+        @if (Session["nivel"].ToString() != "3")
+        {
+            <th>
+                @Html.DisplayNameFor(model => model.Nome_cliente)
+            </th>
+        }
         <th>
             @Html.DisplayNameFor(model => model.Nome_procedimento)
         </th>
@@ -68,9 +72,13 @@
     @foreach (var item in Model)
     {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nome_cliente)
-            </td>
+            
+            @if (Session["nivel"].ToString() != "3")
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome_cliente)
+                </td>
+            }
             <td>
                 @Html.DisplayFor(modelItem => item.Nome_procedimento)
             </td>
@@ -87,8 +95,9 @@
                 @if (Session["nivel"].ToString() != "3")
                 {
                     @Html.ActionLink("Editar", "Editar", new { id = item.Id })
-                    
-                    @Html.ActionLink("Detalhes", "Detalhes", new { id = item.Id }) 
+                    <span>|</span>
+                    @Html.ActionLink("Detalhes", "Detalhes", new { id = item.Id })
+                    <span>|</span>
                 }
                 
                 @Html.ActionLink("Agendar", "../Agenda/Cadastrar", new { id_sessao = item.Id })

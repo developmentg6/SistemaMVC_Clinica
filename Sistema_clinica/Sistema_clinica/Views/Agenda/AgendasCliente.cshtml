@@ -30,9 +30,13 @@
         <th>
             @Html.DisplayNameFor(model => model.Data_Hora)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Nome_cliente)
-        </th>
+        
+        @if (Session["nivel"].ToString() != "3")
+        {
+            <th>
+                @Html.DisplayNameFor(model => model.Nome_cliente)
+            </th>
+        }
         <th>
             @Html.DisplayNameFor(model => model.Nome_procedimento)
         </th>
@@ -48,9 +52,13 @@
         <td>
             @Html.DisplayFor(modelItem => item.Data_Hora)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nome_cliente)
-        </td>
+        
+        @if (Session["nivel"].ToString() != "3")
+        {
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome_cliente)
+            </td>
+        }
         <td>
             @Html.DisplayFor(modelItem => item.Nome_procedimento)
         </td>

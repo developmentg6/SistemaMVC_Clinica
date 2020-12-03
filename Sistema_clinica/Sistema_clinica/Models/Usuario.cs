@@ -31,7 +31,7 @@ namespace Sistema_clinica.Models
 
         public List<SelectListItem> tipoLogin = new List<SelectListItem>() {
             new SelectListItem { Text = "Cliente", Value = "cliente" },
-            new SelectListItem { Text = "Funcionario", Value = "funcionario" }
+            new SelectListItem { Text = "Funcionário", Value = "funcionario" }
         };
 
         UsuarioBD usuarioBD = new UsuarioBD();
