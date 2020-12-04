@@ -296,5 +296,31 @@ namespace Sistema_clinica.Models.bd
             return Lista;
         }
 
+        public bool DataOcupada(Agenda agenda)
+        {
+            bool existe = false;
+
+            cmd.CommandText = "select * from agenda_completa where data_hora = @data_hora AND id_sessao != @sessao ";
+            cmd.Parameters.AddWithValue("@data_hora", agenda.Data_Hora);
+            cmd.Parameters.AddWithValue("@sessao", agenda.Id_sessao);
+
+            try
+            {
+                cmd.Connection = con.Conectar();
+                dr = cmd.ExecuteReader();
+                if (dr.HasRows)
+                {
+                    existe = true;
+                }
+                con.Desconectar();
+
+            }
+            catch (MySqlException ex)
+            {
+                this.mensagem = "ERRO COM BANCO DE DADOS!" + ex;
+            }
+            return existe;
+        }
+
     }
 }

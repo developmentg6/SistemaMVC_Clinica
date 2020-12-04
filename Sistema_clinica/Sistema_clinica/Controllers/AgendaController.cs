@@ -73,6 +73,12 @@ namespace Sistema_clinica.Controllers
             novaAgenda.Pago = char.Parse(listaPagamento);
             novaAgenda.Data_Hora = new DateTime(novaAgenda.Data.Year, novaAgenda.Data.Month, novaAgenda.Data.Day, Convert.ToInt32(listaHoras), 0, 0);
 
+            var dataExiste = new Agenda().dataOcupada(novaAgenda);
+            if (dataExiste)
+            {
+                ModelState.AddModelError("Hora", "A data e hora escolhida não está disponível");
+            }
+
             Agenda agenda = new Agenda();
             if (ModelState.IsValid)
             {
@@ -126,7 +132,8 @@ namespace Sistema_clinica.Controllers
                 agenda.Data_Hora.Hour
                 );
 
-            agenda.Data = agenda.Data_Hora.Date;
+            //agenda.Data = agenda.Data_Hora.Date;
+            ViewBag.dataH = agenda.Data_Hora.ToString("yyyy-MM-dd");
 
             return View(agenda);
         }
@@ -142,6 +149,12 @@ namespace Sistema_clinica.Controllers
             }
 
             agendaEdit.Data_Hora = new DateTime(agendaEdit.Data.Year, agendaEdit.Data.Month, agendaEdit.Data.Day, Convert.ToInt32(listaHoras), 0, 0);
+
+            var dataExiste = new Agenda().dataOcupada(agendaEdit);
+            if (dataExiste)
+            {
+                ModelState.AddModelError("Hora", "A data e hora escolhida não está disponível");
+            }
 
             Agenda agenda = new Agenda();
             if (ModelState.IsValid)

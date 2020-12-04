@@ -225,5 +225,19 @@ namespace Sistema_clinica.Models
             }
             return lista;
         }
+
+        public bool dataOcupada(Agenda agenda)
+        {
+            bool dataExiste = false;
+            try
+            {
+                dataExiste = agendaBD.DataOcupada(agenda);
+            }
+            catch
+            {
+                erro = agendaBD.mensagem;
+            }
+            return dataExiste;
+        }
     }
 }
