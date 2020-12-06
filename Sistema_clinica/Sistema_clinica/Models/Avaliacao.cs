@@ -40,13 +40,13 @@ namespace Sistema_clinica.Models
 
 
 
-        public List<Avaliacao> listaAvaliacao()
+        public List<Avaliacao> listaAvaliacao(int id = 0)
         {
             List<Avaliacao> lista = new List<Avaliacao>();
 
             try
             {
-                lista = avaliacaoBD.ListaAvaliacao();
+                lista = avaliacaoBD.ListaAvaliacao(id);
             }
             catch
             {

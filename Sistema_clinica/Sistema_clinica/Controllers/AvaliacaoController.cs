@@ -10,15 +10,20 @@ namespace Sistema_clinica.Controllers
     public class AvaliacaoController : Controller
     {
         // GET: Avaliacao
-        public ActionResult Index()
+        public ActionResult Index(int id = 0)
         {
             if (Session["usuario"] == null || Session["usuario"].ToString() == "")
             {
                 return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
             }
 
+            if (Session["nivel"].ToString() == "3" && id != int.Parse(Session["id"].ToString()))
+            {
+                return RedirectToAction("TelaCliente", "Home");
+            }
+
             Avaliacao avaliacao = new Avaliacao();
-            IEnumerable<Avaliacao> lista = avaliacao.listaAvaliacao();
+            IEnumerable<Avaliacao> lista = avaliacao.listaAvaliacao(id);
             if (avaliacao.erro != "")
             {
                 return View(lista).Mensagem(avaliacao.erro);
@@ -33,6 +38,11 @@ namespace Sistema_clinica.Controllers
                 return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
             }
 
+            if (Session["nivel"].ToString() == "3")
+            {
+                return RedirectToAction("TelaCliente", "Home");
+            }
+
             Avaliacao avaliacao = new Avaliacao();
 
             return View(avaliacao.buscar(id));
@@ -43,6 +53,11 @@ namespace Sistema_clinica.Controllers
             if (Session["usuario"] == null || Session["usuario"].ToString() == "")
             {
                 return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+
+            if (Session["nivel"].ToString() == "3")
+            {
+                return RedirectToAction("TelaCliente", "Home");
             }
 
             Procedimento procedimento = new Procedimento();
@@ -100,6 +115,11 @@ namespace Sistema_clinica.Controllers
             if (Session["usuario"] == null || Session["usuario"].ToString() == "")
             {
                 return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+
+            if (Session["nivel"].ToString() == "3")
+            {
+                return RedirectToAction("TelaCliente", "Home");
             }
 
             Avaliacao avaliacao = new Avaliacao();
@@ -166,6 +186,11 @@ namespace Sistema_clinica.Controllers
                 return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
             }
 
+            if (Session["nivel"].ToString() == "3")
+            {
+                return RedirectToAction("TelaCliente", "Home");
+            }
+
             Avaliacao avaliacao = new Avaliacao();
 
             return View(avaliacao.buscar(id));
@@ -193,6 +218,11 @@ namespace Sistema_clinica.Controllers
                 return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
             }
 
+            if (Session["nivel"].ToString() == "3")
+            {
+                return RedirectToAction("TelaCliente", "Home");
+            }
+
             Avaliacao avaliacao = new Avaliacao();
             IEnumerable<Avaliacao> lista = avaliacao.filtrarNomeCliente(nome);
             if (avaliacao.erro != "")
@@ -213,6 +243,11 @@ namespace Sistema_clinica.Controllers
                 return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
             }
 
+            if (Session["nivel"].ToString() == "3")
+            {
+                return RedirectToAction("TelaCliente", "Home");
+            }
+
             Avaliacao avaliacao = new Avaliacao();
             IEnumerable<Avaliacao> lista = avaliacao.filtrarCpfCliente(cpf);
             if (avaliacao.erro != "")
@@ -231,6 +266,11 @@ namespace Sistema_clinica.Controllers
             if (Session["usuario"] == null || Session["usuario"].ToString() == "")
             {
                 return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+
+            if (Session["nivel"].ToString() == "3")
+            {
+                return RedirectToAction("TelaCliente", "Home");
             }
 
             Avaliacao avaliacao = new Avaliacao();

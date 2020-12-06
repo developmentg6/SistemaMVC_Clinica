@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Sistema_clinica.Models.Agenda>
+
+@{
+    ViewBag.Title = "Agenda";
+    Layout = "~/Views/Shared/_LayoutLogado.cshtml";
+}
+
+<h2 class="text-center">Sessões Agendadas</h2>
+
+<div class="btn btnFiltro" onclick="exibirFiltro('filtroAgenda')">Buscar</div>
+
+<div id="filtroAgenda" class="filtro_hide">
+
+    @using (Html.BeginForm("FiltrarProcedimentoRealizado", "Agenda"))
+    {
+        @Html.Editor("nomeProcedimento", new { htmlAttributes = new { placeholder = "Busca por procedimento" } })
+        <input type="submit" value="Buscar" class="btn btn-default btn-busca" />
+    }
+
+    @using (Html.BeginForm("Realizados", "Agenda"))
+    {
+        <input type="submit" value="Limpar filtros" class="btn btn-default" />
+    }
+
+    <br />
+</div>
+<br />
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Data_Hora)
+        </th>
+        
+        @if (Session["nivel"].ToString() != "3")
+        {
+            <th>
+                @Html.DisplayNameFor(model => model.Nome_cliente)
+            </th>
+        }
+        <th>
+            @Html.DisplayNameFor(model => model.Nome_procedimento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome_funcionario)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Data_Hora)
+        </td>
+        
+        @if (Session["nivel"].ToString() != "3")
+        {
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome_cliente)
+            </td>
+        }
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome_procedimento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome_funcionario)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Editar", new { id = item.Id, cliente = item.Id_cliente }) |
+            @Html.ActionLink("Excluir", "Excluir", new { id = item.Id, cliente = item.Id_cliente })
+        </td>
+    </tr>
+    }
+
+</table>
+
+@section scripts{
+    @Scripts.Render("~/bundles/filtros")
+}

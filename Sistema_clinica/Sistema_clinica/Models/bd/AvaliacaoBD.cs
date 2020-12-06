@@ -14,9 +14,17 @@ namespace Sistema_clinica.Models.bd
         MySqlDataReader dr; //DataReader, para ler e salvar info do banco
         List<Avaliacao> Lista = new List<Avaliacao>();
 
-        public List<Avaliacao> ListaAvaliacao()
+        public List<Avaliacao> ListaAvaliacao(int id = 0)
         {
-            cmd.CommandText = "SELECT * FROM avaliacao_completa";
+            if (id == 0)
+            {
+                cmd.CommandText = "SELECT * FROM avaliacao_completa";
+            }
+            else
+            {
+                cmd.CommandText = "SELECT * FROM avaliacao_completa where id_cliente = @id ";
+                cmd.Parameters.AddWithValue("@id", id);
+            }
 
             try
             {

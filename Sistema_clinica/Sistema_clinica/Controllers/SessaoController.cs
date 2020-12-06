@@ -19,7 +19,17 @@ namespace Sistema_clinica.Controllers
             }
 
             Sessao sessao = new Sessao();
-            IEnumerable<Sessao> lista = sessao.listaSessao();
+            IEnumerable<Sessao> lista;
+
+            if (Session["nivel"].ToString() == "3" )
+            {
+                lista = sessao.listaSessao(int.Parse(Session["id"].ToString()));
+            }
+            else
+            {
+                lista = sessao.listaSessao();
+            }
+
             if (sessao.erro != "")
             {
                 return View(lista).Mensagem(sessao.erro);
@@ -34,6 +44,11 @@ namespace Sistema_clinica.Controllers
                 return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
             }
 
+            if (Session["nivel"].ToString() == "3")
+            {
+                return RedirectToAction("TelaCliente", "Home");
+            }
+
             Sessao sessao = new Sessao();
 
             return View(sessao.buscar(id));
@@ -44,6 +59,11 @@ namespace Sistema_clinica.Controllers
             if (Session["usuario"] == null || Session["usuario"].ToString() == "")
             {
                 return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+
+            if (Session["nivel"].ToString() == "3")
+            {
+                return RedirectToAction("TelaCliente", "Home");
             }
 
             Procedimento procedimento = new Procedimento();
@@ -124,6 +144,11 @@ namespace Sistema_clinica.Controllers
             if (Session["usuario"] == null || Session["usuario"].ToString() == "")
             {
                 return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+
+            if (Session["nivel"].ToString() == "3")
+            {
+                return RedirectToAction("TelaCliente", "Home");
             }
 
             Sessao sessao = new Sessao();
@@ -215,6 +240,11 @@ namespace Sistema_clinica.Controllers
                 return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
             }
 
+            if (Session["nivel"].ToString() == "3")
+            {
+                return RedirectToAction("TelaCliente", "Home");
+            }
+
             Sessao sessao = new Sessao();
 
             return View(sessao.buscar(id));
@@ -242,6 +272,11 @@ namespace Sistema_clinica.Controllers
                 return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
             }
 
+            if (Session["nivel"].ToString() == "3")
+            {
+                return RedirectToAction("TelaCliente", "Home");
+            }
+
             Sessao sessao = new Sessao();
             IEnumerable<Sessao> lista = sessao.filtrarNomeCliente(nome);
             if (sessao.erro != "")
@@ -260,6 +295,11 @@ namespace Sistema_clinica.Controllers
             if (Session["usuario"] == null || Session["usuario"].ToString() == "")
             {
                 return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+
+            if (Session["nivel"].ToString() == "3")
+            {
+                return RedirectToAction("TelaCliente", "Home");
             }
 
             Sessao sessao = new Sessao();
@@ -282,6 +322,11 @@ namespace Sistema_clinica.Controllers
                 return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
             }
 
+            if (Session["nivel"].ToString() == "3")
+            {
+                return RedirectToAction("TelaCliente", "Home");
+            }
+
             Sessao sessao = new Sessao();
             IEnumerable<Sessao> lista = sessao.filtrarProcedimento(nomeProcedimento);
             if (sessao.erro != "")
@@ -300,6 +345,11 @@ namespace Sistema_clinica.Controllers
             if (Session["usuario"] == null || Session["usuario"].ToString() == "")
             {
                 return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+
+            if (Session["nivel"].ToString() == "3")
+            {
+                return RedirectToAction("TelaCliente", "Home");
             }
 
             Sessao sessao = new Sessao();

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Sistema_clinica.Models
 {
@@ -32,28 +33,21 @@ namespace Sistema_clinica.Models
         [StringLength(60, ErrorMessage = "O Email não pode ter mais de 60 caracteres")]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "Campo não pode ficar em branco")]
-        [StringLength(80, ErrorMessage = "A Rua não pode ter mais de 80 caracteres")]
-        public string Rua { get; set; }
+        [StringLength(30, ErrorMessage = "O Nome de Usuário não pode ter mais de 30 caracteres")]
+        public string Usuario { get; set; }
 
-        [Display(Name = "Número")]
-        [Required(ErrorMessage = "Campo não pode ficar em branco")]
-        public int Numero { get; set; }
+        [StringLength(30, ErrorMessage = "A Senha não pode ter mais de 30 caracteres")]
+        public string Senha { get; set; }
 
-        [Required(ErrorMessage = "Campo não pode ficar em branco")]
-        [StringLength(30, ErrorMessage = "O Bairro não pode ter mais de 30 caracteres")]
-        public string Bairro { get; set; }
-
-        [Required(ErrorMessage = "Campo não pode ficar em branco")]
-        [StringLength(30, ErrorMessage = "A Cidade não pode ter mais de 30 caracteres")]
-        public string Cidade { get; set; }
-
-        [Required(ErrorMessage = "Campo não pode ficar em branco")]
-        [StringLength(9, MinimumLength = 9, ErrorMessage = "O Cep não está completo")]
-        public string Cep { get; set; }
+        public string Nivel { get; set; }
 
         FuncionarioBD funcionarioBD = new FuncionarioBD();
         public string erro { get; set; } = "";
+
+        public List<SelectListItem> listaNivel = new List<SelectListItem>() {
+            new SelectListItem { Text = "Funcionário", Value = "2" },
+            new SelectListItem { Text = "Administrador", Value = "1" }
+        };
 
 
         public List<Funcionario> listaFuncionarios()
@@ -172,7 +166,7 @@ namespace Sistema_clinica.Models
                 erro = funcionarioBD.mensagem;
             }
             return existe;
-
         }
+
     }
 }

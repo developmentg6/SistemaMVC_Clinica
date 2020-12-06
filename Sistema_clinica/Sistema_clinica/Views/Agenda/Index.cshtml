@@ -10,19 +10,24 @@
 
 <a href="~/Sessao/Index" class="btn btnFiltro">Agendar sessão</a>
 <div class="btn btnFiltro" onclick="exibirFiltro('filtroAgenda')">Buscar</div>
+@if (Session["nivel"].ToString() != "3")
+{
 <a href="~/Agenda/Relatorio" class="btn btnFiltro">Gerar relatório</a>
-
+}
 <div id="filtroAgenda" class="filtro_hide">
-    @using (Html.BeginForm("FiltrarNomeCliente", "Agenda"))
+    @if (Session["nivel"].ToString() != "3")
     {
-        @Html.Editor("nome", new { htmlAttributes = new { placeholder = "Busca por nome de cliente" } })
-        <input type="submit" value="Buscar" class="btn btn-default btn-busca" />
-    }
+        using (Html.BeginForm("FiltrarNomeCliente", "Agenda"))
+        {
+            @Html.Editor("nome", new { htmlAttributes = new { placeholder = "Busca por nome de cliente" } })
+            <input type="submit" value="Buscar" class="btn btn-default btn-busca" />
+        }
 
-    @using (Html.BeginForm("FiltrarCpfCliente", "Agenda"))
-    {
-        @Html.Editor("cpf", new { htmlAttributes = new { placeholder = "Busca por cpf de cliente", @class = "cpf_numeros" } })
-        <input type="submit" value="Buscar" class="btn btn-default btn-busca" />
+        using (Html.BeginForm("FiltrarCpfCliente", "Agenda"))
+        {
+            @Html.Editor("cpf", new { htmlAttributes = new { placeholder = "Busca por cpf de cliente", @class = "cpf_numeros" } })
+            <input type="submit" value="Buscar" class="btn btn-default btn-busca" />
+        }
     }
 
     @using (Html.BeginForm("FiltrarProcedimento", "Agenda"))
@@ -31,21 +36,31 @@
         <input type="submit" value="Buscar" class="btn btn-default btn-busca" />
     }
 
-    @using (Html.BeginForm("FiltrarFuncionario", "Agenda"))
+    @if (Session["nivel"].ToString() != "3")
     {
-        @Html.Editor("nomeFuncionario", new { htmlAttributes = new { placeholder = "Busca por funcionário" } })
-        <input type="submit" value="Buscar" class="btn btn-default btn-busca" />
-    }
+        using (Html.BeginForm("FiltrarFuncionario", "Agenda"))
+        {
+            @Html.Editor("nomeFuncionario", new { htmlAttributes = new { placeholder = "Busca por funcionário" } })
+            <input type="submit" value="Buscar" class="btn btn-default btn-busca" />
+        }
 
-    @using (Html.BeginForm("FiltrarEstado", "Agenda"))
-    {
-        @Html.Editor("estado", new { htmlAttributes = new { placeholder = "Busca por estado" } })
-        <input type="submit" value="Buscar" class="btn btn-default btn-busca" />
-    }
+        using (Html.BeginForm("FiltrarEstado", "Agenda"))
+        {
+            @Html.Editor("estado", new { htmlAttributes = new { placeholder = "Busca por estado" } })
+            <input type="submit" value="Buscar" class="btn btn-default btn-busca" />
+        }
 
-    @using (Html.BeginForm("Index", "Agenda"))
+        using (Html.BeginForm("Index", "Agenda"))
+        {
+            <input type="submit" value="Limpar filtros" class="btn btn-default" />
+        }
+    }
+    @if (Session["nivel"].ToString() == "3")
     {
-        <input type="submit" value="Limpar filtros" class="btn btn-default" />
+        using (Html.BeginForm("Index", "Agenda", new { id = int.Parse(Session["id"].ToString()), sta = "realizado" }))
+        {
+            <input type="submit" value="Limpar filtros" class="btn btn-default" />
+        }
     }
     <br />
 </div>

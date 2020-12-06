@@ -13,9 +13,13 @@ namespace Sistema_clinica.Models
         public int Id { get; set; }
 
         [Display(Name = "Data/Hora")]
+        public DateTime Data_Hora { get; set; }
+
         [Required(ErrorMessage = "Campo não pode ficar em branco")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy HH:mm}", ApplyFormatInEditMode = true)]
-        public DateTime? Data_Hora { get; set; }
+        public DateTime Data { get; set; }
+
+        public string Hora { get; set; }
+
 
         public string Estado { get; set; }
 
@@ -57,13 +61,25 @@ namespace Sistema_clinica.Models
             new SelectListItem { Text = "Sim", Value = "S" }
         };
 
-        public List<Agenda> listaAgenda()
+        public List<SelectListItem> listaHoras = new List<SelectListItem>() {
+            new SelectListItem { Text = "10h", Value = "10" },
+            new SelectListItem { Text = "11h", Value = "11" },
+            new SelectListItem { Text = "12h", Value = "12" },
+            new SelectListItem { Text = "13h", Value = "13" },
+            new SelectListItem { Text = "14h", Value = "14" },
+            new SelectListItem { Text = "15h", Value = "15" },
+            new SelectListItem { Text = "16h", Value = "16" },
+            new SelectListItem { Text = "17h", Value = "17" },
+            new SelectListItem { Text = "18h", Value = "18" }
+        };
+
+        public List<Agenda> listaAgenda(int id = 0, string sta = null)
         {
             List<Agenda> lista = new List<Agenda>();
 
             try
             {
-                lista = agendaBD.ListaAgenda();
+                lista = agendaBD.ListaAgenda(id, sta);
             }
             catch
             {
@@ -168,12 +184,12 @@ namespace Sistema_clinica.Models
             return lista;
         }
 
-        public IEnumerable<Agenda> filtrarProcedimento(string procedimento)
+        public IEnumerable<Agenda> filtrarProcedimento(string procedimento, int id = 0, string sta = null)
         {
             List<Agenda> lista = new List<Agenda>();
             try
             {
-                lista = agendaBD.FiltrarProcedimento(procedimento);
+                lista = agendaBD.FiltrarProcedimento(procedimento, id, sta);
             }
             catch
             {
@@ -208,6 +224,20 @@ namespace Sistema_clinica.Models
                 erro = agendaBD.mensagem;
             }
             return lista;
+        }
+
+        public bool dataOcupada(Agenda agenda)
+        {
+            bool dataExiste = false;
+            try
+            {
+                dataExiste = agendaBD.DataOcupada(agenda);
+            }
+            catch
+            {
+                erro = agendaBD.mensagem;
+            }
+            return dataExiste;
         }
     }
 }

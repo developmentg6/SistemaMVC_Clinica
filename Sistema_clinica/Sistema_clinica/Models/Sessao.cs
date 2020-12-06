@@ -43,13 +43,13 @@ namespace Sistema_clinica.Models
         public string erro { get; set; } = "";
         SessaoBD sessaoBD = new SessaoBD();
 
-        public List<Sessao> listaSessao()
+        public List<Sessao> listaSessao(int id = 0)
         {
             List<Sessao> lista = new List<Sessao>();
 
             try
             {
-                lista = sessaoBD.ListaSessao();
+                lista = sessaoBD.ListaSessao(id);
             }
             catch
             {

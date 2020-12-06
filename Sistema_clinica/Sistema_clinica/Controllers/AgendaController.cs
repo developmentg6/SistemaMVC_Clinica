@@ -17,6 +17,11 @@ namespace Sistema_clinica.Controllers
                 return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
             }
 
+            if (Session["nivel"].ToString() == "3")
+            {
+                return RedirectToAction("TelaCliente", "Home");
+            }
+
             Agenda agenda = new Agenda();
             IEnumerable<Agenda> lista = agenda.listaAgenda();
             if (agenda.erro != "")
@@ -49,16 +54,30 @@ namespace Sistema_clinica.Controllers
             agenda.preencherAgendaComSessao(id_sessao);
             ViewBag.listaEstado = agenda.listaEstado;
             ViewBag.listaPagamento = agenda.listaPagamento;
+            ViewBag.listaHoras = agenda.listaHoras;
 
             return View(agenda);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Cadastrar(Agenda novaAgenda, string listaEstado, string listaPagamento)
+        public ActionResult Cadastrar(Agenda novaAgenda, string listaEstado, string listaPagamento, string listaHoras)
         {
+            if (Session["nivel"].ToString() == "3")
+            {
+                listaEstado = "Agendado";
+                listaPagamento = "N";
+            }
+
             novaAgenda.Estado = listaEstado;
             novaAgenda.Pago = char.Parse(listaPagamento);
+            novaAgenda.Data_Hora = new DateTime(novaAgenda.Data.Year, novaAgenda.Data.Month, novaAgenda.Data.Day, Convert.ToInt32(listaHoras), 0, 0);
+
+            var dataExiste = new Agenda().dataOcupada(novaAgenda);
+            if (dataExiste)
+            {
+                ModelState.AddModelError("Hora", "A data e hora escolhida não está disponível");
+            }
 
             Agenda agenda = new Agenda();
             if (ModelState.IsValid)
@@ -72,16 +91,21 @@ namespace Sistema_clinica.Controllers
 
             ViewBag.listaEstado = agenda.listaEstado;
             ViewBag.listaPagamento = agenda.listaPagamento;
+            ViewBag.listaHoras = agenda.listaHoras;
 
             return View(novaAgenda).Mensagem(agenda.erro);
         }
 
 
-        public ActionResult Editar(int id)
+        public ActionResult Editar(int id, int cliente = 0)
         {
             if (Session["usuario"] == null || Session["usuario"].ToString() == "")
             {
                 return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+            if (Session["nivel"].ToString() == "3" && cliente != int.Parse(Session["id"].ToString()))
+            {
+                return RedirectToAction("TelaCliente", "Home");
             }
 
             Agenda agenda = new Agenda();
@@ -101,15 +125,36 @@ namespace Sistema_clinica.Controllers
                 agenda.Pago
                 );
 
+            ViewBag.listaHoras = new SelectList(
+                agenda.listaHoras,
+                "Value",
+                "Text",
+                agenda.Data_Hora.Hour
+                );
+
+            //agenda.Data = agenda.Data_Hora.Date;
+            ViewBag.dataH = agenda.Data_Hora.ToString("yyyy-MM-dd");
+
             return View(agenda);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Editar(Agenda agendaEdit, string listaEstado, string listaPagamento)
+        public ActionResult Editar(Agenda agendaEdit, string listaEstado, string listaPagamento, string listaHoras)
         {
-            agendaEdit.Estado = listaEstado;
-            agendaEdit.Pago = char.Parse(listaPagamento);
+            if (Session["nivel"].ToString() != "3")
+            {
+                agendaEdit.Estado = listaEstado;
+                agendaEdit.Pago = char.Parse(listaPagamento);
+            }
+
+            agendaEdit.Data_Hora = new DateTime(agendaEdit.Data.Year, agendaEdit.Data.Month, agendaEdit.Data.Day, Convert.ToInt32(listaHoras), 0, 0);
+
+            var dataExiste = new Agenda().dataOcupada(agendaEdit);
+            if (dataExiste)
+            {
+                ModelState.AddModelError("Hora", "A data e hora escolhida não está disponível");
+            }
 
             Agenda agenda = new Agenda();
             if (ModelState.IsValid)
@@ -117,7 +162,14 @@ namespace Sistema_clinica.Controllers
                 agenda.editar(agendaEdit);
                 if (agenda.erro == "")
                 {
-                    return RedirectToAction("Index", "Agenda").Mensagem("Agendamento alterado com sucesso!", "Alteração realizada");
+                    if (Session["nivel"].ToString() == "3")
+                    {
+                        return RedirectToAction("AgendasCliente", "Agenda").Mensagem("Agendamento alterado com sucesso!", "Alteração realizada");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Agenda").Mensagem("Agendamento alterado com sucesso!", "Alteração realizada");
+                    }
                 }
             }
 
@@ -135,15 +187,27 @@ namespace Sistema_clinica.Controllers
                 agenda.Pago
                 );
 
+            ViewBag.listaHoras = new SelectList(
+                agenda.listaHoras,
+                "Value",
+                "Text",
+                agenda.Data_Hora.Hour
+                );
+
             return View(agendaEdit).Mensagem(agenda.erro);
 
         }
 
-        public ActionResult Excluir(int id)
+        public ActionResult Excluir(int id, int cliente = 0)
         {
             if (Session["usuario"] == null || Session["usuario"].ToString() == "")
             {
                 return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+
+            if (Session["nivel"].ToString() == "3" && cliente != int.Parse(Session["id"].ToString()))
+            {
+                return RedirectToAction("TelaCliente", "Home");
             }
 
             Agenda agenda = new Agenda();
@@ -159,7 +223,14 @@ namespace Sistema_clinica.Controllers
             agenda.excluir(agendaExcluir.Id);
             if (agenda.erro == "")
             {
-                return RedirectToAction("Index", "Agenda").Mensagem("Agendamento excluído com sucesso!", "Agenda excluída");
+                if (Session["nivel"].ToString() == "3")
+                {
+                    return RedirectToAction("AgendasCliente", "Agenda").Mensagem("Agendamento excluído com sucesso!", "Agenda excluída");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Agenda").Mensagem("Agendamento excluído com sucesso!", "Agenda excluída");
+                }
             }
 
             return View(agendaExcluir).Mensagem("Erro ao excluir!" + agenda.erro, "Erro");
@@ -225,6 +296,7 @@ namespace Sistema_clinica.Controllers
             return View("Index", lista);
         }
 
+        
         public ActionResult FiltrarFuncionario(string nomeFuncionario)
         {
             if (Session["usuario"] == null || Session["usuario"].ToString() == "")
@@ -267,7 +339,7 @@ namespace Sistema_clinica.Controllers
 
         public ActionResult Relatorio()
         {
-            if (Session["usuario"] == null || Session["usuario"].ToString() == "")
+            if (Session["usuario"] == null || Session["usuario"].ToString() == "" || Session["nivel"].ToString() == "3")
             {
                 return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
             }
@@ -286,5 +358,74 @@ namespace Sistema_clinica.Controllers
                 return View(excel);
         }
 
+        public ActionResult Realizados()
+        {
+            if (Session["usuario"] == null || Session["usuario"].ToString() == "")
+            {
+                return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+
+            var id = int.Parse(Session["id"].ToString());
+            var status = "realizado";
+
+            Agenda agenda = new Agenda();
+            IEnumerable<Agenda> lista = agenda.listaAgenda(id, status);
+            if (agenda.erro != "")
+            {
+                return View(lista).Mensagem(agenda.erro);
+            }
+            return View(lista);
+        }
+
+        public ActionResult FiltrarProcedimentoRealizado(string nomeProcedimento)
+        {
+            if (Session["usuario"] == null || Session["usuario"].ToString() == "")
+            {
+                return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+
+            var id = int.Parse(Session["id"].ToString());
+            var sta = "realizado";
+
+            Agenda agenda = new Agenda();
+            IEnumerable<Agenda> lista = agenda.filtrarProcedimento(nomeProcedimento, id, sta);
+            if (agenda.erro != "")
+            {
+                return RedirectToAction("Realizados", "Agenda").Mensagem(agenda.erro);
+            }
+            if (lista.Count() == 0)
+            {
+                return RedirectToAction("Realizados", "Agenda").Mensagem("Não foi encontrado nenhum procedimento com o nome informado");
+            }
+            return View("Realizados", lista);
+        }
+
+        public ActionResult AgendarCliente()
+        {
+            if (Session["usuario"] == null || Session["usuario"].ToString() == "")
+            {
+                return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+            return RedirectToAction("Index", "Sessao").Mensagem("Escolha o procedimento que deseja agendar");
+        }
+
+        public ActionResult AgendasCliente()
+        {
+            if (Session["usuario"] == null || Session["usuario"].ToString() == "")
+            {
+                return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+
+            var id = int.Parse(Session["id"].ToString());
+            var status = "Agendado";
+
+            Agenda agenda = new Agenda();
+            IEnumerable<Agenda> lista = agenda.listaAgenda(id, status);
+            if (agenda.erro != "")
+            {
+                return View(lista).Mensagem(agenda.erro);
+            }
+            return View(lista);
+        }
     }
 }

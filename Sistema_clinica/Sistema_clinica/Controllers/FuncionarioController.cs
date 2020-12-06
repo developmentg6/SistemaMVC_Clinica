@@ -44,18 +44,34 @@ namespace Sistema_clinica.Controllers
             {
                 return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
             }
+            if (Session["nivel"].ToString() != "1")
+            {
+                return RedirectToAction("TelaPrincipal", "Home").Mensagem("Você não tem permissão para acessar essa página. Contate o administrador.");
+            }
+
+            Funcionario funcionario = new Funcionario();
+            ViewBag.listaNivel = funcionario.listaNivel;
 
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Cadastrar(Funcionario funcdigitado)
+        public ActionResult Cadastrar(Funcionario funcdigitado, string listaNivel)
         {
+            funcdigitado.Nivel = listaNivel;
+            ViewBag.listaNivel = funcdigitado.listaNivel;
+
             Funcionario funcCpf = new Funcionario();
             if (funcCpf.existeCpf(funcdigitado.Cpf))
             {
                 ModelState.AddModelError("Cpf", "Esse cpf já está cadastrado");
+            }
+
+            Usuario usu = new Usuario();
+            if (usu.existeUsuario(funcdigitado.Usuario))
+            {
+                ModelState.AddModelError("Usuario", "Esse usuario já está em uso. Favor escolher outro.");
             }
 
             Funcionario funcionario = new Funcionario();
@@ -79,6 +95,10 @@ namespace Sistema_clinica.Controllers
             if (Session["usuario"] == null || Session["usuario"].ToString() == "")
             {
                 return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+            if (Session["nivel"].ToString() != "1")
+            {
+                return RedirectToAction("TelaPrincipal", "Home").Mensagem("Você não tem permissão para acessar essa página. Contate o administrador.");
             }
 
             Funcionario funcionario = new Funcionario();
@@ -105,6 +125,10 @@ namespace Sistema_clinica.Controllers
             if (Session["usuario"] == null || Session["usuario"].ToString() == "")
             {
                 return RedirectToAction("Login", "Home").Mensagem("Faça o login para entrar");
+            }
+            if (Session["nivel"].ToString() != "1")
+            {
+                return RedirectToAction("TelaPrincipal", "Home").Mensagem("Você não tem permissão para acessar essa página. Contate o administrador.");
             }
 
             Funcionario funcionario = new Funcionario();

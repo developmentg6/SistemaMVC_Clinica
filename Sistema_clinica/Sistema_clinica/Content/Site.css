@@ -161,14 +161,35 @@ textarea {
     color: black;
 }
 
-.btnMenu:hover {
+.btnMenu:hover,
+.btnMenuCliente:hover {
     background-color: rgb(255, 134, 182);
     color: white;
 }
 
-.btnMenu:active {
+.btnMenu:active,
+.btnMenuCliente:active {
     box-shadow: 0 5px 5px #666 ;
     transform: translateY(4px);
+}
+
+.btnMenuCliente {
+    width: 240px;
+    margin: auto;
+    margin-bottom: 40px;
+    margin-top: 10px;
+    border-radius: 25px;
+    height: 100px;
+    padding: 20px;
+    font-size: 140%;
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+    box-shadow: rgb(255, 54, 134) 5px 5px 25px;
+    transition-duration: 0.4s;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -208,4 +229,25 @@ textarea {
     width: 30px;
     margin-top: 10px;
     margin-left: 5px;
+}
+
+.navbar, .dropdown-menu {
+    background-color: #ed7fa3 !important;
+}
+
+    .navbar a {
+        color: white !important;
+    }
+
+        .navbar a:active {
+            background-color: #fad9dc !important;
+        }
+
+.dropdown-toggle {
+    background-color: #ed7fa3 !important;
+}
+
+li a:hover {
+    background-color: #fad9dc !important;
+    color: #ed7fa3 !important;
 }

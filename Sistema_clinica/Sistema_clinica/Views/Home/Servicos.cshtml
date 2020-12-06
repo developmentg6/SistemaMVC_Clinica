@@ -1,0 +1,304 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8" />
+    <title>Serviços</title>
+    <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.3.1/flatly/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="~/Scripts/bootstrap2.js"></script>
+    <link rel="stylesheet" type="text/css" href="~/Content/slider-wheel.css" />
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .dvd_fixed_slider {
+            font-family: sans-serif;
+            font-style: normal;
+        }
+
+        .slide_text .title {
+            font-size: 36px;
+            color: #fff;
+            line-height: 2.8125rem;
+            font-weight: 700;
+        }
+
+        .slide_text .description {
+            font-size: 1rem;
+            color: #fff;
+            line-height: 1.75;
+            font-weight: 300;
+            margin-bottom: 20px;
+            text-shadow: 0.5px 0.5px
+        }
+
+        .slide_text .button {
+            font-size: 1rem;
+            color: #333;
+            line-height: 1;
+            font-weight: 700;
+            background: hsla(0,0%,100%,.82);
+        }
+
+        .slide_text .button {
+            text-align: center;
+            padding: 14px 40px 12px;
+            display: inline-block;
+        }
+
+        .slide_dots_wheel a {
+            font-size: .875rem;
+            color: #fff;
+            line-height: 1.2em;
+        }
+
+            .slide_dots_wheel a:first-child .slide_dot,
+            .slide_dots_wheel a:hover .slide_dot {
+                background-color: #ed7fa3;
+            }
+
+        .slide_dots_wheel .slide_dot {
+            background-color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="~/Home/Index"><img class="logo" src="~/Imagens/Logo_niceface.png"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="~/Home/About">Sobre<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="~/Home/Servicos">Serviços</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="~/Home/Contact">Contato</a>
+                </li>
+            </ul>
+            <ul class="nav justify-content-end login">
+                <li class="nav-item">
+                    <a class="nav-link" href="~/Home/Login">Login</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div id="carbon-block" style="margin-top:0.2vw"></div>
+
+    <!-- Slider - BEGIN -->
+    <div class="dvd_fixed_slider">
+        <div class="slides_bg">
+            <div id="slide_01" style="background-image: url('../Imagens/assets/fundo-peeling.jpg')"></div>
+            <div id="slide_02" style="background-image: url('../Imagens/assets/fundo-drenagem.jpg')"></div>
+            <div id="slide_03" style="background-image: url('../Imagens/assets/fundo-limpeza.jpg')"></div>
+            <div id="slide_04" style="background-image: url('../Imagens/assets/fundo-depilacao.jpg')"></div>
+            <div id="slide_05" style="background-image: url('../Imagens/assets/fundo-gordura.jpg')"></div>
+        </div>
+        <div class="slides_fg">
+            <ul class="nav navbar-nav">
+                <!-- Slide 01 -->
+                <li id="slide-01" class="row slide_nth active">
+                    <a class="d-none" href="#slide_01"></a>
+                    <div class="col-md-7 col-xl-6 mw-100">
+                        <div class="slide_imag mx-auto ml-md-0 ml-lg-auto mr-lg-0">
+                            <div class="slide_dial">
+                                <img src="~/Imagens/assets/dial-disk-md.png" class="d-none d-md-block" />
+                                <img src="~/Imagens/assets/dial-disk-sm.png" class="d-block d-md-none" />
+                            </div>
+                            <div class="slide_thumb_bg img-responsive"
+                                 style="background-image: url('../../Imagens/assets/peeling.png')">
+                            </div>
+                            <div class="slide_dots_wheel">
+                                <a href="#slide_01"><i class="slide_dot"></i><span>Pelling</span></a>
+                                <a href="#slide_05"><i class="slide_dot"></i><span>Redução de gordura</span></a>
+                                <a href="#slide_04"><i class="slide_dot"></i><span>Depilação</span></a>
+                                <a href="#slide_03"><i class="slide_dot"></i><span>Limpeza de pele</span></a>
+                                <a href="#slide_02"><i class="slide_dot"></i><span>Drenagem</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5 col-xl-6 mw-100 justify-content-start justify-content-md-center">
+                        <div class="slide_text mx-auto mr-md-0 ml-lg-0 text-center text-md-left">
+                            <h3 class="title">Peeling</h3>
+                            <p class="description">
+                                O peeling é um tratamento não invasivo muito eficaz para rugas, manchas, marcas de expressão, cicatrizes de acne e até mesmo para controle da oleosidade. Este tratamento pode ainda reverter alguns quadros, como perda de elasticidade e sinais de envelhecimento precoce.
+                            </p>
+                            <button type="button" class="BtnAgende">@Html.ActionLink("Agendar consulta", "Login", null, new { @class = "agende" })</button>
+                        </div>
+                    </div>
+                </li>
+                <!-- Slide 02 -->
+                <li id="slide-02" class="row slide_nth">
+                    <a class="d-none" href="#slide_02"></a>
+                    <div class="col-md-7 col-xl-6 mw-100">
+                        <div class="slide_imag mx-auto ml-md-0 ml-lg-auto mr-lg-0">
+                            <div class="slide_dial">
+                                <img src="~/Imagens/assets/dial-disk-md.png" class="d-none d-md-block" />
+                                <img src="~/Imagens/assets/dial-disk-sm.png" class="d-block d-md-none" />
+                            </div>
+                            <div class="slide_thumb_bg"
+                                 style="background-image: url('../../Imagens/assets/drenagem.png')">
+                            </div>
+                            <div class="slide_dots_wheel">
+                                <a href="#slide_02"><i class="slide_dot"></i><span>Drenagem</span></a>
+                                <a href="#slide_01"><i class="slide_dot"></i><span>Peeling</span></a>
+                                <a href="#slide_05"><i class="slide_dot"></i><span>Redução de gordura</span></a>
+                                <a href="#slide_04"><i class="slide_dot"></i><span>Depilação</span></a>
+                                <a href="#slide_03"><i class="slide_dot"></i><span>Limpeza de pele</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5 col-xl-6 mw-100 justify-content-start justify-content-md-center">
+                        <div class="slide_text mx-auto mr-md-0 ml-lg-0 text-center text-md-left">
+                            <h3 class="title">Drenagem Linfática</h3>
+                            <p class="description">
+                                A drenagem linfática é uma técnica de massagem que tem por objetivo estimular o sistema linfático - uma rede complexa de vasos que movem fluidos pelo corpo - a trabalhar de forma mais acelerada. A técnica é manual.
+                            </p>
+                            <button type="button" class="BtnAgende">@Html.ActionLink("Agendar consulta", "Login", null, new { @class = "agende" })</button>
+                        </div>
+                    </div>
+                </li>
+                <!-- Slide 03 -->
+                <li id="slide-03" class="row slide_nth">
+                    <a class="d-none" href="#slide_03"></a>
+                    <div class="col-md-7 col-xl-6 mw-100">
+                        <div class="slide_imag mx-auto ml-md-0 ml-lg-auto mr-lg-0">
+                            <div class="slide_dial">
+                                <img src="~/Imagens/assets/dial-disk-md.png" class="d-none d-md-block" />
+                                <img src="~/Imagens/assets/dial-disk-sm.png" class="d-block d-md-none" />
+                            </div>
+                            <div class="slide_thumb_bg"
+                                 style="background-image: url('../../Imagens/assets/limpeza.png')">
+                            </div>
+                            <div class="slide_dots_wheel">
+                                <a href="#slide_03"><i class="slide_dot"></i><span>Limpeza de pele</span></a>
+                                <a href="#slide_02"><i class="slide_dot"></i><span>Drenagem</span></a>
+                                <a href="#slide_01"><i class="slide_dot"></i><span>Peeling</span></a>
+                                <a href="#slide_05"><i class="slide_dot"></i><span>Redução de gordura</span></a>
+                                <a href="#slide_04"><i class="slide_dot"></i><span>Depilação</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5 col-xl-6 mw-100 justify-content-start justify-content-md-center">
+                        <div class="slide_text mx-auto mr-md-0 ml-lg-0 text-center text-md-left">
+                            <h3 class="title">Limpeza de pele</h3>
+                            <p class="description">
+                                A limpeza de pele é um procedimento estético, realizado em nossa clínica estética, que tem como objetivo remover cravos e impurezas da pele. Uma limpeza de pele profunda também remove o milium, que são pequenos cistos salientes causados pelo acúmulo de óleo e pele nos poros.
+                            </p>
+                            <button type="button" class="BtnAgende">@Html.ActionLink("Agendar consulta", "Login", null, new { @class = "agende" })</button>
+                        </div>
+                    </div>
+                </li>
+                <!-- Slide 04 -->
+                <li id="slide-04" class="row slide_nth">
+                    <a class="d-none" href="#slide_04"></a>
+                    <div class="col-md-7 col-xl-6 mw-100">
+                        <div class="slide_imag mx-auto ml-md-0 ml-lg-auto mr-lg-0">
+                            <div class="slide_dial">
+                                <img src="~/Imagens/assets/dial-disk-md.png" class="d-none d-md-block" />
+                                <img src="~/Imagens/assets/dial-disk-sm.png" class="d-block d-md-none" />
+                            </div>
+                            <div class="slide_thumb_bg"
+                                 style="background-image: url('../../Imagens/assets/depilacao.png')">
+                            </div>
+                            <div class="slide_dots_wheel">
+                                <a href="#slide_04"><i class="slide_dot"></i><span>Depilação</span></a>
+                                <a href="#slide_03"><i class="slide_dot"></i><span>Limpeza de pele</span></a>
+                                <a href="#slide_02"><i class="slide_dot"></i><span>Drenagem</span></a>
+                                <a href="#slide_01"><i class="slide_dot"></i><span>Peeling</span></a>
+                                <a href="#slide_05"><i class="slide_dot"></i><span>Redução de gordura</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5 col-xl-6 mw-100 justify-content-start justify-content-md-center">
+                        <div class="slide_text mx-auto mr-md-0 ml-lg-0 text-center text-md-left">
+                            <h3 class="title">Depilação a laser ou Tradicional</h3>
+                            <p class="description">
+                                Realizamos a remoção intencional de pelos em diversas regiões do corpo, de forma duradoura ou temporária. A versão a laser é eficaz em quase todas as áreas corporais, sendo que vários tipos de laser e luz intensa pulsada podem ser usados para obter resultados prolongados.
+                            </p>
+                            <button type="button" class="BtnAgende">@Html.ActionLink("Agendar consulta", "Login", null, new { @class = "agende" })</button>
+                        </div>
+                    </div>
+                </li>
+                <!-- Slide 05 -->
+                <li id="slide-05" class="row slide_nth">
+                    <a class="d-none" href="#slide_05"></a>
+                    <div class="col-md-7 col-xl-6 mw-100">
+                        <div class="slide_imag mx-auto ml-md-0 ml-lg-auto mr-lg-0">
+                            <div class="slide_dial">
+                                <img src="~/Imagens/assets/dial-disk-md.png" class="d-none d-md-block" />
+                                <img src="~/Imagens/assets/dial-disk-sm.png" class="d-block d-md-none" />
+                            </div>
+                            <div class="slide_thumb_bg"
+                                 style="background-image: url('../../Imagens/assets/gordura.png')">
+                            </div>
+                            <div class="slide_dots_wheel">
+                                <a href="#slide_05"><i class="slide_dot"></i><span>Redução de gordura</span></a>
+                                <a href="#slide_04"><i class="slide_dot"></i><span>Depilação</span></a>
+                                <a href="#slide_03"><i class="slide_dot"></i><span>Limpeza de pele</span></a>
+                                <a href="#slide_02"><i class="slide_dot"></i><span>Drenagem</span></a>
+                                <a href="#slide_01"><i class="slide_dot"></i><span>Peeling</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5 col-xl-6 mw-100 justify-content-start justify-content-md-center">
+                        <div class="slide_text mx-auto mr-md-0 ml-lg-0 text-center text-md-left">
+                            <h3 class="title">Redução de gordura</h3>
+                            <p class="description">
+                                A gordura localizada se forma em alguns lugares específicos do corpo, como quadril, flancos (pneuzinhos), barriga e costas, áreas difíceis de serem exercitadas. Na maioria das vezes, se forma quando a pessoa não faz dieta fracionada ou por problemas hormonais.
+                                Venha conhecer nossos tratamentos!
+                            </p>
+                            <button type="button" class="BtnAgende">@Html.ActionLink("Agendar consulta", "Login", null, new { @class = "agende" })</button>
+                        </div>
+                    </div>
+                </li>
+                <!-- Slide - END -->
+            </ul>
+        </div>
+    </div>
+    <!-- Slider - END -->
+
+
+    <hr />
+    <footer class="container text-center" id="rodape">
+        <p>Sistema desenvolvido por G6 System Development - &copy; @DateTime.Now.Year</p>
+        <p>Versão 3.0</p>
+    </footer>
+
+
+    <script src="~/Scripts/slider-wheel.js"></script>
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-36251023-1']);
+        _gaq.push(['_setDomainName', 'jqueryscript.net']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+    </script>
+</body>
+
+</html>
