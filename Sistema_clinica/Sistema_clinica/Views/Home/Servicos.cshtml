@@ -65,7 +65,7 @@
 
             .slide_dots_wheel a:first-child .slide_dot,
             .slide_dots_wheel a:hover .slide_dot {
-                background-color: #FA8072;
+                background-color: #ed7fa3;
             }
 
         .slide_dots_wheel .slide_dot {
@@ -76,6 +76,32 @@
 
 <body>
 
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="~/Home/Index"><img class="logo" src="~/Imagens/Logo_niceface.png"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="~/Home/About">Sobre<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="~/Home/Servicos">Serviços</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="~/Home/Contact">Contato</a>
+                </li>
+            </ul>
+            <ul class="nav justify-content-end login">
+                <li class="nav-item">
+                    <a class="nav-link" href="~/Home/Login">Login</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div id="carbon-block" style="margin-top:0.2vw"></div>
 
     <!-- Slider - BEGIN -->
     <div class="dvd_fixed_slider">
@@ -115,7 +141,7 @@
                             <p class="description">
                                 O peeling é um tratamento não invasivo muito eficaz para rugas, manchas, marcas de expressão, cicatrizes de acne e até mesmo para controle da oleosidade. Este tratamento pode ainda reverter alguns quadros, como perda de elasticidade e sinais de envelhecimento precoce.
                             </p>
-                            <button type="button" class="BtnAgende">@Html.ActionLink("Agende uma consulta", "Login", null, new { @class = "agende" })</button>
+                            <button type="button" class="BtnAgende">@Html.ActionLink("Agendar consulta", "Login", null, new { @class = "agende" })</button>
                         </div>
                     </div>
                 </li>
@@ -146,7 +172,7 @@
                             <p class="description">
                                 A drenagem linfática é uma técnica de massagem que tem por objetivo estimular o sistema linfático - uma rede complexa de vasos que movem fluidos pelo corpo - a trabalhar de forma mais acelerada. A técnica é manual.
                             </p>
-                            <button type="button" class="BtnAgende">@Html.ActionLink("Agende uma consulta", "Login", null, new { @class = "agende" })</button>
+                            <button type="button" class="BtnAgende">@Html.ActionLink("Agendar consulta", "Login", null, new { @class = "agende" })</button>
                         </div>
                     </div>
                 </li>
@@ -177,7 +203,7 @@
                             <p class="description">
                                 A limpeza de pele é um procedimento estético, realizado em nossa clínica estética, que tem como objetivo remover cravos e impurezas da pele. Uma limpeza de pele profunda também remove o milium, que são pequenos cistos salientes causados pelo acúmulo de óleo e pele nos poros.
                             </p>
-                            <button type="button" class="BtnAgende">@Html.ActionLink("Agende uma consulta", "Login", null, new { @class = "agende" })</button>
+                            <button type="button" class="BtnAgende">@Html.ActionLink("Agendar consulta", "Login", null, new { @class = "agende" })</button>
                         </div>
                     </div>
                 </li>
@@ -208,7 +234,7 @@
                             <p class="description">
                                 Realizamos a remoção intencional de pelos em diversas regiões do corpo, de forma duradoura ou temporária. A versão a laser é eficaz em quase todas as áreas corporais, sendo que vários tipos de laser e luz intensa pulsada podem ser usados para obter resultados prolongados.
                             </p>
-                            <button type="button" class="BtnAgende">@Html.ActionLink("Agende uma consulta", "Login", null, new { @class = "agende" })</button>
+                            <button type="button" class="BtnAgende">@Html.ActionLink("Agendar consulta", "Login", null, new { @class = "agende" })</button>
                         </div>
                     </div>
                 </li>
@@ -235,12 +261,12 @@
                     </div>
                     <div class="col-md-5 col-xl-6 mw-100 justify-content-start justify-content-md-center">
                         <div class="slide_text mx-auto mr-md-0 ml-lg-0 text-center text-md-left">
-                            <h3 class="title">Redução de gordura localizada</h3>
+                            <h3 class="title">Redução de gordura</h3>
                             <p class="description">
                                 A gordura localizada se forma em alguns lugares específicos do corpo, como quadril, flancos (pneuzinhos), barriga e costas, áreas difíceis de serem exercitadas. Na maioria das vezes, se forma quando a pessoa não faz dieta fracionada ou por problemas hormonais.
                                 Venha conhecer nossos tratamentos!
                             </p>
-                            <button type="button" class="BtnAgende">@Html.ActionLink("Agende uma consulta", "Login", null, new { @class = "agende" })</button>
+                            <button type="button" class="BtnAgende">@Html.ActionLink("Agendar consulta", "Login", null, new { @class = "agende" })</button>
                         </div>
                     </div>
                 </li>
@@ -259,20 +285,6 @@
 
 
     <script src="~/Scripts/slider-wheel.js"></script>
-    <script>
-        try {
-            fetch(new Request("https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js", { method: 'HEAD', mode: 'no-cors' })).then(function (response) {
-                return true;
-            }).catch(function (e) {
-                var carbonScript = document.createElement("script");
-                carbonScript.src = "//cdn.carbonads.com/carbon.js?serve=CK7DKKQU&placement=wwwjqueryscriptnet";
-                carbonScript.id = "_carbonads_js";
-                document.getElementById("carbon-block").appendChild(carbonScript);
-            });
-        } catch (error) {
-            console.log(error);
-        }
-    </script>
     <script type="text/javascript">
 
         var _gaq = _gaq || [];
@@ -290,8 +302,3 @@
 </body>
 
 </html>
-
-
-
-
-
