@@ -24,6 +24,21 @@ namespace Sistema_clinica.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult Contact(Contato contato)
+        {
+            new Contato().enviarContato(contato);
+            if (contato.Erro == "")
+            {
+                return View().Mensagem("Mensagem enviada com sucesso!");
+            }
+            else
+            {
+                return View().Mensagem(contato.Erro);
+            }
+        }
+
+
         public ActionResult Servicos()
         {
             return View();

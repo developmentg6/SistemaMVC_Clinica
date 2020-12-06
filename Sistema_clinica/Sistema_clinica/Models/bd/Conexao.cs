@@ -13,7 +13,7 @@ namespace Sistema_clinica.Models.bd
         public Conexao()
         {
             //inserir a string de conexão
-            con.ConnectionString = @"server=niceface.mysql.dbaas.com.br;user id=niceface;pwd='ni20cef@ce12';database=niceface;Connect Timeout=28800;Command Timeout=2880";
+            con.ConnectionString = @"connectionstring";
         }
 
         public MySqlConnection Conectar()
